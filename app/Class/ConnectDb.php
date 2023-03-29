@@ -2,7 +2,7 @@
 
 class ConnectionDB {
 
-    public function connect() {
+    public static function connect() {
 
         // Connection to the database
         try {

@@ -11,15 +11,23 @@ class Product
     }
 
     /**
-     * 
+     * method to get product by id
      */
-    public function getProduct($product): ?array
+    public function getProduct(int $idProduct): null|array
     {
+        $sqlIdProduct = 'SELECT * FROM `product` WHERE id_pro=:id LIMIT 1';
+        $dataProcut = \DbConnection::getDB()->prepare($sqlIdProduct);
+        $dataProcut->bindParam(':id', $idProduct);
+        $dataProcut->execute();
+        return $dataProcut->fetch();
 
     }
 
-    public function getAllProduct(): ?array
-    {
-
-    }
+    // public function getAllProduct(): ?array
+    // {
+// 
+    // }
 }
+$produit = new Product();
+
+var_dump($produit->getProduct(3));

@@ -26,12 +26,19 @@ $_SESSION['page'] = $page;
         <div class="container">
 
             <div class="page">
-                <button><a href="shop.php?page=<?php echo $page +1 ?>" id="btnSuivant">Page suivante >></a></button>
-                <button><a href="shop.php?page=<?php echo $page -1 ?>">Page précédente <<</a></button>
+                <button><a href="shop.php?page=<?php echo $page +1 ?>" id="btnSuivant">suivante >></a></button>
+                <button><a href="shop.php?page=<?php echo $page -1 ?>">précédent <<</a></button>
             </div>
 
             <div class="shop">
                 <!-- Display products whith api fetch -->
+                <!-- <div>
+                    <img src="" alt="image">
+                    <h3>title lorem lorem</h3>
+                    <p>category</p>
+                    <p>note</p>
+                    <p>prix</p>
+                </div> -->
             </div>
 
         </div>

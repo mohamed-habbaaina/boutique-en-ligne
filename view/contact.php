@@ -22,24 +22,24 @@
                 <h3>Formulaire de contact</h3>
                 <form action="" methode="post">
                     <div id="name_form">
-                        <div class="input_contener">
+                        <div class="input_container" id="firstname_input">
                             <input type="text" name="firstname" id="firstname" placeholder=" ">
                             <label for="firstname">Prénom</label>
                         </div>
-                        <div class="input_contener">
+                        <div class="input_container" id="lastname_input">
                             <input type="text" name="lastname" id="lastname" placeholder=" ">
                             <label for="lastname">Nom</label>
                         </div>
                     </div>
-                    <div class="input_contener">
+                    <div class="input_container" id="email_input">
                         <input type="text" name="email" id="email" placeholder=" ">
                         <label for="email">Email</label>
                     </div>
-                    <div class="input_contener">
+                    <div class="input_container" id="phone_input">
                         <input type="tel" name="phone" id="phone" placeholder=" ">
                         <label for="phone">Téléphone</label>
                     </div>
-                    <div class="textarea_contener">
+                    <div class="textarea_container">
                         <textarea name="content" id="message_content" cols="30" rows="10" placeholder=" "></textarea>
                         <label for="message_content">Votre message...</label>
                     </div>
@@ -52,6 +52,9 @@
 
         <?php require_once("./includes/footer.php"); ?>
     </main>
+
+    <script src="./js/app.js"></script>
+</script>
 
 </body>
 

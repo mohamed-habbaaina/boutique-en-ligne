@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 29 mars 2023 à 15:24
+-- Généré le : ven. 31 mars 2023 à 12:03
 -- Version du serveur : 10.6.12-MariaDB-0ubuntu0.22.04.1
 -- Version de PHP : 8.1.2-1ubuntu2.11
 
@@ -28,7 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cart` (
-  `id_cart` int(11) NOT NULL
+  `id_cart` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -151,6 +152,12 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `cart_product`
   ADD PRIMARY KEY (`id_cart`,`id_pro`);
+
+--
+-- Index pour la table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id_com`);
 
 --
 -- Index pour la table `customer`

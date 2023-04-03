@@ -1,7 +1,7 @@
 <?php
-namespace src\Class;
+namespace src\Classes;
 
-require_once('./ConnectDb.php');
+require_once('../Classes/ConnectDb.php');
 
 class Product
 {
@@ -29,12 +29,18 @@ class Product
      */
     public function getAllProduct(int $offset): array
     {
-        $sqlAllProduct = 'SELECT * FROM `product` LIMIT 8 OFFSET ' . $offset;
+        $sqlAllProduct = 'SELECT product.id_pro, name_pro, price_pro, image_pro, category_pro, AVG(value_rat) as avg_rating 
+        FROM `product` 
+        LEFT JOIN `rate` 
+        ON product.id_pro = rate.id_pro 
+        GROUP BY product.id_pro 
+        LIMIT 8 OFFSET ' . $offset;
+
         $dataAllProduct = DbConnection::getDb()->prepare($sqlAllProduct);
         $dataAllProduct->execute();
         return $dataAllProduct->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
-$produit = new Product();
+// $produit = new Product();
 
-var_dump($produit->getAllProduct(0));
+// var_dump($produit->getAllProduct(0));

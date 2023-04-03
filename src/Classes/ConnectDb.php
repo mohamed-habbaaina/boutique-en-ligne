@@ -1,5 +1,5 @@
 <?php
-namespace src\Class;
+namespace src\Classes;
 class DbConnection
 {
     private static ?\PDO $_db = null;

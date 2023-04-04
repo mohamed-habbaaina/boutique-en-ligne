@@ -2,10 +2,10 @@
 namespace src\Classes;
 class DbConnection
 {
-    private static $servername = 'localhost';
+    private static $servername = '10.10.32.17';
     private static $username_b = 'root';
     private static $password_b = '';
-    private static $database = 'boutique_en_ligne';
+    private static $database = 'eshop';
     private static ?\PDO $_db = null;
 
     public static function getDb()

@@ -1,7 +1,7 @@
 <?php
 
 
-require_once('../Class/ConnectDb.php');
+require_once('DbConnection.php');
 
 Class User
 {
@@ -15,7 +15,7 @@ Class User
     }
     public function register($firstname, $lastname, $mail, $password)
     {
-        $register = "INSERT INTO utilisateurs (firstname = :firstname , lastname = :lastname, email = :email, password = :password)";
+        $register = "INSERT INTO user (firstname = :firstname , lastname = :lastname, email = :email, password = :password)";
         $prepare = $this->pdo->prepare($register);
         $prepare->execute([
           "firstname" => $firstname, 

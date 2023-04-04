@@ -1,6 +1,5 @@
 <?php
 
-
 require_once('DbConnection.php');
 
 Class User

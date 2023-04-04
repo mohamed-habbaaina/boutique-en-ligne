@@ -43,7 +43,7 @@ let data = await response.json();
                     <p>${item.category_pro}</p>
                     <p>${formatRate} ###</p>
                     <p>${item.price_pro}</p>
-                    <button><a href="../src/model/product.php?id=${item.id_pro}">Voir le produit</a></button>
+                    <button><a href="./product.php?idProduct=${item.id_pro}">Voir le produit</a></button>
                 </div>
             `;
         

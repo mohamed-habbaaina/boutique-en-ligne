@@ -1,7 +1,7 @@
 <?php
 namespace src\Classes;
 
-require_once('../Classes/ConnectDb.php');
+require_once('DbConnection.php');
 
 class Product
 {
@@ -16,7 +16,11 @@ class Product
      */
     public function getProduct(int $idProduct): array
     {
-        $sqlIdProduct = 'SELECT * FROM `product` WHERE id_pro=:id LIMIT 1';
+        $sqlIdProduct = 'SELECT name_pro, description_pro, price_pro, image_pro, origin_pro, category_pro, AVG(value_rat) as avg_rating 
+        FROM `product` LEFT JOIN `rate` 
+        ON product.id_pro = rate.id_pro 
+        WHERE product.id_pro=:id 
+        GROUP BY product.id_pro LIMIT 1';
         $dataProcut = DbConnection::getDB()->prepare($sqlIdProduct);
         $dataProcut->bindParam(':id', $idProduct);
         $dataProcut->execute();

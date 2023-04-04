@@ -53,7 +53,7 @@
         <?php require_once("./includes/footer.php"); ?>
     </main>
 
-    <script src="./js/app.js"></script>
+    <script src="./js/contact.js"></script>
 </script>
 
 </body>

@@ -10,17 +10,19 @@ Class User
     public function __construct()
     {
         $this->pdo = DbConnection::getDb();
-        var_dump($this->pdo);
     }
-    public function register($firstname, $lastname, $mail, $password)
+    
+    public function register($firstname, $lastname, $email, $password)
     {
-        $register = "INSERT INTO user (firstname = :firstname , lastname = :lastname, email = :email, password = :password)";
+        $register = "INSERT INTO user (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
         $prepare = $this->pdo->prepare($register);
+    
         $prepare->execute([
-          "firstname" => $firstname, 
-          "lastname"=> $lastname, 
-          "mail" => $mail,
-          "password" => $password,]);
+            "firstname" => $firstname, 
+            "lastname" => $lastname, 
+            "email" => $email,
+            "password" => $password
+        ]);
         
         echo "ok";
     }

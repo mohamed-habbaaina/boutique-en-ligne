@@ -20,6 +20,7 @@
             </div>
             <div id="contact_form">
                 <h3>Formulaire de contact</h3>
+                <h4 id="form_message"></h4>
                 <form action="" methode="post">
                     <div id="name_form">
                         <div class="input_container" id="firstname_input">

@@ -55,7 +55,7 @@ phone_input.addEventListener('input', (e) => {
 })
 
 const form = document.querySelector('form');
-const contact_form = document.getElementById('contact_form');
+const form_message = document.getElementById('form_message');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -69,9 +69,9 @@ form.addEventListener('submit', (event) => {
   .then(response => {
     if (response.ok) {
         console.log(response);
-        contact_form.innerHTML("Votre message à bien été envoyé");
+        form_message.innerHTML = "Votre message à bien été envoyé";
     } else {
-        contact_form.innerHTML("Une erreur s'est produite");
+        form_message.innerHTML = "Une erreur s'est produite";
     }
   })
   .catch(error => {

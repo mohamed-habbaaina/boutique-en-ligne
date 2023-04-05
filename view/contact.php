@@ -40,6 +40,7 @@
                     <div class="input_container" id="phone_div">
                         <input type="tel" name="contact_phone" id="phone_input" placeholder=" ">
                         <label for="phone_input">Téléphone</label>
+
                     </div>
                     <div class="textarea_container">
                         <textarea name="contact_content" id="message_content" cols="30" rows="10" placeholder=" "></textarea>

@@ -87,7 +87,7 @@ form.addEventListener('submit', (event) => {
 
         const formData = new FormData(form);
 
-        fetch('../src/controllers/contact_control.php', {
+        fetch('../src/controllers/contact_router.php', {
             method: 'POST',
             body: formData
         })

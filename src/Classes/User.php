@@ -16,6 +16,7 @@ Class User
     
     public function create($firstname, $lastname, $email, $password)
     {
+        $hashed_pwd = password_hash($password, PASSWORD_DEFAULT);
         $register = "INSERT INTO user (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
         $prepare = $this->pdo->prepare($register);
     
@@ -23,7 +24,7 @@ Class User
             "firstname" => $firstname, 
             "lastname" => $lastname, 
             "email" => $email,
-            "password" => $password
+            "password" => $hashed_pwd,
         ]);
         
         echo "ok";
@@ -40,14 +41,19 @@ Class User
             
             if (count($result) == 0) {
                 echo "Incorrect email or password.";
-            } elseif ($result["password"] !== $password) {
+                die();
+            } elseif (!password_verify($password, $result["password"])) {
                 echo "Incorrect email or password.";
-            } elseif ($result["password"] == $password) {
-                $_SESSION["id_user"] = $result["id_user"];
-                $_SESSION["userFirstname"] = $result["firstname"];
+                die();
+            } else {
+                $_SESSION["user"] = [
+                    "id" => $result["id_user"],
+                    "firstname" => $result["firstname"],
+                    "lastname" => $result["lastname"],
+                    "email" => $result["email"],
+                ];
                 
-    
-                echo "Welcome" . $_SESSION["userFirstname"];
+                var_dump($_SESSION["user"]);
     
             }
         }

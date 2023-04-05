@@ -27,5 +27,27 @@ Class User
         
         echo "ok";
     }
+
+    public function select($email, $password)
+    {
+
+            $select = $this->pdo->prepare("SELECT * FROM user WHERE email=$email limit 1");
+            $select->execute();
+            $result = $select->fetchAll($this->pdo::FETCH_ASSOC);
+            
+            if (count($result) == 0) {
+                echo "Incorrect email or password.";
+            } elseif ($result["password"] !== $password) {
+                echo "Incorrect email or password.";
+            } elseif ($result["password"] == $password) {
+                $_SESSION["userId"] = $result["id"];
+                $_SESSION["userLogin"] = $result["login"];
+                $_SESSION["role"] = $result["role"];
+    
+                echo "Welcome" . $_SESSION["userLogin"];
+    
+            }
+        }
+    
 }
 ?>

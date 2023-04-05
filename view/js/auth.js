@@ -1,8 +1,8 @@
 let regDisplayBtn = document.querySelector("#regDisplayBtn");
 let logDisplayBtn = document.querySelector("#logDisplayBtn");
 
-async function FetchReg() {
-    await fetch("register.php")
+function FetchReg() {
+    fetch("register.php")
       .then((response) => {
         return response.text();
       })
@@ -36,8 +36,8 @@ regDisplayBtn.addEventListener("click", function (ev){
 })
 
 
-async function FetchLog() {
-await fetch("connect.php")
+function FetchLog() {
+  fetch("connect.php")
     .then((response) => {
     return response.text();
     })
@@ -58,7 +58,6 @@ await fetch("connect.php")
         })
         .then((content) => {
             formDisplay.textContent = content;
-            redirectProfil()
         });
     });
     });

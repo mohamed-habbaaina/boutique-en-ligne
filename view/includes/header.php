@@ -11,6 +11,9 @@
         <ul>
             <li><button id="logDisplayBtn">Login</button></li>
             <li><button id="regDisplayBtn">Register</button></li>
+            <?php if(isset($_SESSION["userLogin"])) : ?>
+                <li><button>Deconnexion</button></li>
+            <?php endif ?>
         </ul>
     </div>
 </nav>

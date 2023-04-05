@@ -10,3 +10,8 @@ if (isset($_POST["register"])) {
     $userController->register($_POST["regFirstname"], $_POST["regLastname"], $_POST["regMail"], $_POST["regPassword"], $_POST["regPasswordConfirm"]);
 
 }
+
+if(isset($_POST["loggin"])){
+
+    $userController->login($_POST["logEmail"], $_POST["logPassword"]);
+}

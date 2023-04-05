@@ -2,7 +2,7 @@
 
 require_once('../Class/ConnectDb.php');
 
-class Message
+class ContactModel
 {
     public function __construct(
         private string $content,

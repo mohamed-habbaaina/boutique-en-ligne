@@ -23,21 +23,21 @@
                 <h4 id="form_message"></h4>
                 <form action="" methode="post">
                     <div id="name_form">
-                        <div class="input_container" id="firstname_input">
-                            <input type="text" name="contact_firstname" id="firstname" placeholder=" ">
+                        <div class="input_container" id="firstname_div">
+                            <input type="text" name="contact_firstname" id="firstname_input" placeholder=" ">
                             <label for="firstname">Prénom</label>
                         </div>
-                        <div class="input_container" id="lastname_input">
-                            <input type="text" name="contact_lastname" id="lastname" placeholder=" ">
+                        <div class="input_container" id="lastname_div">
+                            <input type="text" name="contact_lastname" id="lastname_input" placeholder=" ">
                             <label for="lastname">Nom</label>
                         </div>
                     </div>
-                    <div class="input_container" id="email_input">
-                        <input type="text" name="contact_email" id="email" placeholder=" ">
+                    <div class="input_container" id="email_div">
+                        <input type="text" name="contact_email" id="email_input" placeholder=" ">
                         <label for="email">Email</label>
                     </div>
-                    <div class="input_container" id="phone_input">
-                        <input type="tel" name="contact_phone" id="phone" placeholder=" ">
+                    <div class="input_container" id="phone_div">
+                        <input type="tel" name="contact_phone" id="phone_input" placeholder=" ">
                         <label for="phone">Téléphone</label>
                     </div>
                     <div class="textarea_container">

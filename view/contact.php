@@ -56,7 +56,7 @@
     </main>
 
     <script src="./js/contact.js"></script>
-</script>
+    </script>
 
 </body>
 

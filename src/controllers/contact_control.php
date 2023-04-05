@@ -1,16 +1,26 @@
 <?php
 
-var_dump($_POST);
+function isValidName($name) {
+    $nameRegex = '/^[A-Za-zéèê\- ]{2,}$/';
+    return preg_match($nameRegex, $name);
+}
 
-if (isset($_POST["content"]) && isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["email"])) {
-    $content = $_POST['content'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $tel = $post['phone'];
+if (isset($_POST["contact_content"]) && isset($_POST["contact_firstname"]) && isset($_POST["contact_lastname"]) && isset($_POST["contact_email"])) {
+    $content = htmlspecialchars($_POST['contact_content']);
+    $firstname = htmlspecialchars($_POST['contact_firstname']);
+    $lastname = htmlspecialchars($_POST['contact_lastname']);
+    $email = htmlspecialchars($_POST['contact_email']);
+    $tel = htmlspecialchars($post['contact_phone']);
+
+    $isValidForm = true;
     
+    if (!isValidName($firstName) || !isValidName($lastName)) {
+        $isValidForm = false;
+    }
     
-    
-    $message = new Message($content, $firstname, $lastname, $email, $tel);
-    $message->register();
+    if ($isValidForm) 
+    {
+        $message = new Message($content, $firstname, $lastname, $email, $tel);
+        $message->register();
+    }
 }

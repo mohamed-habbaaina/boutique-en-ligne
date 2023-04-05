@@ -15,7 +15,7 @@ async function FetchReg() {
           ev.preventDefault();
           let data = new FormData(regForm);
           data.append("register", "ok");
-          fetch("../src/controllers/user_controller.php", {
+          fetch("../src/controllers/userRouter.php", {
             method: "POST",
             body: data,
           })
@@ -49,7 +49,7 @@ await fetch("connect.php")
         ev.preventDefault();
         let data = new FormData(logForm);
         data.append("login", "ok");
-        fetch("../src/controllers/user_controller.php", {
+        fetch("../src/controllers/userRouter.php", {
         method: "POST",
         body: data,
         })

@@ -1,4 +1,5 @@
 <?php
+namespace src\Classes;
 
 require_once('DbConnection.php');
 
@@ -12,7 +13,7 @@ Class User
         $this->pdo = DbConnection::getDb();
     }
     
-    public function register($firstname, $lastname, $email, $password)
+    public function create($firstname, $lastname, $email, $password)
     {
         $register = "INSERT INTO user (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
         $prepare = $this->pdo->prepare($register);

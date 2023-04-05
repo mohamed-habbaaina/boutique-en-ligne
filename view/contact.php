@@ -26,20 +26,20 @@
                     <div id="name_form">
                         <div class="input_container" id="firstname_div">
                             <input type="text" name="contact_firstname" id="firstname_input" placeholder=" ">
-                            <label for="firstname">Prénom</label>
+                            <label for="firstname_input">Prénom</label>
                         </div>
                         <div class="input_container" id="lastname_div">
                             <input type="text" name="contact_lastname" id="lastname_input" placeholder=" ">
-                            <label for="lastname">Nom</label>
+                            <label for="lastname_input">Nom</label>
                         </div>
                     </div>
                     <div class="input_container" id="email_div">
                         <input type="text" name="contact_email" id="email_input" placeholder=" ">
-                        <label for="email">Email</label>
+                        <label for="email_input">Email</label>
                     </div>
                     <div class="input_container" id="phone_div">
                         <input type="tel" name="contact_phone" id="phone_input" placeholder=" ">
-                        <label for="phone">Téléphone</label>
+                        <label for="phone_input">Téléphone</label>
                     </div>
                     <div class="textarea_container">
                         <textarea name="contact_content" id="message_content" cols="30" rows="10" placeholder=" "></textarea>

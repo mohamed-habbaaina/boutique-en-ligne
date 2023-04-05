@@ -20,27 +20,28 @@
             </div>
             <div id="contact_form">
                 <h3>Formulaire de contact</h3>
+                <h4 id="form_message"></h4>
                 <form action="" methode="post">
                     <div id="name_form">
-                        <div class="input_container" id="firstname_input">
-                            <input type="text" name="firstname" id="firstname" placeholder=" ">
+                        <div class="input_container" id="firstname_div">
+                            <input type="text" name="contact_firstname" id="firstname_input" placeholder=" ">
                             <label for="firstname">Prénom</label>
                         </div>
-                        <div class="input_container" id="lastname_input">
-                            <input type="text" name="lastname" id="lastname" placeholder=" ">
+                        <div class="input_container" id="lastname_div">
+                            <input type="text" name="contact_lastname" id="lastname_input" placeholder=" ">
                             <label for="lastname">Nom</label>
                         </div>
                     </div>
-                    <div class="input_container" id="email_input">
-                        <input type="text" name="email" id="email" placeholder=" ">
+                    <div class="input_container" id="email_div">
+                        <input type="text" name="contact_email" id="email_input" placeholder=" ">
                         <label for="email">Email</label>
                     </div>
-                    <div class="input_container" id="phone_input">
-                        <input type="tel" name="phone" id="phone" placeholder=" ">
+                    <div class="input_container" id="phone_div">
+                        <input type="tel" name="contact_phone" id="phone_input" placeholder=" ">
                         <label for="phone">Téléphone</label>
                     </div>
                     <div class="textarea_container">
-                        <textarea name="content" id="message_content" cols="30" rows="10" placeholder=" "></textarea>
+                        <textarea name="contact_content" id="message_content" cols="30" rows="10" placeholder=" "></textarea>
                         <label for="message_content">Votre message...</label>
                     </div>
                     <div id="submit_form">
@@ -53,7 +54,7 @@
         <?php require_once("./includes/footer.php"); ?>
     </main>
 
-    <script src="./js/app.js"></script>
+    <script src="./js/contact.js"></script>
 </script>
 
 </body>

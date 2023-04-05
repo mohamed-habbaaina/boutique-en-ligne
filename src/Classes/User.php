@@ -1,5 +1,6 @@
 <?php
 namespace src\Classes;
+session_start();
 
 require_once('DbConnection.php');
 
@@ -31,20 +32,22 @@ Class User
     public function select($email, $password)
     {
 
-            $select = $this->pdo->prepare("SELECT * FROM user WHERE email=$email limit 1");
-            $select->execute();
-            $result = $select->fetchAll($this->pdo::FETCH_ASSOC);
+            $select = $this->pdo->prepare("SELECT * FROM user WHERE email=:email limit 1");
+            $select->execute([
+                ':email' => $email
+            ]);
+            $result = $select->fetch($this->pdo::FETCH_ASSOC);
             
             if (count($result) == 0) {
                 echo "Incorrect email or password.";
             } elseif ($result["password"] !== $password) {
                 echo "Incorrect email or password.";
             } elseif ($result["password"] == $password) {
-                $_SESSION["userId"] = $result["id"];
-                $_SESSION["userLogin"] = $result["login"];
-                $_SESSION["role"] = $result["role"];
+                $_SESSION["id_user"] = $result["id_user"];
+                $_SESSION["userFirstname"] = $result["firstname"];
+                
     
-                echo "Welcome" . $_SESSION["userLogin"];
+                echo "Welcome" . $_SESSION["userFirstname"];
     
             }
         }

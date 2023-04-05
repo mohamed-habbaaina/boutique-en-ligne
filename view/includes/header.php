@@ -1,3 +1,7 @@
+<?php
+session_start();
+var_dump($_SESSION["id_user"]);
+?>
 <nav>
     <div class="left_part">
         <a href="index.php">Home</a>
@@ -11,7 +15,7 @@
         <ul>
             <li><button id="logDisplayBtn">Login</button></li>
             <li><button id="regDisplayBtn">Register</button></li>
-            <?php if(isset($_SESSION["userLogin"])) : ?>
+            <?php if(isset($_SESSION["id_user"])) : ?>
                 <li><button>Deconnexion</button></li>
             <?php endif ?>
         </ul>

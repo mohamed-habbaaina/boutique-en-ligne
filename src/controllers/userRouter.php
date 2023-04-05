@@ -2,6 +2,7 @@
 
 namespace src\Classes;
 require_once("../Classes/UserController.php");
+
 $userController = new UserController();
 
 
@@ -11,7 +12,8 @@ if (isset($_POST["register"])) {
 
 }
 
-if(isset($_POST["loggin"])){
+if(isset($_POST["login"])){
 
     $userController->login($_POST["logEmail"], $_POST["logPassword"]);
+
 }

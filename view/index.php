@@ -7,6 +7,8 @@
     <title>Home</title>
 </head>
 <body>
-    
+    <?php require_once "./includes/header.php" ?>
+    <div id="formDisplay"></div>
+    <script src="./js/auth.js"></script>
 </body>
 </html>

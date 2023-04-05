@@ -17,6 +17,7 @@
 
         <section id="contact_section">
             <div id="contact_form_img">
+                <img src="" alt="">
             </div>
             <div id="contact_form">
                 <h3>Formulaire de contact</h3>

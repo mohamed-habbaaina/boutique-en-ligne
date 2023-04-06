@@ -1,26 +1,23 @@
 <?php
 
-function isValidName($name) {
-    $nameRegex = '/^[A-Za-zéèê\- ]{2,}$/';
-    return preg_match($nameRegex, $name);
-}
+class ContactControler
+{
 
-if (isset($_POST["contact_content"]) && isset($_POST["contact_firstname"]) && isset($_POST["contact_lastname"]) && isset($_POST["contact_email"])) {
-    $content = htmlspecialchars($_POST['contact_content']);
-    $firstname = htmlspecialchars($_POST['contact_firstname']);
-    $lastname = htmlspecialchars($_POST['contact_lastname']);
-    $email = htmlspecialchars($_POST['contact_email']);
-    $tel = htmlspecialchars($post['contact_phone']);
-
-    $isValidForm = true;
-    
-    if (!isValidName($firstName) || !isValidName($lastName)) {
-        $isValidForm = false;
-    }
-    
-    if ($isValidForm) 
+    public function isValidName(string $name)
     {
-        $message = new Message($content, $firstname, $lastname, $email, $tel);
-        $message->register();
+        $nameRegex = '/^[A-Za-zéèê\- ]{2,}$/';
+        return preg_match($nameRegex, $name);
+    }
+
+    public function isValidEmail($email)
+    {
+        $emailRegex = '/^[\w\-\.]+@([\w\-]+\.)+[\w]{2,4}$/';
+        return preg_match($emailRegex, $email);
+    }
+
+    public function isValidPhone($phone)
+    {
+        $phoneRegex = '/^0[1-9](\d{2}){4}$/';
+        return preg_match($phoneRegex, $phone);
     }
 }

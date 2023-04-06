@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 06 avr. 2023 à 15:05
+-- Généré le : jeu. 06 avr. 2023 à 15:19
 -- Version du serveur : 10.6.12-MariaDB-0ubuntu0.22.04.1
 -- Version de PHP : 8.1.2-1ubuntu2.11
 
@@ -67,7 +67,8 @@ CREATE TABLE `comment` (
 CREATE TABLE `customer` (
   `id_user` int(11) NOT NULL,
   `address_cus` varchar(255) NOT NULL,
-  `phone_cus` int(11) NOT NULL
+  `phone_cus` int(11) NOT NULL,
+  `postal_code_cus` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

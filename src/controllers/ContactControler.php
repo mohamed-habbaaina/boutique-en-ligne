@@ -4,11 +4,6 @@ use src\Classes\Message;
 
 class ContactControler
 {
-    // Le constructeur prend en paramètre un objet de type Message
-    private function __construct(private Message $message)
-    {
-    }
-
     // Fonction privée pour vérifier si un nom est valide (au moins 2 caractères et uniquement des lettres, des espaces, des tirets et des accents)
     private function isValidName(string $name)
     {
@@ -31,13 +26,13 @@ class ContactControler
     }
 
     // Fonction publique pour vérifier si le formulaire est valide (tous les champs sont valides)
-    public function isValidForm()
+    public function isValidForm(Message $message)
     {
         return (
-            $this->isValidName($this->message->getFirstname()) &&
-            $this->isValidName($this->message->getLastname()) &&
-            $this->isValidEmail($this->message->getEmail()) &&
-            $this->isValidPhone($this->message->getPhone())
+            $this->isValidName($message->getFirstname()) &&
+            $this->isValidName($message->getLastname()) &&
+            $this->isValidEmail($message->getEmail()) &&
+            $this->isValidPhone($message->getPhone())
         );
     }
 }

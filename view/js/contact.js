@@ -42,7 +42,6 @@ firstname_input.addEventListener('input', (e) => {
     if (isValidName(value)) {
         // Si le prénom est valide, on change la bordure de la div en vert
         firstname_div.style.border = 'solid 1px green';
-        console.log(firstname_input.value);
     } else {
         // Sinon, on change la bordure de la div en rouge
         firstname_div.style.border = 'solid 1px red';

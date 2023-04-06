@@ -1,44 +1,41 @@
 <?php
 
-require_once('../Class/ConnectDb.php');
+namespace src\Classes;
 
 class ContactModel
 {
-    public function __construct(
-        private string $content,
-        private string $firstname,
-        private string $lastname,
-        private string $email,
-        private int $tel,
-        private ?int $id = null,
-        private ?int $date = null
-    ) {
-    }
-
-    public function register()
+    // La méthode register prend en paramètre un objet de type Message
+    public function register(Message $message)
     {
+        // On récupère une instance de la connexion à la base de données
         $db = DbConnection::getDb();
 
+        // On prépare une requête SQL pour insérer les données du message dans la table `message`
         $sql_query = "INSERT INTO `message` (`content_mes`,`firstname_mes`, `lastname_mes`, `email_mes`, `tel_mes`, `date_mes`) 
         VALUES  (:content, :firstname, :lastname, :email, :tel, NOW())";
         $mes_register = $db->prepare($sql_query);
+        // On exécute la requête en passant les valeurs des champs du message
         $mes_register->execute([
-            'content' => $this->content,
-            'firstname' => $this->firstname,
-            'lastname' => $this->lastname,
-            'email' => $this->email,
-            'tel' => $this->tel
+            'content' => $message->getContent(),
+            'firstname' => $message->getFirstname(),
+            'lastname' => $message->getLastname(),
+            'email' => $message->getEmail(),
+            'tel' => $message->getPhone()
         ]);
 
+        // On prépare une requête SQL pour récupérer l'ID et la date du message inséré
         $sql_query =  "SELECT `id_mes`, `date_mes` 
         FROM `message` 
-        WHERE id = :lastId";
+        WHERE id_mes = :lastId";
         $get_id_date = $db->prepare($sql_query);
+        // On exécute la requête en passant l'ID du dernier enregistrement inséré
         $get_id_date->execute([
             'lastId' => $db->lastInsertId()
         ]);
-        $fetchAssoc = $get_id_date->fetch(PDO::FETCH_ASSOC);
-        $this->id = $fetchAssoc['id_mes'];
-        $this->date = $fetchAssoc['date_mes'];
+        // On récupère les données sous forme de tableau associatif
+        $fetchAssoc = $get_id_date->fetch(\PDO::FETCH_ASSOC);
+        // On met à jour l'objet Message avec l'ID et la date récupérés
+        $message->setId($fetchAssoc['id_mes']);
+        $message->setDate($fetchAssoc['date_mes']);
     }
 }

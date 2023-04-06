@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : ven. 31 mars 2023 à 12:03
+-- Généré le : jeu. 06 avr. 2023 à 15:05
 -- Version du serveur : 10.6.12-MariaDB-0ubuntu0.22.04.1
 -- Version de PHP : 8.1.2-1ubuntu2.11
 
@@ -83,7 +83,8 @@ CREATE TABLE `product` (
   `price_pro` int(11) NOT NULL,
   `image_pro` varchar(255) NOT NULL,
   `origin_pro` varchar(50) NOT NULL,
-  `category_pro` varchar(50) NOT NULL
+  `category_pro` varchar(50) NOT NULL,
+  `weight_pro` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -123,8 +124,17 @@ CREATE TABLE `user` (
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `firstname`, `lastname`, `email`, `password`) VALUES
+(1, 'dazd', 'azda', 'azdazd', 'a'),
+(2, 'scq', 'dz', 'd', '78wJqizeEgjptQs'),
+(3, 'Martine', 'Dupont', 'martinedupont@aol.fr', 'password');
 
 -- --------------------------------------------------------
 
@@ -227,7 +237,7 @@ ALTER TABLE `rate`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

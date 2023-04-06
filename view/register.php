@@ -3,7 +3,7 @@
         <img src="" alt="">
     </div>
     <div id="contact_form">
-        <h3>Formulaire de contact</h3>
+        <h3>Register</h3>
         <h4 id="form_message"></h4>
         <form method="post" id="regForm">
             <div id="name_form">

@@ -10,7 +10,7 @@ function FetchReg() {
         formDisplay.innerHTML = form;
         let regBtn = document.querySelector("#regBtn");
         let regForm = document.querySelector("#regForm");
-        console.log(regForm);
+        
         regBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           let data = new FormData(regForm);

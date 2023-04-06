@@ -1,23 +1,38 @@
 <?php
 
+use src\Classes\Message;
+
 class ContactControler
 {
+    private function __construct(private Message $message)
+    {
+    }
 
-    public function isValidName(string $name)
+    private function isValidName(string $name)
     {
         $nameRegex = '/^[A-Za-zéèê\- ]{2,}$/';
         return preg_match($nameRegex, $name);
     }
 
-    public function isValidEmail($email)
+    private function isValidEmail($email)
     {
         $emailRegex = '/^[\w\-\.]+@([\w\-]+\.)+[\w]{2,4}$/';
         return preg_match($emailRegex, $email);
     }
 
-    public function isValidPhone($phone)
+    private function isValidPhone($phone)
     {
         $phoneRegex = '/^0[1-9](\d{2}){4}$/';
         return preg_match($phoneRegex, $phone);
+    }
+
+    public function isValidForm()
+    {
+        return (
+            $this->isValidName($this->message->getFirstname()) &&
+            $this->isValidName($this->message->getLastname()) &&
+            $this->isValidEmail($this->message->getEmail()) &&
+            $this->isValidPhone($this->message->getPhone())
+        );
     }
 }

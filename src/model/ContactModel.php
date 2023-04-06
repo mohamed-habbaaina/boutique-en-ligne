@@ -1,6 +1,7 @@
 <?php
 
 namespace src\Classes;
+require_once("../Classes/DbConnection.php");
 
 class ContactModel
 {
@@ -36,6 +37,7 @@ class ContactModel
         $fetchAssoc = $get_id_date->fetch(\PDO::FETCH_ASSOC);
         // On met à jour l'objet Message avec l'ID et la date récupérés
         $message->setId($fetchAssoc['id_mes']);
+        var_dump($fetchAssoc);
         $message->setDate($fetchAssoc['date_mes']);
     }
 }

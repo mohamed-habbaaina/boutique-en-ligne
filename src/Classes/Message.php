@@ -10,9 +10,9 @@ class Message
         private string $firstname,
         private string $lastname,
         private string $email,
-        private int $phone,
+        private string $phone,
         private ?int $id = null,
-        private ?int $date = null
+        private ?string $date = null
     ) {
     }
 
@@ -50,7 +50,7 @@ class Message
         $this->id = $id;
     }
 
-    public function setDate(int $date) {
+    public function setDate(string $date) {
         $this->date = $date;
     }
 }

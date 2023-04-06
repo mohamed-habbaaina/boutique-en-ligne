@@ -109,12 +109,14 @@ form.addEventListener('submit', (event) => {
             body: formData
         })
             .then(response => {
-                if (response.ok) {
-                    // Si la réponse est ok, on affiche un message de succès
-                    form_message.innerHTML = "Votre message à bien été envoyé";
+                if (response.status === 200) {
+                    // Si la requête réussit, on récupère le texte et on l'affiche
+                    response.text().then((text) => {
+                        form_message.innerHTML = text;
+                    })
                 } else {
                     // Sinon, on affiche un message d'erreur
-                    form_message.innerHTML = "Une erreur s'est produite";
+                    form_message.innerHTML = "La requête renvoie un code de status " + response.status + ".";
                 }
             })
             .catch(error => {

@@ -29,6 +29,10 @@ if (isset($_POST["contact_content"]) && isset($_POST["contact_firstname"]) && is
     if ($contactControler->isValidForm($message))
     {
        // Si les données sont valides, enregistrer le message dans la base de données
-       $contactModel->register($message);
+       if ($contactModel->register($message)) {
+            echo ("Le message à bien été envoyé");
+       } else {
+            echo ("Le message n'a pas pu être envoyé");
+       }
     }    
 }

@@ -23,7 +23,8 @@ class DbConnection
                 // prevent emulation of prepared requests
                 self::$_db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
             } catch (\PDOException $e) {
-                echo $e->getMessage();
+                header("HTTP/1.1 403 Acces refused to the database");
+                die();
             }
         }
         return self::$_db;

@@ -41,10 +41,10 @@ firstname_input.addEventListener('input', (e) => {
     let value = e.target.value;
     if (isValidName(value)) {
         // Si le prénom est valide, on change la bordure de la div en vert
-        firstname_div.style.border = 'solid 1px green';
+        firstname_div.style.border = 'solid 2px green';
     } else {
         // Sinon, on change la bordure de la div en rouge
-        firstname_div.style.border = 'solid 1px red';
+        firstname_div.style.border = 'solid 2px red';
     }
 })
 
@@ -53,10 +53,10 @@ lastname_input.addEventListener('input', (e) => {
     let value = e.target.value;
     if (isValidName(value)) {
         // Si le nom est valide, on change la bordure de la div en vert
-        lastname_div.style.border = 'solid 1px green';
+        lastname_div.style.border = 'solid 2px green';
     } else {
         // Sinon, on change la bordure de la div en rouge
-        lastname_div.style.border = 'solid 1px red';
+        lastname_div.style.border = 'solid 2px red';
     }
 })
 
@@ -65,10 +65,10 @@ email_input.addEventListener('input', (e) => {
     let value = e.target.value;
     if (isValidEmail(value)) {
         // Si l'email est valide, on change la bordure de la div en vert
-        email_div.style.border = 'solid 1px green';
+        email_div.style.border = 'solid 2px green';
     } else {
         // Sinon, on change la bordure de la div en rouge
-        email_div.style.border = 'solid 1px red';
+        email_div.style.border = 'solid 2px red';
     }
 })
 
@@ -77,10 +77,10 @@ phone_input.addEventListener('input', (e) => {
     let value = e.target.value;
     if (isValidPhone(value)) {
         // Si le téléphone est valide, on change la bordure de la div en vert
-        phone_div.style.border = 'solid 1px green';
+        phone_div.style.border = 'solid 2px green';
     } else {
         // Sinon, on change la bordure de la div en rouge
-        phone_div.style.border = 'solid 1px red';
+        phone_div.style.border = 'solid 2px red';
     }
 })
 

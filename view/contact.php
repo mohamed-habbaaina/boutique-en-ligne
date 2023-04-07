@@ -46,7 +46,7 @@
                         <label for="message_content">Votre message...</label>
                     </div>
                     <div id="submit_form">
-                        <button type="submit">Envoyer</button>
+                        <button type="submit" class="button-59">Envoyer</button>
                     </div>
                 </form>
             </div>

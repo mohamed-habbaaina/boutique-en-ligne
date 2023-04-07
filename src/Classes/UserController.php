@@ -23,7 +23,7 @@ Class UserController
             echo "Lastname is empty";
         }
         elseif(empty($email)){
-            echo "Mail is empty";
+            echo "Email is empty";
         }
         elseif ($password !== $passwordConfirm){
             echo "password and confirmation password do not match";
@@ -37,8 +37,15 @@ Class UserController
 
     public function login($email, $password)
     {
-
+        if(empty($email)){
+            echo "Email is empty" ;
+        }
+        elseif(empty($password)){
+            echo "Password is empty";
+        }
+        else{
         $this->user->select($email, $password);
+        }
     }
 }
 ?>

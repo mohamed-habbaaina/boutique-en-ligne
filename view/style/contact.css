@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inika&display=swap');
+
+#contact_section{
+    font-family: 'Inika', serif;
+    color: #572A17;
+
+}
+
+#formDisplay{
+    padding-top: 5%;
+}
 #name_form {
     display: flex;
     flex-direction: row;
@@ -32,6 +43,7 @@
 h3 {
     text-align: center;
     color: #572A17;
+    font-size: 26px;
 }
 
 input {
@@ -86,7 +98,7 @@ textarea:not(:placeholder-shown)+label {
 
 #contact_form_img {
     width: 50%;
-    background-image: url("../img/cafe_form.png");
+    background-image: url("../img/coffeauth.png");
     background-size: cover;
 }
 

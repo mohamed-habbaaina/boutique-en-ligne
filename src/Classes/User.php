@@ -11,19 +11,20 @@ Class User
 
     public function __construct()
     {
-        $this->pdo = DbConnection::getDb();
+        
     }
     
     public function create($firstname, $lastname, $email, $password)
     {
+        $hashed_pwd = password_hash($password, PASSWORD_DEFAULT);
         $register = "INSERT INTO user (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
-        $prepare = $this->pdo->prepare($register);
+        $prepare = DbConnection::getDb()->prepare($register);
     
         $prepare->execute([
             "firstname" => $firstname, 
             "lastname" => $lastname, 
             "email" => $email,
-            "password" => $password
+            "password" => $hashed_pwd,
         ]);
         
         echo "ok";
@@ -32,22 +33,27 @@ Class User
     public function select($email, $password)
     {
 
-            $select = $this->pdo->prepare("SELECT * FROM user WHERE email=:email limit 1");
-            $select->execute([
+            $select ="SELECT * FROM user WHERE email=:email limit 1";
+            $prepare = DbConnection::getDb()->prepare($select);
+            $prepare->execute([
                 ':email' => $email
             ]);
-            $result = $select->fetch($this->pdo::FETCH_ASSOC);
+            $result = $prepare->fetch(\PDO::FETCH_ASSOC);
             
             if (count($result) == 0) {
                 echo "Incorrect email or password.";
-            } elseif ($result["password"] !== $password) {
+                die();
+            } elseif (!password_verify($password, $result["password"])) {
                 echo "Incorrect email or password.";
-            } elseif ($result["password"] == $password) {
-                $_SESSION["id_user"] = $result["id_user"];
-                $_SESSION["userFirstname"] = $result["firstname"];
-                
-    
-                echo "Welcome" . $_SESSION["userFirstname"];
+                die();
+            } else {
+                $_SESSION["user"] = [
+                    "id" => $result["id_user"],
+                    "firstname" => $result["firstname"],
+                    "lastname" => $result["lastname"],
+                    "email" => $result["email"],
+                ];
+                echo "Welcome";
     
             }
         }

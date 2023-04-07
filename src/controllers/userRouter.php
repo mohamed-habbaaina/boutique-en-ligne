@@ -8,7 +8,7 @@ $userController = new UserController();
 
 if (isset($_POST["register"])) {
 
-    $userController->register($_POST["regFirstname"], $_POST["regLastname"], $_POST["regMail"], $_POST["regPassword"], $_POST["regPasswordConfirm"]);
+    $userController->register($_POST["regFirstname"], $_POST["regLastname"], $_POST["regEmail"], $_POST["regPassword"], $_POST["regPasswordConfirm"]);
 
 }
 

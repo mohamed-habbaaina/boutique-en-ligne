@@ -25,8 +25,8 @@ class ContactControler
         return preg_match($phoneRegex, $phone);
     }
 
-    // Fonction publique pour vérifier si le formulaire est valide (tous les champs sont valides)
-    public function isValidForm(Message $message)
+    // Fonction privée pour vérifier si le formulaire est valide (tous les champs sont valides)
+    private function isValidForm(Message $message)
     {
         return (
             $this->isValidName($message->getFirstname()) &&
@@ -35,4 +35,13 @@ class ContactControler
             $this->isValidPhone($message->getPhone())
         );
     }
+
+    public function sendMessage(Message $message)
+    {
+        if ($this->isValidForm($message)) {
+            $contactModel = new ContactModel();
+            $contactModel->register($message);
+        }
+    }
+    
 }

@@ -19,20 +19,9 @@ if (isset($_POST["contact_content"]) && isset($_POST["contact_firstname"]) && is
     // Créer un nouvel objet Message avec les données du formulaire
     $message = new Message($content, $firstname, $lastname, $email, $phone);
     
-    // Créer un nouvel objet ContactControler pour valider les données du formulaire
+    // Créer un nouvel objet ContactControler
     $contactControler = new ContactControler();
-    
-    // Créer un nouvel objet ContactModel pour enregistrer le message dans la base de données
-    $contactModel = new ContactModel();
 
-    // Vérifier si les données du formulaire sont valides
-    if ($contactControler->isValidForm($message))
-    {
-       // Si les données sont valides, enregistrer le message dans la base de données
-       if ($contactModel->register($message)) {
-            echo ("Le message à bien été envoyé");
-       } else {
-            echo ("Le message n'a pas pu être envoyé");
-       }
-    }    
+    // Evoyer le message
+    $contactControler->sendMessage($message);
 }

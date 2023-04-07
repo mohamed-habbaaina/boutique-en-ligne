@@ -4,10 +4,11 @@
     </div>
     <div id="contact_form">
         <h3>Login</h3>
+        <p id="logMsg"></p>
         <h4 id="form_message"></h4>
         <form methode="post" id="logForm">
 
-            <div class="input_container">
+            <div class="input_container" id="email_div">
                 <input type="text" name="logEmail" id="logEmail" placeholder=" ">
                 <label for="logEmail">Mail</label>
             </div>
@@ -21,4 +22,4 @@
         </form>
     </div>
 </section>
-<script src="./js/auth.js"></script>
+<script src="./js/authstyle.js"></script>

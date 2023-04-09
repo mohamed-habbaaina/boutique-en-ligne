@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inika&display=swap');
+nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    margin: 0;
+    font-family: 'Inika', serif;
+}
+
+.logo_part{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    
+}
+.logo_part img{
+    width: 30%;
+}
+
+.link_part{
+    padding: 2%;
+    display: flex;
+    gap: 130px;
+    justify-content: center;
+    padding-right: 3%;
+    width: 100%;
+}
+.link_part ul{
+    list-style: none;
+
+}
+.link_part a{
+    text-decoration: none;
+    color: #572A17;
+}
+
+/* Menu connexion */
+#menu ul {
+    margin:0;
+    padding:0;
+    list-style-type:none;
+    text-align:center;
+    }
+   #menu li {
+    float:left;
+    margin:auto;
+    padding:0;
+    }
+    #menu a{
+        text-decoration: none;
+        color: black;
+    }
+   #menu li a {
+    display:block;
+    color: #572A17;
+    text-decoration:none;
+    }
+   
+    #menu ul li ul {
+        display:none;
+        }
+    #menu ul li:hover ul {
+        display:block;
+        padding : 1%;
+    }
+    #menu li:hover ul li {
+        float:none;
+    }
+    #menu li ul {
+        position:absolute;
+    }
+
+/* /Menu connexiob */
+
+#decoBtn {
+    background: none;
+    border: none;
+    color: #572A17;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+  }
+  #logDisplayBtn{
+    background: none;
+    border: none;
+    color: #572A17;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+  }
+  #regDisplayBtn{
+    background: none;
+    border: none;
+    color: #572A17;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+  }

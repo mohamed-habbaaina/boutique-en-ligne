@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style/contact.css">
+    <link rel="stylesheet" href="style/includes.css">
 </head>
 
 <body>
@@ -17,7 +18,6 @@
 
         <section id="contact_section">
             <div id="contact_form_img">
-                <img src="" alt="">
             </div>
             <div id="contact_form">
                 <h3>Formulaire de contact</h3>
@@ -40,14 +40,13 @@
                     <div class="input_container" id="phone_div">
                         <input type="tel" name="contact_phone" id="phone_input" placeholder=" ">
                         <label for="phone_input">Téléphone</label>
-
                     </div>
                     <div class="textarea_container">
                         <textarea name="contact_content" id="message_content" cols="30" rows="10" placeholder=" "></textarea>
                         <label for="message_content">Votre message...</label>
                     </div>
                     <div id="submit_form">
-                        <button type="submit">Envoyer</button>
+                        <button type="submit" class="button-59">Envoyer</button>
                     </div>
                 </form>
             </div>
@@ -57,7 +56,7 @@
     </main>
 
     <script src="./js/contact.js"></script>
-</script>
+    </script>
 
 </body>
 

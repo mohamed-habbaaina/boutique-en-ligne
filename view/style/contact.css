@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inika&display=swap');
+
+#contact_section{
+    font-family: 'Inika', serif;
+    color: #572A17;
+    display: flex;
+    flex-direction: row;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    margin: 2% auto;
+    width: 1100px;
+}
+
+#formDisplay{
+    padding-top: 5%;
+}
 #name_form {
     display: flex;
     flex-direction: row;
@@ -5,7 +20,7 @@
 
 .input_container,
 .textarea_container {
-    border: solid 1px #111;
+    border: solid 1px #572A17;
     padding: 5px;
     margin-top: 20px;
     position: relative;
@@ -31,6 +46,8 @@
 
 h3 {
     text-align: center;
+    color: #572A17;
+    font-size: 26px;
 }
 
 input {
@@ -75,17 +92,9 @@ textarea:not(:placeholder-shown)+label {
     font-size: 0rem;
 }
 
-#contact_section {
-    display: flex;
-    flex-direction: row;
-    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-    margin: auto;
-    width: 800px;
-}
-
 #contact_form_img {
     width: 50%;
-    background-image: url("../img/cafe_form.png");
+    background-image: url("../img/coffeauth.png");
     background-size: cover;
 }
 
@@ -105,4 +114,54 @@ textarea:not(:placeholder-shown)+label {
     float: right;
     margin-top: 20px;
     width: 100%;
+}
+
+.button-59 {
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #572A17;
+  box-sizing: border-box;
+  color: #572A17;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #572A17;
+  font-family: Inika,sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  border-radius: 3px;
+}
+
+.button-59:focus {
+  color: #171e29;
+}
+
+.button-59:hover {
+  color: #fff;
+  fill: green;
+  background-color: green;
+}
+
+.button-59:active {
+  color: #fff;
+  fill: green;
+  background-color: green;
+}
+
+@media (min-width: 768px) {
+  .button-59 {
+    min-width: 170px;
+  }
 }

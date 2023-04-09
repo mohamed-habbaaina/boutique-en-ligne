@@ -1,3 +1,4 @@
+// On récupère les éléments du DOM pour les divs et les inputs
 const firstname_div = document.getElementById("firstname_div");
 const lastname_div = document.getElementById("lastname_div");
 const email_div = document.getElementById("email_div");
@@ -7,21 +8,25 @@ const lastname_input = document.getElementById("lastname_input");
 const email_input = document.getElementById("email_input");
 const phone_input = document.getElementById("phone_input");
 
+// Fonction pour vérifier si un nom est valide (au moins 2 caractères et uniquement des lettres, des espaces, des tirets et des accents)
 function isValidName(name) {
     const nameRegex = /^[A-Za-z\é\è\ê\-\ ]{2,}$/;
     return name.match(nameRegex);
 }
 
+// Fonction pour vérifier si un email est valide
 function isValidEmail(email) {
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return email.match(emailRegex);
 }
 
+// Fonction pour vérifier si un numéro de téléphone est valide (format français)
 function isValidPhone(phone) {
     const phoneRegex = /^0[1-9](\d{2}){4}$/;
     return phone.match(phoneRegex);
 }
 
+// Fonction pour vérifier si le formulaire est valide (tous les champs sont valides)
 function isValidForm(firstname, lastname, email, phone) {
     return (
         isValidName(firstname) &&
@@ -31,78 +36,95 @@ function isValidForm(firstname, lastname, email, phone) {
     )
 }
 
+// On ajoute un écouteur d'événement sur l'input du prénom pour vérifier sa validité en temps réel
 firstname_input.addEventListener('input', (e) => {
     let value = e.target.value;
     if (isValidName(value)) {
-        firstname_div.style.border = 'solid 1px green';
-        console.log(firstname_input.value);
+        // Si le prénom est valide, on change la bordure de la div en vert
+        firstname_div.style.border = 'solid 2px green';
     } else {
-        firstname_div.style.border = 'solid 1px red';
+        // Sinon, on change la bordure de la div en rouge
+        firstname_div.style.border = 'solid 2px red';
     }
 })
 
+// On ajoute un écouteur d'événement sur l'input du nom pour vérifier sa validité en temps réel
 lastname_input.addEventListener('input', (e) => {
     let value = e.target.value;
     if (isValidName(value)) {
-        lastname_div.style.border = 'solid 1px green';
+        // Si le nom est valide, on change la bordure de la div en vert
+        lastname_div.style.border = 'solid 2px green';
     } else {
-        lastname_div.style.border = 'solid 1px red';
+        // Sinon, on change la bordure de la div en rouge
+        lastname_div.style.border = 'solid 2px red';
     }
 })
 
+// On ajoute un écouteur d'événement sur l'input de l'email pour vérifier sa validité en temps réel
 email_input.addEventListener('input', (e) => {
     let value = e.target.value;
     if (isValidEmail(value)) {
-        email_div.style.border = 'solid 1px green';
+        // Si l'email est valide, on change la bordure de la div en vert
+        email_div.style.border = 'solid 2px green';
     } else {
-        email_div.style.border = 'solid 1px red';
+        // Sinon, on change la bordure de la div en rouge
+        email_div.style.border = 'solid 2px red';
     }
 })
 
+// On ajoute un écouteur d'événement sur l'input du téléphone pour vérifier sa validité en temps réel
 phone_input.addEventListener('input', (e) => {
     let value = e.target.value;
     if (isValidPhone(value)) {
-        phone_div.style.border = 'solid 1px green';
+        // Si le téléphone est valide, on change la bordure de la div en vert
+        phone_div.style.border = 'solid 2px green';
     } else {
-        phone_div.style.border = 'solid 1px red';
+        // Sinon, on change la bordure de la div en rouge
+        phone_div.style.border = 'solid 2px red';
     }
 })
 
+// On récupère l'élément du formulaire et l'élément pour afficher les messages du formulaire
 const form = document.querySelector('form');
 const form_message = document.getElementById('form_message');
 
-console.log(firstname_input.value);
-console.log(lastname_input.value);
-console.log(email_input.value);
-console.log(phone_input.value);
-
+// On ajoute un écouteur d'événement sur la soumission du formulaire
 form.addEventListener('submit', (event) => {
+    // On empêche le comportement par défaut de la soumission du formulaire
     event.preventDefault();
 
+    // On vérifie si le formulaire est valide
     if (isValidForm(
         firstname_input.value,
         lastname_input.value,
         email_input.value,
         phone_input.value)) {
 
+        // Si le formulaire est valide, on crée un objet FormData avec les données du formulaire
         const formData = new FormData(form);
 
-        fetch('../src/controllers/contact_control.php', {
+        // On envoie les données du formulaire au serveur via une requête POST en utilisant fetch
+        fetch('../src/controllers/contact_router.php', {
             method: 'POST',
             body: formData
         })
             .then(response => {
-                if (response.ok) {
-                    console.log(response);
-                    form_message.innerHTML = "Votre message à bien été envoyé";
+                if (response.status === 200) {
+                    // Si la requête réussit, on récupère le texte et on l'affiche
+                    response.text().then((text) => {
+                        form_message.innerHTML = text;
+                    })
                 } else {
-                    form_message.innerHTML = "Une erreur s'est produite";
+                    // Sinon, on affiche un message d'erreur
+                    form_message.innerHTML = "La requête renvoie un code de status " + response.status + ".";
                 }
             })
             .catch(error => {
+                // En cas d'erreur lors de l'envoi de la requête, on affiche un message d'erreur dans la console
                 console.error('Erreur:', error);
             });
     } else {
+        // Si le formulaire n'est pas valide, on affiche un message d'erreur
         form_message.innerHTML = "Complétez les champs correctement !"
     }
 });

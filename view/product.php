@@ -7,7 +7,8 @@ $product = new src\Classes\Product();
 if(isset($_GET['idProduct'])):
     $idProduct = $_GET['idProduct'];
 else:
-    $idProduct = 1;
+    // Default id === last id.
+    $idProduct = $product->getLastId()[0];
 endif;
 
 $dataProduct =  $product->getProduct($idProduct);
@@ -40,25 +41,28 @@ $avg_rating = number_format($dataProduct['avg_rating'],2);
     <main>
 
         <div>
-            <h3><?= $name; ?></h3>
-            <!-- add path image -->
-            <img src="./../<?= $image; ?>" alt="<?= $name; ?>">
-            <p><?= $description; ?></p>
-        </div>
-
-        <div>
             <div>
+                <h1><?= $name; ?></h1>
+                <!-- add path image -->
+                <img src="./../uploads/<?= $image; ?>" alt="<?= $name; ?>">
+            </div>
+            
+            <div>
+                
+                <h3><?= $name; ?></h3>
+                <p>Poids</p>
                 <p><?= $origin; ?></p>
                 <p><?= $category; ?></p>
-                <p><?= $avg_rating ?></p>
-            </div>
-            <div>
+                <p><?= $avg_rating ?>/5 *</p>
                 <p><?= $price; ?></p>
-            </div>
-            <div>
                 <button>+ Panier</button>
                 <button>Acheter</button>
             </div>
+        </div>
+        
+        <div>
+            <h2>Description:</h2>
+            <p><?= $description; ?></p>
         </div>
 
     </main>

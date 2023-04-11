@@ -58,24 +58,39 @@ class User
         }
     }
 
-    public function update(
-        $id,
-        $firstname,
-        $lastname,
-        $email,
-        $address,
-        $zip,
-        $phone,
-        $password,
-        $passwordConfirm
-    ) {
+    public function getData($id)
+    {
         $select = "SELECT * FROM user WHERE id_user=:id";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
             ':id' => $id
         ]);
-        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
-        var_dump($result);
+        $user_result = $prepare->fetch(\PDO::FETCH_ASSOC);
+        $select = "SELECT * FROM customer WHERE id_user=:id";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute([
+            ':id' => $id
+        ]);
+        $customer_result = $prepare->fetch(\PDO::FETCH_ASSOC);
+        if ($customer_result !== false) {
+            return [...$user_result, ...$customer_result];
+        } else {
+            return $user_result;
+        }
+    }
 
+    public function updateProfil($profil)
+    {
+        $select = "SELECT * FROM user WHERE id_user=:id";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute([
+            ':id' => $profil['id_user']
+        ]);
+        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function updatePassword($password)
+    {
+        
     }
 }

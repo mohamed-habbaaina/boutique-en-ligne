@@ -42,6 +42,8 @@ class UserController
         }
     }
 
+    
+
     public function update(
         $id,
         $firstname,

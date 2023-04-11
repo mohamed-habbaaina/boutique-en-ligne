@@ -1,6 +1,11 @@
 <?php
-session_start();
+namespace src\Classes;
+require_once('../src/Classes/User.php');
+$user = new User();
+var_dump($user->getData($_SESSION['user']['id']));
+$current_profil = $user->getData($_SESSION['user']['id']);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,37 +24,41 @@ session_start();
         <form method="post" id="updateForm">
             <div id="name_form">
                 <div class="input_container">
-                    <input type="text" name="profilFirstname" id="profilFirstname" placeholder=" ">
+                    <input type="text" name="profilFirstname" id="profilFirstname" value="<?= $current_profil["firstname"] ?>"  placeholder=" ">
                     <label for="profilFirstname">Firstname</label>
                 </div>
                 <div class="input_container">
-                    <input type="text" name="profilLastname" id="profilLastname" placeholder=" ">
+                    <input type="text" name="profilLastname" id="profilLastname" value="<?= $current_profil["lastname"] ?>" placeholder=" ">
                     <label for="profilLastname">Lastname</label>
                 </div>
             </div>
             <div class="input_container">
-                <input type="text" name="profilEmail" id="profilMail" placeholder=" ">
+                <input type="text" name="profilEmail" id="profilMail" value="<?= $current_profil["email"] ?>" placeholder=" ">
                 <label for="profilEmail">Mail</label>
             </div>
             <div class="input_container">
-                <input type="text" name="profilAddress" id="profilAddress" placeholder=" ">
+                <input type="text" name="profilAddress" id="profilAddress" value="<?= isset($current_profil["address_cus"]) ? $current_profil["address_cus"] : null ?>" placeholder=" ">
                 <label for="profilAddress">Address</label>
             </div>
             <div class="input_container">
-                <input type="text" name="profilZip" id="profilZip" placeholder=" ">
+                <input type="text" name="profilZip" id="profilZip" value="<?= isset($current_profil["zip_cus"]) ? $current_profil["zip_cus"] : null ?>" placeholder=" ">
                 <label for="profilZip">Zip</label>
             </div>
             <div class="input_container">
-                <input type="text" name="profilPhone" id="profilPhone" placeholder=" ">
+                <input type="text" name="profilPhone" id="profilPhone" value="<?= isset($current_profil["phone_cus"]) ? $current_profil["phone_cus"] : null ?>" placeholder=" ">
                 <label for="profilPhone">Phone</label>
             </div>
             <div class="input_container">
                 <input type="password" name="profilPassword" id="profilPassword" placeholder=" ">
-                <label for="profilPassword">Password</label>
+                <label for="profilPassword">Old Password</label>
             </div>
             <div class="input_container">
-                <input type="password" name="profilPasswordConfirm" id="profilPasswordConfirm" placeholder=" ">
-                <label for="profilPasswordConfirm">Confirm</label>
+                <input type="password" name="newPassword" id="newPassword" placeholder=" ">
+                <label for="newPassword">New Password</label>
+            </div>
+            <div class="input_container">
+                <input type="password" name="newPasswordConfirm" id="newPasswordConfirm" placeholder=" ">
+                <label for="newPasswordConfirm">Confirm New Password</label>
             </div>
 
             <div id="submit_form">

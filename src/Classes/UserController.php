@@ -48,4 +48,7 @@ Class UserController
         }
     }
 }
+    public function update($firstname, $lastname, $email, $address, $zip, $phone, $password, $passwordConfirm){
+        $this->user->update();
+    }
 ?>

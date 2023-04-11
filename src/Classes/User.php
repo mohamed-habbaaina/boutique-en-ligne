@@ -58,5 +58,8 @@ Class User
             }
         }
     
+        public function update(){
+            
+        }
 }
 ?>

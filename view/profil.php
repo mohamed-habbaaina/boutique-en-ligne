@@ -1,3 +1,7 @@
+<?php
+session_start();
+var_dump($_SESSION["user"]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/contact.css">
+    <link rel="stylesheet" href="./style/includes.css">
     <title>Profil</title>
 </head>
 <body>
+    <?php require_once "./includes/header.php" ?>
     <div id="contact_form">
         <h3>Profil</h3>
         <h4 id="form_message"></h4>
@@ -36,7 +42,7 @@
             </div>
             <div class="input_container">
                 <input type="text" name="profilPhone" id="profilPhone" placeholder=" ">
-                <label for="profilPhone">Mail</label>
+                <label for="profilPhone">Phone</label>
             </div>
             <div class="input_container">
                 <input type="password" name="profilPassword" id="profilPassword" placeholder=" ">

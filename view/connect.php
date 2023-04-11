@@ -4,6 +4,7 @@
     </div>
     <div id="contact_form">
         <h3>Login</h3>
+        <br>
         <p id="logMsg"></p>
         <h4 id="form_message"></h4>
         <form methode="post" id="logForm">
@@ -12,14 +13,17 @@
                 <input type="text" name="logEmail" id="logEmail" placeholder=" ">
                 <label for="logEmail">Mail</label>
             </div>
+            <br>
+            <br>
             <div class="input_container">
                 <input type="password" name="logPassword" id="logPassword" placeholder=" ">
                 <label for="logPassword">Password</label>
             </div>
+            <br>
+            <br>
             <div id="submit_form">
-                <button type="submit" id="logBtn">Connection</button>
+                <button type="submit" id="logBtn" class="button-59">Connection</button>
             </div>
         </form>
     </div>
 </section>
-<script src="./js/authstyle.js"></script>

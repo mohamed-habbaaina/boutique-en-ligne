@@ -22,13 +22,13 @@ nav{
 .link_part{
     padding: 2%;
     display: flex;
-    gap: 130px;
+    gap: 180px;
     justify-content: center;
-    padding-right: 3%;
-    width: 100%;
+    
 }
 .link_part ul{
     list-style: none;
+    
 
 }
 .link_part a{
@@ -41,7 +41,7 @@ nav{
     margin:0;
     padding:0;
     list-style-type:none;
-    text-align:center;
+    
     }
    #menu li {
     float:left;
@@ -56,6 +56,7 @@ nav{
     display:block;
     color: #572A17;
     text-decoration:none;
+    
     }
    
     #menu ul li ul {
@@ -63,7 +64,7 @@ nav{
         }
     #menu ul li:hover ul {
         display:block;
-        padding : 1%;
+        
     }
     #menu li:hover ul li {
         float:none;

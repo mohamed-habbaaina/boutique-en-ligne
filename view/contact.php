@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style/contact.css">
+    <link rel="stylesheet" href="style/includes.css">
 </head>
 
 <body>
@@ -45,7 +46,7 @@
                         <label for="message_content">Votre message...</label>
                     </div>
                     <div id="submit_form">
-                        <button type="submit">Envoyer</button>
+                        <button type="submit" class="button-59">Envoyer</button>
                     </div>
                 </form>
             </div>

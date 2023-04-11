@@ -26,12 +26,8 @@ function FetchReg() {
         return email.match(emailRegex);
       }
 
-      function isMatchPassword(password) {
-        return password === regPassword.value;
-      }
-
-      function isMatchPasswordConfirm(passwordConfirm) {
-        return passwordConfirm === regPasswordConfirm.value;
+      function isMatchPassword(password, passwordComfirm) {
+        return password === passwordComfirm;
       }
 
       function isValidForm(firstname, lastname, email, password, passwordConfirm) {
@@ -71,20 +67,10 @@ function FetchReg() {
           email_div.style.border = 'solid 2px red';
         }
       })
-      regPasswordConfirm.addEventListener('input', (e) => {
-        let value = e.target.value;
-        if (isMatchPassword(value)) {
-          password_confirm_div.style.border = 'solid 2px green';
-          password_div.style.border = 'solid 2px green'
-        } else {
-          password_confirm_div.style.border = 'solid 2px red';
-          password_div.style.border = 'solid 2px red';
-        }
-      });
-
+      
       regPassword.addEventListener('input', (e) => {
         let value = e.target.value;
-        if (isMatchPasswordConfirm(value)) {
+        if (isMatchPasswordConfirm(value, regPasswordConfirm.value)) {
           password_confirm_div.style.border = 'solid 2px green';
           password_div.style.border = 'solid 2px green'
         } else {
@@ -92,7 +78,17 @@ function FetchReg() {
           password_div.style.border = 'solid 2px red';
         }
       });
-
+      
+      regPasswordConfirm.addEventListener('input', (e) => {
+        let value = e.target.value;
+        if (isMatchPassword(value, regPassword.value)) {
+          password_confirm_div.style.border = 'solid 2px green';
+          password_div.style.border = 'solid 2px green'
+        } else {
+          password_confirm_div.style.border = 'solid 2px red';
+          password_div.style.border = 'solid 2px red';
+        }
+      });
       // 
       regBtn.addEventListener("click", function (ev) {
         ev.preventDefault();

@@ -81,16 +81,40 @@ class User
 
     public function updateProfil($profil)
     {
-        $select = "SELECT * FROM user WHERE id_user=:id";
+        $select = "UPDATE `user` 
+            SET `firstname` = `:firstname`, `lastname` = `:lastname`, `email` = `:email`
+            WHERE `id_user` = `:id`";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
-            ':id' => $profil['id_user']
+            ':id' => $profil['id_user'],
+            ':firstname' => $profil['firstname'],
+            ':lastname' => $profil['lastname'],
+            ':email' => $profil['email']
         ]);
-        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function updatePassword($password)
+    public function updateAddress($profil)
     {
-        
+        $select = "UPDATE `customer` 
+            SET `address_cus` = `:address`, `postal_code_cus` = `:postal_code`, `phone_cus` = `:phone`
+            WHERE `id_user` = `:id`";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute([
+            ':id' => $profil['id_user'],
+            ':address' => $profil['address'],
+            ':postal_code' => $profil['postal_code'],
+            ':phone' => $profil['phone']
+        ]);
+    }
+
+    public function updatePassword($id, $password)
+    {
+        $hashed_pwd = password_hash($password, PASSWORD_DEFAULT);
+        $update = "UPDATE `user` SET `password` = `:password` WHERE `id_user` = `:id`";
+        $prepare = DbConnection::getDb()->prepare($update);
+        $prepare->execute([
+            ':password' => $hashed_pwd,
+            ':id' => $id
+        ]);
     }
 }

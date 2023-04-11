@@ -8,3 +8,7 @@
 .background img{
     width: 90%;
 }
+
+.profilNameDisplay, .profilContactDisplay, .profilPwdDisplay {
+    display: none;
+}

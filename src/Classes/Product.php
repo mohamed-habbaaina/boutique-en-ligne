@@ -84,6 +84,16 @@ class Product
         $reqInsertProduct->execute();
 
     }
+
+    /* Get Product like $request.
+    */
+   public function getSearchProduct($request): ?array
+   {
+       $req = "SELECT * FROM `product` WHERE name_pro LIKE '%{$request}%' LIMIT 10";
+       $reqSearch = DbConnection::getDb()->prepare($req);
+       $reqSearch->execute();
+       return $reqSearch->fetchAll(\PDO::FETCH_ASSOC);
+   }
 }
 // $produit = new Product();
 

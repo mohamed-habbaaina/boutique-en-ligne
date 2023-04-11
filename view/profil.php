@@ -1,6 +1,5 @@
 <?php
 session_start();
-var_dump($_SESSION["user"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +28,7 @@ var_dump($_SESSION["user"]);
                 </div>
             </div>
             <div class="input_container">
-                <input type="text" name="profilMail" id="profilMail" placeholder=" ">
+                <input type="text" name="profilEmail" id="profilMail" placeholder=" ">
                 <label for="profilEmail">Mail</label>
             </div>
             <div class="input_container">

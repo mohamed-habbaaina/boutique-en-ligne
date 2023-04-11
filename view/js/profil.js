@@ -17,7 +17,7 @@ function update() {
             return response.text();
         })
         .then((content) => {
-            formDisplay.textContent = content;
+           
             
         });
 }

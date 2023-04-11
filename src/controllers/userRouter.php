@@ -1,7 +1,7 @@
 <?php
 
 namespace src\Classes;
-require_once("../Classes/UserController.php");
+require_once("../controllers/UserController.php");
 
 $userController = new UserController();
 
@@ -29,6 +29,7 @@ if(isset($_POST["login"])){
 
 if(isset($_POST["update"])){
     $userController->update(
+        $_SESSION["user"]["id"],
         $_POST["profilFirstname"], 
         $_POST["profilLastname"], 
         $_POST["profilEmail"], 
@@ -39,3 +40,4 @@ if(isset($_POST["update"])){
         $_POST["profilPasswordConfirm"] 
     );
 }
+

@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style/contact.css">
     <link rel="stylesheet" href="style/includes.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>

@@ -27,17 +27,14 @@ if(isset($_POST["login"])){
 
 }
 
-if(isset($_POST["update"])){
-    $userController->update(
-        $_SESSION["user"]["id"],
-        $_POST["profilFirstname"], 
-        $_POST["profilLastname"], 
-        $_POST["profilEmail"], 
-        $_POST["profilAddress"], 
-        $_POST["profilZip"], 
-        $_POST["profilPhone"], 
-        $_POST["profilPassword"], 
-        $_POST["profilPasswordConfirm"] 
-    );
+if(isset($_POST["updateNameForm"])){
+    $userController->changeProfil($_POST["profilFirstname"], $_POST["profilLastname"], $_POST["profilEmail"]);
 }
 
+if(isset($_POST["updateContactForm"])){
+    $userController->changeAddress($_POST["profilAddress"], $_POST["profilZip"], $_POST["profilPhone"]);
+}
+
+if(isset($_POST["updatePwdForm"])){
+    $userController->changePassword($_POST["profilPassword"], $_POST["newPassword"], $_POST["newPasswordConfirm"]);
+}

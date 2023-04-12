@@ -161,7 +161,12 @@ function FetchLog() {
             return response.text();
           })
           .then((content) => {
-            logMsg.innerHTML = content;
+            
+            if(content !== "Welcome"){
+              logMsg.innerHTML = content;
+            } else{
+              window.location = "index.php";
+            }
           });
       });
     });

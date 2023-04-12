@@ -52,7 +52,7 @@ class User
         ]);
         $result = $prepare->fetch(\PDO::FETCH_ASSOC);
 
-        if (count($result) == 0) {
+        if (empty($result)) {
             echo "Incorrect email or password.";
             die();
         } elseif (!password_verify($password, $result["password"])) {

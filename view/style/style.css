@@ -1,3 +1,4 @@
+
 #formDisplay{
     padding-top: 2%;
 }
@@ -28,3 +29,34 @@ margin-right: auto;
 .profilNameDisplay, .profilContactDisplay, .profilPwdDisplay {
     display: none;
 }
+=======
+@import url('https://fonts.googleapis.com/css2?family=Inika&display=swap');
+
+section {
+    font-family: 'Inika', serif;
+    color: #572A17;
+    width: 1100px;
+    margin: 2% auto;
+}
+
+h3 {
+    text-align: center;
+    color: #572A17;
+    font-size: 26px;
+}
+
+h2 {
+    text-align: center;
+    color: #572A17;
+    font-size: 30px;
+    margin-bottom: 5%
+}
+
+#about_section {
+    margin-top: 5%
+}
+
+#about_section p {
+    font-size: 24px;
+}
+

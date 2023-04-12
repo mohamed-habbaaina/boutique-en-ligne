@@ -84,7 +84,7 @@ class User
         ]);
         $customer_result = $prepare->fetch(\PDO::FETCH_ASSOC);
         if ($customer_result !== false) {
-            return [...$user_result, ...$customer_result];
+            return array_merge($user_result, $customer_result);
         } else {
             return $user_result;
         }

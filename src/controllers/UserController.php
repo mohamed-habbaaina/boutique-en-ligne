@@ -42,7 +42,34 @@ class UserController
         }
     }
 
-    public function changeProfil() {
-        
+    
+
+    public function changeProfil($id, $firstname, $lastname, $email){
+        $this->user->updateProfil(
+            $id,
+            $firstname,
+            $lastname,
+            $email,
+        );
+    }
+
+    public function changeAddress($address, $zip, $phone){
+        $this->user->updateAddress(
+            $address,
+            $zip,
+            $phone,
+        );
+    }
+
+    public function changePassword($password, $newPassword, $newPasswordConfirm){
+
+        if($newPassword == $newPasswordConfirm){
+            $this->user->updatePassword(
+                $password,
+                $newPassword,
+            );
+        }
     }
 }
+
+

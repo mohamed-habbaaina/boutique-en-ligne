@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/contact.css">
     <link rel="stylesheet" href="style/includes.css">
+    <link rel="stylesheet" href="style/style.css">
     <script defer src="./../src/controllers/searchProduct.js"></script>
     <title>Home</title>
 </head>
@@ -17,7 +18,17 @@ session_start();
     <?php require_once "./includes/header.php" ?>
 
     <main>
-    <div id="formDisplay">
+        <div id="formDisplay">
+        
+            <div id="search">
+    
+                <form action="./../src/controllers/searchProduct.js" method="get" id="searchForm">
+                    <input type="search" name="search" placeholder="Rechercher un Produit ...">
+                </form>
+    
+                <div id="displayResult"></div>
+    
+            </div>
         <div class="title">
             <h1>START YOUR DAY WITH OUR COFFEE</h1>
         </div>
@@ -25,18 +36,6 @@ session_start();
             <img src="../view/img/table1.jpeg" alt="">
         </div>
     </div>
-
-        </div>
-
-        <div id="search">
-
-            <form action="./../src/controllers/searchProduct.js" method="get" id="searchForm">
-                <input type="search" name="search" placeholder="Rechercher un Produit ...">
-            </form>
-
-            <div id="displayResult"></div>
-
-        </div>
     </main>
     
     <?php require_once "./includes/footer.php" ?>

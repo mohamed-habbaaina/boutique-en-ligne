@@ -26,8 +26,8 @@ function FetchReg() {
         return email.match(emailRegex);
       }
 
-      function isMatchPassword(password, passwordComfirm) {
-        return password === passwordComfirm;
+      function isMatchPassword(password, passwordConfirm) {
+        return password === passwordConfirm;
       }
 
       function isValidForm(firstname, lastname, email, password, passwordConfirm) {
@@ -35,8 +35,7 @@ function FetchReg() {
           isValidName(firstname) &&
           isValidName(lastname) &&
           isValidEmail(email) &&
-          isMatchPassword(password) &&
-          isMatchPasswordConfirm(passwordConfirm)
+          isMatchPassword(password, passwordConfirm)
         )
       }
 
@@ -70,7 +69,7 @@ function FetchReg() {
       
       regPassword.addEventListener('input', (e) => {
         let value = e.target.value;
-        if (isMatchPasswordConfirm(value, regPasswordConfirm.value)) {
+        if (isMatchPassword(value, regPasswordConfirm.value)) {
           password_confirm_div.style.border = 'solid 2px green';
           password_div.style.border = 'solid 2px green'
         } else {

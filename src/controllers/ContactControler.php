@@ -1,32 +1,17 @@
 <?php
 
-namespace src\Classes;
+namespace src\controllers;
+use src\Classes\Message;
+use src\model\ContactModel;
 
-class ContactControler
+require_once('./FormControler.php');
+require_once('../Classes/Message.php');
+require_once('../model/ContactModel.php');
+
+class ContactControler extends FormControler
 {
-    // Fonction privée pour vérifier si un nom est valide (au moins 2 caractères et uniquement des lettres, des espaces, des tirets et des accents)
-    private function isValidName(string $name)
-    {
-        $nameRegex = '/^[A-Za-zéèê\- ]{2,}$/';
-        return preg_match($nameRegex, $name);
-    }
-
-    // Fonction privée pour vérifier si un email est valide
-    private function isValidEmail(string $email)
-    {
-        $emailRegex = '/^[\w\-\.]+@([\w\-]+\.)+[\w]{2,4}$/';
-        return preg_match($emailRegex, $email);
-    }
-
-    // Fonction privée pour vérifier si un numéro de téléphone est valide (format français)
-    private function isValidPhone(string $phone)
-    {
-        $phoneRegex = '/^0[1-9](\d{2}){4}$/';
-        return preg_match($phoneRegex, $phone);
-    }
-
     // Fonction privée pour vérifier si le formulaire est valide (tous les champs sont valides)
-    private function isValidForm(Message $message)
+    protected function isValidForm(Message $message = null)
     {
         return (
             $this->isValidName($message->getFirstname()) &&
@@ -36,7 +21,7 @@ class ContactControler
         );
     }
 
-    public function sendMessage(Message $message)
+    public function sendMessage(Message $message = null)
     {
         if ($this->isValidForm($message)) {
             $contactModel = new ContactModel();

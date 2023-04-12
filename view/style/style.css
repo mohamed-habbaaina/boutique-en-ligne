@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inika&display=swap');
 
 #formDisplay{
     padding-top: 2%;
@@ -29,8 +30,7 @@ margin-right: auto;
 .profilNameDisplay, .profilContactDisplay, .profilPwdDisplay {
     display: none;
 }
-=======
-@import url('https://fonts.googleapis.com/css2?family=Inika&display=swap');
+
 
 section {
     font-family: 'Inika', serif;

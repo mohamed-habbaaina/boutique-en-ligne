@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inika&display=swap');
+<<<<<<< HEAD
+=======
+
+section {
+    font-family: 'Inika', serif;
+    color: #572A17;
+    width: 1100px;
+    margin: 2% auto;
+}
+>>>>>>> update
 
 #formDisplay{
     padding-top: 2%;
@@ -59,4 +69,3 @@ h2 {
 #about_section p {
     font-size: 24px;
 }
-

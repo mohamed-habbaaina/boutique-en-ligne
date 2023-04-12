@@ -33,6 +33,7 @@ $current_profil = $user->getData($_SESSION['user']['id']);
         </div>
 
         <div class="profilNameDisplay" id="profilNameDisplay">
+            <p id="profilMsg"></p>
             <form method="post" id="profilNameForm">
                 <div id="name_form">
                     <div class="input_container">

@@ -46,31 +46,42 @@ class UserController
     
 
     public function changeProfil($id, $firstname, $lastname, $email){
+
         $this->user->updateProfil(
-            $id,
-            $firstname,
-            $lastname,
-            $email,
+            [
+           "id_user" => $id,
+            "firstname" =>$firstname,
+            "lastname" =>$lastname,
+            "email" =>$email
+            ]
         );
     }
 
-    public function changeAddress($address, $zip, $phone){
+    public function changeAddress($id, $address, $zip, $phone){
         $this->user->updateAddress(
-            $address,
-            $zip,
-            $phone,
+            [
+            "id_user" => $id,
+            "address" => $address,
+            "postal_code" => $zip,
+            "phone" => $phone
+            ]
         );
     }
 
-    public function changePassword($password, $newPassword, $newPasswordConfirm){
+    public function changePassword($id, $password, $newPassword, $newPasswordConfirm){
+        $profil = $this->user->getData($id);
+        
+       if(password_verify($password, $profil["password"])){
 
-        if($newPassword == $newPasswordConfirm){
-            $this->user->updatePassword(
-                $password,
-                $newPassword,
-            );
+         if($newPassword == $newPasswordConfirm){
+
+            $this->user->updatePassword($id, $newPassword);
+        }else{
+            echo "New password and new password confirm not match";
         }
+    } else {
+        echo "Invalid password" ;
     }
 }
-
+}
 

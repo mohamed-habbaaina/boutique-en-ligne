@@ -35,9 +35,9 @@ if(isset($_POST["updateNameForm"])){
 
 
 if(isset($_POST["updateContactForm"])){
-    $userController->changeAddress($_POST["profilAddress"], $_POST["profilZip"], $_POST["profilPhone"]);
+    $userController->changeAddress($_SESSION["user"]["id"], $_POST["profilAddress"], $_POST["profilZip"], $_POST["profilPhone"]);
 }
 
 if(isset($_POST["updatePwdForm"])){
-    $userController->changePassword($_POST["profilPassword"], $_POST["newPassword"], $_POST["newPasswordConfirm"]);
+    $userController->changePassword($_SESSION["user"]["id"], $_POST["profilPassword"], $_POST["newPassword"], $_POST["newPasswordConfirm"]);
 }

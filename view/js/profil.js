@@ -5,6 +5,7 @@ window.onload = function() {
     let nameDiv = document.getElementById("profilNameDisplay");
     let contactDiv = document.getElementById("profilContactDisplay");
     let pwdDiv = document.getElementById("profilPwdDisplay");
+    let profilMsg = document.getElementById("profilMsg");
 
     nameBtn.onclick = function() {
         nameDiv.style.display = "block";

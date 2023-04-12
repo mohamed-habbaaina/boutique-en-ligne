@@ -1,6 +1,7 @@
 <?php
 
-namespace src\Classes;
+namespace src\controllers;
+use src\Classes\User;
 
 require_once("../Classes/User.php");
 

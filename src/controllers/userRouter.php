@@ -1,6 +1,7 @@
 <?php
 
-namespace src\Classes;
+namespace src\controllers;
+
 require_once("../controllers/UserController.php");
 
 $userController = new UserController();

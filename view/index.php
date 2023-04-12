@@ -1,6 +1,5 @@
 <?php
 session_start();
-var_dump($_SESSION["user"]);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -17,10 +16,15 @@ var_dump($_SESSION["user"]);
 
 <body>
     <?php require_once "./includes/header.php" ?>
-    <div id="formDisplay"></div>
-    <div class="background">
-        <img src="../view/img/indexpic.jpg" alt="">
+    <div id="formDisplay">
+        <div class="title">
+            <h1>START YOUR DAY WITH OUR COFFEE</h1>
+        </div>
+        <div class="background">
+            <img src="../view/img/table1.jpeg" alt="">
+        </div>
     </div>
     <script src="./js/auth.js"></script>
 </body>
+
 </html>

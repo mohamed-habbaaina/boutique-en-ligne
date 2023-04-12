@@ -10,9 +10,6 @@
     width: 1100px;
 }
 
-#formDisplay{
-    padding-top: 5%;
-}
 #name_form {
     display: flex;
     flex-direction: row;

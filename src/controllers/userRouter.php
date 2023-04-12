@@ -28,12 +28,10 @@ if(isset($_POST["login"])){
 }
 
 if(isset($_POST["updateNameForm"])){
-<<<<<<< HEAD
+
     $userController->changeProfil($_SESSION["user"]["id"], $_POST["profilFirstname"], $_POST["profilLastname"], $_POST["profilEmail"]);
-=======
-    $userController->changeProfil($_POST["profilFirstname"], $_POST["profilLastname"], $_POST["profilEmail"]);
->>>>>>> main
 }
+
 
 if(isset($_POST["updateContactForm"])){
     $userController->changeAddress($_POST["profilAddress"], $_POST["profilZip"], $_POST["profilPhone"]);

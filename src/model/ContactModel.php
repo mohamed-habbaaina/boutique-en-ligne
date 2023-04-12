@@ -1,8 +1,11 @@
 <?php
 
-namespace src\Classes;
+namespace src\model;
+use src\Classes\DbConnection;
+use src\Classes\Message;
 
 require_once("../Classes/DbConnection.php");
+require_once("../Classes/Message.php");
 
 class ContactModel
 {

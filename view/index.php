@@ -1,8 +1,5 @@
 <?php
 session_start();
-// echo '<pre>';
-// var_dump($_SERVER);
-// echo '<pre>';
 
 ?>
 <!DOCTYPE html>
@@ -11,7 +8,9 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="style/style.css">
+
     <link rel="stylesheet" href="style/contact.css">
     <link rel="stylesheet" href="style/includes.css">
     <script defer src="./../src/controllers/searchProduct.js"></script>
@@ -19,6 +18,16 @@ session_start();
 </head>
 <body>
     <?php require_once "./includes/header.php" ?>
+
+    <div id="formDisplay">
+        <div class="title">
+            <h1>START YOUR DAY WITH OUR COFFEE</h1>
+        </div>
+        <div class="background">
+            <img src="../view/img/table1.jpeg" alt="">
+        </div>
+    </div>
+    
 
     <main>
         <div id="search">
@@ -31,7 +40,10 @@ session_start();
 
         </div>
     </main>
-
+    
     <?php require_once "./includes/footer.php" ?>
+
+<script src="./js/auth.js"></script>
 </body>
+
 </html>

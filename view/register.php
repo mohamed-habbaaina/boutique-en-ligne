@@ -31,9 +31,8 @@
             </div>
 
             <div id="submit_form">
-                <button type="submit" id="regBtn">Register</button>
+                <button type="submit" id="regBtn" class="button-59">Register</button>
             </div>
         </form>
     </div>
 </section>
-<script src="./js/authstyle.js"></script>

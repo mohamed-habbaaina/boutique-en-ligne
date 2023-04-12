@@ -1,3 +1,35 @@
+
+#formDisplay{
+    padding-top: 2%;
+}
+.title{
+font-family: 'Inika';
+font-size: 34px;
+line-height: 67px;
+display: flex;
+align-items: center;
+text-align: center;
+justify-content: center;
+color: #000000;
+width: 60%;
+margin-left: auto;
+margin-right: auto;
+}
+.background{
+   display: flex;
+   justify-content: center;
+   
+
+}
+.background img{
+    width: 80%;
+    height: 600px;
+}
+
+.profilNameDisplay, .profilContactDisplay, .profilPwdDisplay {
+    display: none;
+}
+=======
 @import url('https://fonts.googleapis.com/css2?family=Inika&display=swap');
 
 section {
@@ -27,3 +59,4 @@ h2 {
 #about_section p {
     font-size: 24px;
 }
+

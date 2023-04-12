@@ -16,7 +16,7 @@
     <?php require_once("./includes/header.php"); ?>
 
     <main>
-
+    <div id="formDisplay">
         <section id="contact_section">
             <div id="contact_form_img">
             </div>
@@ -52,12 +52,12 @@
                 </form>
             </div>
         </section>
-
+    </div>
         <?php require_once("./includes/footer.php"); ?>
     </main>
 
     <script src="./js/contact.js"></script>
-    </script>
+    <script src="./js/auth.js"></script>
 
 </body>
 

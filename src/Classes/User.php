@@ -15,28 +15,42 @@ class User
 
     public function create($firstname, $lastname, $email, $password)
     {
-        $select = "SELECT email FROM user WHERE email=:email limit 1";
-        $prepare = DbConnection::getDb()->prepare($select);
-        $prepare->execute([
+        // Vérifier que l'utilisateur n'existe pas
+        $sqlQuery = "SELECT COUNT(email) FROM `user` WHERE email = :email";
+        $userCount = DbConnection::getDb()->prepare($sqlQuery);
+        $userCount->execute([
             ':email' => $email
         ]);
-        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
+        $isUser = $userCount->fetchColumn() != 0 ? true : false;
 
-        if (!empty($result)) {
+        if ($isUser) {
             echo "Email already exist";
             die();
-        } else {
+        } else { 
+            // Enregistrer l'utilisateur en base de donnée
             $hashed_pwd = password_hash($password, PASSWORD_DEFAULT);
-            $register = "INSERT INTO user (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
-            $prepare = DbConnection::getDb()->prepare($register);
-
-            $prepare->execute([
+            $sqlQuery = "INSERT INTO user (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
+            $insertUser = DbConnection::getDb()->prepare($sqlQuery);
+            $insertUser->execute([
                 "firstname" => $firstname,
                 "lastname" => $lastname,
                 "email" => $email,
-                "password" => $hashed_pwd,
+                "password" => $hashed_pwd
             ]);
-            echo "Register";
+            // Récupérer l'id de l'utilisateur
+            $sqlQuery = "SELECT id_user FROM `user` WHERE email = :email";
+            $catchId = DbConnection::getDb()->prepare($sqlQuery);
+            $catchId->execute([
+                'email' => $email
+            ]);
+            $idUser = $catchId->fetchColumn();
+            // Enregistrer id_user dans la table customer
+            $sqlQuery = "INSERT INTO customer (id_user) VALUES (:idUser)";
+            $insertIdUser = DbConnection::getDb()->prepare($sqlQuery);
+            $insertIdUser->execute([
+                "idUser" => $idUser
+            ]);
+            echo "Registed";
         }
     }
 

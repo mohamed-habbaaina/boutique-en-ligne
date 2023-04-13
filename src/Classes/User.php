@@ -150,4 +150,23 @@ class User
             ':id' => $id
         ]);
     }
+
+    public function getAllUserData(){
+        $select = "SELECT 
+        user.firstname as firstname,
+        user.lastname as lastname,
+        user.email as email,
+        customer.address_cus as ‘address‘,
+        customer.zip_cus as zip,
+        customer.phone_cus as phone
+        FROM user
+        INNER JOIN customer ON user.id_user = customer.id_user;
+        ";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute();
+        $user_result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($user_result);
+        
+    }
 }
+

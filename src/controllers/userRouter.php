@@ -2,13 +2,12 @@
 
 namespace src\controllers;
 
-require_once("../controllers/UserController.php");
+
+require_once("./UserController.php");
 
 $userController = new UserController();
-
-
 if (isset($_POST["register"])) {
-
+    
     $userController->register(
         $_POST["regFirstname"], 
         $_POST["regLastname"], 
@@ -16,20 +15,20 @@ if (isset($_POST["register"])) {
         $_POST["regPassword"], 
         $_POST["regPasswordConfirm"]
     );
-
+    
 }
 
 if(isset($_POST["login"])){
-
+    
     $userController->login(
         $_POST["logEmail"],
         $_POST["logPassword"]
     );
-
+    
 }
 
 if(isset($_POST["updateNameForm"])){
-
+    
     $userController->changeProfil($_SESSION["user"]["id"], $_POST["profilFirstname"], $_POST["profilLastname"], $_POST["profilEmail"]);
 }
 
@@ -40,4 +39,9 @@ if(isset($_POST["updateContactForm"])){
 
 if(isset($_POST["updatePwdForm"])){
     $userController->changePassword($_SESSION["user"]["id"], $_POST["profilPassword"], $_POST["newPassword"], $_POST["newPasswordConfirm"]);
+}
+
+if(isset($_GET["fetchUser"])){
+
+    $userController->getUserData();
 }

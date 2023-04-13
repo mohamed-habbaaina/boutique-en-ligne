@@ -1,6 +1,7 @@
 <?php
 
 namespace src\controllers;
+
 use src\Classes\User;
 
 require_once("../Classes/User.php");
@@ -43,45 +44,51 @@ class UserController
         }
     }
 
-    
 
-    public function changeProfil($id, $firstname, $lastname, $email){
+
+    public function changeProfil($id, $firstname, $lastname, $email)
+    {
 
         $this->user->updateProfil(
             [
-           "id_user" => $id,
-            "firstname" =>$firstname,
-            "lastname" =>$lastname,
-            "email" =>$email
+                "id_user" => $id,
+                "firstname" => $firstname,
+                "lastname" => $lastname,
+                "email" => $email
             ]
         );
     }
 
-    public function changeAddress($id, $address, $zip, $phone){
+    public function changeAddress($id, $address, $zip, $phone)
+    {
         $this->user->updateAddress(
             [
-            "id_user" => $id,
-            "address" => $address,
-            "postal_code" => $zip,
-            "phone" => $phone
+                "id_user" => $id,
+                "address" => $address,
+                "postal_code" => $zip,
+                "phone" => $phone
             ]
         );
     }
 
-    public function changePassword($id, $password, $newPassword, $newPasswordConfirm){
+    public function changePassword($id, $password, $newPassword, $newPasswordConfirm)
+    {
         $profil = $this->user->getData($id);
-        
-       if(password_verify($password, $profil["password"])){
 
-         if($newPassword == $newPasswordConfirm){
+        if (password_verify($password, $profil["password"])) {
 
-            $this->user->updatePassword($id, $newPassword);
-        }else{
-            echo "New password and new password confirm not match";
+            if ($newPassword == $newPasswordConfirm) {
+
+                $this->user->updatePassword($id, $newPassword);
+            } else {
+                echo "New password and new password confirm not match";
+            }
+        } else {
+            echo "Invalid password";
         }
-    } else {
-        echo "Invalid password" ;
+    }
+
+    public function getUserData(){
+        $this->user->getAllUserData();
     }
 }
-}
-

@@ -91,4 +91,8 @@ class UserController
     public function getUserData(){
         $this->user->getAllUserData();
     }
+
+    public function getInfo($id){
+        $this->user->getData($id);
+    }
 }

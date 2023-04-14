@@ -67,8 +67,6 @@ formAddProduct.addEventListener('submit', async e => {
 
         let data = await response.json();
 
-
-
         displayMessage.innerHTML = data;
         displayMessage.style.color = 'orange';
 

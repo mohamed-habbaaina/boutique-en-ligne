@@ -167,6 +167,7 @@ class User
 
     public function getAllUserData(){
         $select = "SELECT 
+        user.id_user as id_user,
         user.firstname as firstname,
         user.lastname as lastname,
         user.email as email,

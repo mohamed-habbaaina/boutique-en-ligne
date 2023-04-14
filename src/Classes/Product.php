@@ -16,7 +16,7 @@ class Product
      */
     public function getProduct(int $idProduct): array
     {
-        $sqlIdProduct = 'SELECT name_pro, description_pro, price_pro, image_pro, origin_pro, category_pro, AVG(value_rat) as avg_rating 
+        $sqlIdProduct = 'SELECT product.id_pro, name_pro, description_pro, price_pro, image_pro, origin_pro, category_pro, AVG(value_rat) as avg_rating 
         FROM `product` LEFT JOIN `rate` 
         ON product.id_pro = rate.id_pro 
         WHERE product.id_pro=:id 

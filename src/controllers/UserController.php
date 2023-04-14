@@ -6,7 +6,6 @@ use src\Classes\User;
 
 require_once("../Classes/User.php");
 
-
 class UserController
 
 {

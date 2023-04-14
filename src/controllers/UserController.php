@@ -92,7 +92,5 @@ class UserController
         $this->user->getAllUserData();
     }
 
-    public function getInfo($id){
-        $this->user->getData($id);
-    }
+   
 }

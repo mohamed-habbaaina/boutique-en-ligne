@@ -9,8 +9,6 @@ require_once('DbConnection.php');
 class User
 {
 
-    private $pdo;
-
     public function __construct()
     {
     }

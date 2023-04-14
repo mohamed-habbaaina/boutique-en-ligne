@@ -16,15 +16,15 @@
 
     <div id="userDisplay">
         <p>USERS</p>
-        <button id="userUpdateBtn">Update</button>
+      
     </div>
     <div id="productDisplay">
         <p>PRODUCTS</p>
-        <button id="productUpdateBtn">Update</button>
+       
     </div>
     <div id="commentDisplay">
         <p>COMMENTS</p>
-        <button id="commentUpdateBtn">Update</button>
+       
     </div>
     
     <script src="./js/admin.js"></script>

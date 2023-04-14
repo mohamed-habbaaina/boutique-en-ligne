@@ -17,7 +17,7 @@ class Cart extends Product {
         $dataIdCart->bindParam(':id_user', $id_user);
         $dataIdCart->execute();
         $data = $dataIdCart->fetch(\PDO::FETCH_ASSOC);
-        return $data['id_cart'];
+        return $data['id_cart'] ?? false;
     }
 
     public function insertCart(int $id_user): void
@@ -34,19 +34,37 @@ class Cart extends Product {
     /**
      * check the database to see if the product has been ordered before by the user
      */
-
-
-    /**
-     * Add product in cart table.
-     */
-    public function addCart($id_user, $id_product, $product_quantity): void
+    public function selectProductCartQantity($id_cart, $id_product): array | bool
     {
-        $reqInserCart = 'INSERT INTO `cart_product` (`id_user`, `id_pro`, `quantity`) VALUES (:id_user, :id_pro, :quantity)';
-        $dataInserCart = DbConnection::getDb()->prepare($reqInserCart);
-        $dataInserCart->bindParam(':id_user', $id_user);
-        $dataInserCart->bindParam(':id_pro', $id_product);
-        $dataInserCart->bindParam(':quantity', $product_quantity);
-        $dataInserCart->execute();
+        $reqSelecCart = 'SELECT quantity FROM `cart_product` WHERE id_cart = :id_cart AND id_pro = :id_product';
+        $dataSelectCart = DbConnection::getDb()->prepare($reqSelecCart);
+        $dataSelectCart->bindParam(':id_cart', $id_cart);
+        $dataSelectCart->bindParam(':id_product', $id_product);
+        $dataSelectCart->execute();
+
+        $dataQantity = $dataSelectCart->fetch(\PDO::FETCH_ASSOC);
+        return $dataQantity ?? false;
+
+    }
+
+    public function updatProductCart(int $quantity, int $id_cart, int $id_product): void
+    {
+        $reqUpdat = "UPDATE `cart_product` SET `quantity` = :quantity WHERE `cart_product`.`id_cart` = :id_cart AND `cart_product`.`id_pro` = :id_product";
+        $reqUpdatCart = DbConnection::getDb()->prepare($reqUpdat);
+        $reqUpdatCart->bindParam(':quantity', $quantity);
+        $reqUpdatCart->bindParam(':id_cart', $id_cart);
+        $reqUpdatCart->bindParam(':id_product', $id_product);
+        $reqUpdatCart->execute();
+    }
+
+    public function insertProductCart($id_cart, $id_product, $quantity): void
+    {
+        $reqInsrt = "INSERT INTO `cart_product`(`id_cart`, `id_pro`, `quantity`) VALUES (:id_cart, :id_product, :quantity)";
+        $reqInsertCart = DbConnection::getDb()->prepare($reqInsrt);
+        $reqInsertCart->bindParam(':id_cart', $id_cart);
+        $reqInsertCart->bindParam(':id_product', $id_product);
+        $reqInsertCart->bindParam(':quantity', $quantity);
+        $reqInsertCart->execute();
 
     }
 }

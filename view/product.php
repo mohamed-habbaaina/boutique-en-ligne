@@ -12,6 +12,11 @@ else:
 endif;
 
 $dataProduct =  $product->getProduct($idProduct);
+// var_dump($dataProduct);
+// echo '<br>';
+// echo '<br>';
+// echo '<br>';
+// var_dump($_SESSION);
 
 // get data product where id & customer rating
 $name = $dataProduct['name_pro'];
@@ -21,6 +26,14 @@ $image = $dataProduct['image_pro'];
 $origin = $dataProduct['origin_pro'];
 $category = $dataProduct['category_pro'];
 $avg_rating = number_format($dataProduct['avg_rating'],2);
+
+// Handle cart.
+$id_product = $dataProduct['id_pro'];
+
+if(isset($_SESSION['user'])){
+
+    $id_user = $_SESSION['user']['id'];
+}
 
 // var_dump("name : $name, description : $description, price : $price, origin : $origin, category : $category, avg_rating : $avg_rating")
 
@@ -33,6 +46,7 @@ $avg_rating = number_format($dataProduct['avg_rating'],2);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/product.css">
+    <script defer src="./../src/controllers/add_cart.js"></script>
     <title>Product</title>
 </head>
 <body>
@@ -41,6 +55,11 @@ $avg_rating = number_format($dataProduct['avg_rating'],2);
     <main>
 
         <div>
+            <div class="displayCart">
+                <!-- tomporaire por le css-->
+                <!-- Vous avez maitenant 4 produit dans le panier ! -->
+
+            </div>
             <div>
                 <h1><?= $name; ?></h1>
                 <!-- add path image -->
@@ -48,15 +67,32 @@ $avg_rating = number_format($dataProduct['avg_rating'],2);
             </div>
             
             <div>
-                
+                <div id="displayCart"></div>
                 <h3><?= $name; ?></h3>
                 <p>Poids</p>
                 <p><?= $origin; ?></p>
                 <p><?= $category; ?></p>
                 <p><?= $avg_rating ?>/5 *</p>
                 <p><?= $price; ?></p>
-                <button>+ Panier</button>
-                <button>Acheter</button>
+
+                <?php if(isset($_SESSION['user'])){;?>
+                <form action="./../src/controllers/add_cart.js" method="post" id="formCart">
+                    <input type="hidden" name="id_product" value="<?= $id_product;?>">
+                    <input type="hidden" name="id_user" value="<?= $id_user;?>">
+                    <input type="number" name="product_quantity" value="<?= 1;?>">
+                    <!-- <button>+ Panier</button> -->
+                    <input type="submit" name="add_cart" value="+ Panier"/>
+                </form>
+
+                <?PHP var_dump($id_user, $id_product); ?>
+                <form action="" method="post" id="formBuy">
+                    <input type="hidden" name="id_product_buy" value="<?= $id_product;?>">
+                    <input type="hidden" name="id_user_buy" value="<?= $id_user;?>">
+                    <input type="hidden" name="product_quantity_buy" value="1">
+                    <input type="submit" name="add_cart_buy" value="Acher"/>
+                </form>
+                <?php };?>
+
             </div>
         </div>
         

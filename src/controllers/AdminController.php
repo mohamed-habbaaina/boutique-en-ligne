@@ -21,6 +21,6 @@ class AdminController
     }
 
     public function getInfo($id){
-        $this->user->getData($id);
+        return $this->user->getData($id);
     }
 }

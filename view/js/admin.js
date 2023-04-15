@@ -92,7 +92,7 @@ function fetchUser() {
             
 
             getInfoBtn.forEach(getInfo => getInfo.addEventListener("click" , (event)=>{
-                
+                    console.log("clique ok : " + event.currentTarget.value);
                     window.location = "./adminUserInfo.php?userId=" + event.currentTarget.value;
                  
                 }));

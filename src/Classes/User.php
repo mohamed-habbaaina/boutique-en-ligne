@@ -90,10 +90,10 @@ class User
 
     public function updateProfil($profil)
     {
-        $select = "UPDATE user 
+        $sqlQuery = "UPDATE user 
             SET firstname = :firstname, lastname = :lastname, email = :email
             WHERE id_user = :id";
-        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
         $prepare->execute([
             ':id' => $profil['id_user'],
             ':firstname' => $profil['firstname'],
@@ -149,7 +149,8 @@ class User
         ]);
     }
 
-    public function getAllUserData(){
+    public function getAllUserData()
+    {
         $select = "SELECT 
         user.id_user as id_user,
         user.firstname as firstname,
@@ -165,7 +166,25 @@ class User
         $prepare->execute();
         $user_result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
         echo json_encode($user_result);
-        
+    }
+
+    public function getUserPurchases(int $id)
+    {
+        $sqlQuery = (
+            "SELECT *
+            FROM purshase
+            INNER JOIN cart ON purshase.id_cart = cart.id_cart
+            INNER JOIN cart_product ON cart.id_cart = cart_product.id_cart
+            INNER JOIN product ON cart_product.id_pro = product.id_pro
+            WHERE cart.id_user = :id"
+            );
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([':id' => $id]);
+        $userPurchases = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        return $userPurchases;
     }
 }
 
+// $user = new User();
+// $info = $user->getUserPurchases(4);
+// echo json_encode($info, JSON_PRETTY_PRINT);

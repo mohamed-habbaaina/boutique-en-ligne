@@ -182,7 +182,7 @@ class User
         echo json_encode($user_result);
     }
 
-    public function getUserPurchases(int $id)
+    public function getUserOrders(int $id)
     {
         $sqlQuery = (
             "SELECT *
@@ -194,8 +194,18 @@ class User
             );
         $prepare = DbConnection::getDb()->prepare($sqlQuery);
         $prepare->execute([':id' => $id]);
-        $userPurchases = $prepare->fetchAll(\PDO::FETCH_ASSOC);
-        return $userPurchases;
+        $userPurshases = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        // Récupérer les ids des commandes et créer un tableau ou chaque clé représente une commande
+        $ordersIds = [];
+        $orders = [];
+        foreach ($userPurshases as $line) {
+            $id_order = $line['id_ord'];
+            if (!in_array($id_order, $ordersIds)) {
+                $ordersIds[] = $id_order;
+            }
+            $orders[$id_order][] = $line;
+        }
+        return $orders;
     }
 }
 

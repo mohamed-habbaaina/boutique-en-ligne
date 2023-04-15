@@ -24,7 +24,7 @@ class AdminController
         return $this->user->getData($id);
     }
 
-    public function getUserPurshases($id) {
-        return $this->user->getUserPurchases($id);
+    public function getUserOrders($id) {
+        return $this->user->getUserOrders($id);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use src\Classes\Product;
 use src\controllers\AdminController;
 
 require_once('../src/controllers/AdminController.php');
@@ -39,7 +40,7 @@ if (isset($_GET["userId"])) {
             echo "<li id=" . $id_ord . '>' . $date_ord;
             echo "<ul>";
             foreach ($order as $product) {
-                echo "<li class=productName>" . $product['name_pro'] . " " . $product['quantity'] . " x " . $product['price_pro'] / 100 . "</li>";
+                echo "<li class=productName>" . $product['name_pro'] . " " . $product['quantity'] . " x " . $product['price_pro'] / 100 . " = " . $product['quantity'] * $product['price_pro'] / 100 ."€</li>";
             }
             echo "</ul>";
         }

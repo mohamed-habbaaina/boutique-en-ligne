@@ -21,7 +21,7 @@ class User
         $userCount->execute([
             ':email' => $email
         ]);
-        $isUser = $userCount->fetchColumn() != 0 ? true : false;
+        $isUser = $userCount->fetchColumn() != 0;
 
         if ($isUser) {
             echo "Email already exist";

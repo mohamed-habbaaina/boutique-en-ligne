@@ -21,6 +21,7 @@ hideAll();
 productDisplayBtn.addEventListener("click", function () {
     hideAll();
     productDisplay.style.display = "block";
+    fetchProduct();
 });
 
 userDisplayBtn.addEventListener("click", function () {
@@ -35,7 +36,7 @@ commentDisplayBtn.addEventListener("click", function () {
 });
 
 function fetchUser() {
-    fetch("../src/controllers/userRouter.php?fetchUser=test")
+    fetch("../src/controllers/userRouter.php?fetch=user")
         .then((response) => {
             return response.json()
         })
@@ -56,7 +57,7 @@ function fetchUser() {
             // Ajouter chaque ligne de données au tableau
             const rows = content.map(user => {
                 const row = document.createElement('tr');
-            
+
                 const firstnameCell = document.createElement('td');
                 firstnameCell.textContent = user.firstname;
                 row.appendChild(firstnameCell);
@@ -74,7 +75,7 @@ function fetchUser() {
 
                 infoBtn.classList.add('infoBtn');
                 infoBtn.textContent = "Info";
-                infoBtn.type="submit";
+                infoBtn.type = "submit";
                 infoBtn.value = user.id_user;
                 infoBtnCell.appendChild(infoBtn);
                 row.appendChild(infoBtnCell);
@@ -82,23 +83,28 @@ function fetchUser() {
                 return row;
             });
             rows.forEach(row => table.appendChild(row));
-            
-            
-            
+
+
             // Ajouter le tableau au document
             document.body.appendChild(table);
 
             getInfoBtn = document.querySelectorAll(".infoBtn");
-            
 
-            getInfoBtn.forEach(getInfo => getInfo.addEventListener("click" , (event)=>{
-                    console.log("clique ok : " + event.currentTarget.value);
-                    window.location = "./adminUserInfo.php?userId=" + event.currentTarget.value;
-                 
-                }));
+
+            getInfoBtn.forEach(getInfo => getInfo.addEventListener("click", (event) => {
+                console.log("clique ok : " + event.currentTarget.value);
+                window.location = "./adminUserInfo.php?userId=" + event.currentTarget.value;
+
+            }));
+        })
+}
+
+function fetchProduct() {
+    fetch("../src/controllers/productRouter.php?fetch=product")
+        .then($response => $response.json())
+        .then(json => {
+            console.log(json)
             
         })
-
-        
-
+        .catch(e => error.log(e))
 }

@@ -2,7 +2,6 @@
 
 namespace src\controllers;
 
-
 require_once("./UserController.php");
 
 $userController = new UserController();
@@ -42,7 +41,9 @@ if(isset($_POST["updatePwdForm"])){
     $userController->changePassword($_SESSION["user"]["id"], $_POST["profilPassword"], $_POST["newPassword"], $_POST["newPasswordConfirm"]);
 }
 
-if(isset($_GET["fetchUser"])){
-
-    $userController->getUserData();
+if(isset($_GET["fetch"])){
+    $fetch = $_GET["fetch"];
+    if ($fetch === "user") {
+        $userController->getUserData();
+    }
 }

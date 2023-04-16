@@ -5,8 +5,8 @@ namespace src\controllers;
 use src\Classes\Product;
 use src\Classes\User;
 
-require_once('../Classes/Product.php');
-require_once('../Classes/User.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/Classes/Product.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/Classes/User.php');
 
 class AdminController
 {

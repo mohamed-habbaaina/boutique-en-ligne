@@ -38,7 +38,7 @@ commentDisplayBtn.addEventListener("click", function () {
 function fetchUser() {
 
     loading();
-    
+
     fetch("../src/controllers/userRouter.php?fetch=user")
         .then((response) => {
             return response.json()
@@ -131,7 +131,7 @@ function createTable(headers, content, contentKeys, infoBtnValue) {
         infoBtn.classList.add('infoBtn');
         infoBtn.textContent = "Info";
         infoBtn.type = "submit";
-        infoBtn.value = infoBtnValue;
+        infoBtn.value = line[infoBtnValue];
         infoBtnCell.appendChild(infoBtn);
         row.appendChild(infoBtnCell);
         table.appendChild(row);

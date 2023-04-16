@@ -36,6 +36,9 @@ commentDisplayBtn.addEventListener("click", function () {
 });
 
 function fetchUser() {
+
+    loading();
+    
     fetch("../src/controllers/userRouter.php?fetch=user")
         .then((response) => {
             return response.json()
@@ -136,7 +139,15 @@ function createTable(headers, content, contentKeys, infoBtnValue) {
     return table;
 }
 
+function loading() {
+    document.body.removeChild(document.body.lastChild);
+    p = document.createElement('p');
+    p.innerText = 'Loading...'
+}
+
 async function fetchProducts() {
+
+    loading();
 
     // Récupération des infos en bdd
     const r = await fetch("../src/controllers/productRouter.php?fetch=product");

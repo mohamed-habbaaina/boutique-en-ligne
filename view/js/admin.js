@@ -21,7 +21,7 @@ hideAll();
 productDisplayBtn.addEventListener("click", function () {
     hideAll();
     productDisplay.style.display = "block";
-    fetchProduct();
+    fetchProducts();
 });
 
 userDisplayBtn.addEventListener("click", function () {
@@ -136,7 +136,7 @@ function createTable(headers, content, contentKeys, infoBtnValue) {
     return table;
 }
 
-async function fetchProduct() {
+async function fetchProducts() {
 
     // Récupération des infos en bdd
     const r = await fetch("../src/controllers/productRouter.php?fetch=product");
@@ -150,7 +150,8 @@ async function fetchProduct() {
     document.body.appendChild(productTable);
 
     // Ajout d'écouteur d'évènement sur les bonton info
-    getInfoBtns = document.getElementsByClassName('infoBtn');
+    getInfoBtns = document.querySelectorAll('.infoBtn');
+    console.log(getInfoBtns);
     getInfoBtns.forEach(infoBtn => infoBtn.addEventListener('click', (e) => {
         window.location = "./adminProductInfo.php?productId=" + e.currentTarget.value;
     }));

@@ -37,7 +37,7 @@ class Product
         FROM `product` 
         LEFT JOIN `rate` 
         ON product.id_pro = rate.id_pro 
-        GROUP BY product.id_pro 
+        GROUP BY product.id_pro DESC 
         LIMIT 8 OFFSET ' . $offset;
 
         $dataAllProduct = DbConnection::getDb()->prepare($sqlAllProduct);
@@ -95,9 +95,3 @@ class Product
        return $reqSearch->fetchAll(\PDO::FETCH_ASSOC);
    }
 }
-// $produit = new Product();
-
-// $data = $produit->getImageNewName();
-// var_dump($data);
-
-// $produit->insertProduct('nameName', 'descriptiontest', 10, '1000', 'origin', 'categorie');

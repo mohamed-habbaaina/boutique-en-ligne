@@ -61,6 +61,7 @@ if(isset($_POST['lastname'])) {
 
 if(isset($_POST['email'])) {
     var_dump($_POST);
+    $userController->changeEmail($_POST['id'], $_POST['email']);
 }
 
 if(isset($_POST['password'])) {

@@ -140,6 +140,17 @@ class User
         ]);
     }
 
+    public function updateEmail($id, $email) {
+        $sqlQuery = "UPDATE user 
+            SET email = :email
+            WHERE id_user = :id";
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([
+            ':id' => $id,
+            ':email' => $email,
+        ]);
+    }
+
     public function updateAddress($profil)
     {
         $select = "SELECT address_cus, zip_cus FROM customer WHERE id_user=:id limit 1";

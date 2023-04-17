@@ -3,8 +3,10 @@
 namespace src\controllers;
 
 use src\Classes\User;
+use src\Classes\Cart;
 
 require_once("../Classes/User.php");
+require_once('./../Classes/Cart.php');
 
 
 class UserController
@@ -41,6 +43,14 @@ class UserController
             echo "Password is empty";
         } else {
             $this->user->select($email, $password);
+
+            // check if id_cart exists in the database and store it in a  $_SESSION.
+            $cart = new Cart();
+            if($cart->checkIdCart($email))
+            {
+                $dataIdCart = $cart->checkIdCart($email);
+                $_SESSION['id_cart'] = $dataIdCart['id_cart'];
+            }
         }
     }
 

@@ -91,6 +91,7 @@ if(isset($_SESSION['user'])){
                     <input type="hidden" name="product_quantity_buy" value="1">
                     <input type="submit" name="add_cart_buy" value="Acher"/>
                 </form>
+
                 <?php };?>
 
             </div>
@@ -101,9 +102,16 @@ if(isset($_SESSION['user'])){
             <p><?= $description; ?></p>
         </div>
 
+        <div class="commentDisplay">
+            <form id="addCommentForm">
+            <input type="text" id="addComment">
+            <button id="addCommentBtn">Envoyer</button>
+            </form>
+        </div>
+
     </main>
 
     <?php require_once('./includes/footer.php'); ?>
-
+    <script src="./js/comment.js"></script>
 </body>
 </html>

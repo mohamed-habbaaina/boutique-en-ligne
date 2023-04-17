@@ -7,7 +7,7 @@ abstract class FormControler
      // Fonction pour vérifier si un nom est valide (au moins 2 caractères et uniquement des lettres, des espaces, des tirets et des accents)
     protected function isValidName(string $name)
     {
-        $nameRegex = '/^[A-Za-zéèê\- ]{2,}$/';
+        $nameRegex = '/^[A-Za-z\é\è\ê\-\ ]{2,}$/u';
         return preg_match($nameRegex, $name);
     }
 

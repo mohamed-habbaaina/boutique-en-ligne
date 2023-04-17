@@ -51,6 +51,7 @@ if(isset($_GET["fetch"])){
 
 if(isset($_POST['firstname'])) {
     var_dump($_POST);
+    $userController->changeFirstname($_POST['id'], $_POST['firstname']);
 }
 
 if(isset($_POST['lastname'])) {

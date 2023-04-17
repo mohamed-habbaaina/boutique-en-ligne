@@ -62,6 +62,13 @@ class UserController extends FormControler
         );
     }
 
+    public function changeFirstname($id, $firstname)
+    {
+        if ($this->isValidName($firstname)) {
+            $this->user->updateName($id, $firstname);
+        }
+    }
+
     public function changeAddress($id, $address, $zip)
     {
         if (strlen($address) > 10 && strlen($zip > 3)) {

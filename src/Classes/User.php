@@ -118,6 +118,17 @@ class User
         echo "Profil updated";
     }
 
+    public function updateName($id, $firstname) {
+        $sqlQuery = "UPDATE user 
+            SET firstname = :phone
+            WHERE id_user = :id";
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([
+            ':id' => $id,
+            ':phone' => $firstname,
+        ]);
+    }
+
     public function updateAddress($profil)
     {
         $select = "SELECT address_cus, zip_cus FROM customer WHERE id_user=:id limit 1";

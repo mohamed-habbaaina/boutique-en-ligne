@@ -13,7 +13,9 @@ if(isset($_POST['name']))
     $description = $_POST['description'];
     $price = $_POST['price'];
     $origin = $_POST['origin'];
+    $origin_descript = $_POST["origin_descript"];
     $category = $_POST['category'];
+    $category_descript = $_POST["category_descript"];
     
     
     $imageName = $_FILES['image']['name'];
@@ -50,7 +52,7 @@ if(isset($_POST['name']))
                         move_uploaded_file($image_tmp_name, $path . $imageNameDB);
     
                         // insert into DB.
-                        $product->insertProduct($name, $description, $price,$imageNameDB, $origin, $category);
+                        $product->insertProduct($name, $description, $price,$imageNameDB, $origin, $origin_descript, $category, $category_descript);
 
                         header("HTTP/1.1 201 create product");
     

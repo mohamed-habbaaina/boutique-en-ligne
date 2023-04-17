@@ -44,7 +44,7 @@ function fetchUser() {
             return response.json()
         })
         .then((content) => {
-            // Créer le tableau HTML
+            
             const table = document.createElement('table');
 
             // Ajouter l'en-tête du tableau
@@ -57,7 +57,7 @@ function fetchUser() {
             });
             table.appendChild(headerRow);
 
-            // Ajouter chaque ligne de données au tableau
+           
             const rows = content.map(user => {
                 const row = document.createElement('tr');
 
@@ -88,7 +88,7 @@ function fetchUser() {
             rows.forEach(row => table.appendChild(row));
 
 
-            // Ajouter le tableau au document
+           
             document.body.appendChild(table);
 
             getInfoBtn = document.querySelectorAll(".infoBtn");
@@ -104,10 +104,10 @@ function fetchUser() {
 
 function createTable(headers, content, contentKeys, infoBtnValue) {
 
-    // Création de la table
+   
     const table = document.createElement('table');
 
-    // Création des en-têtes
+    
     const headerRow = document.createElement('tr');
     for (header of headers) {
         const th = document.createElement('th');
@@ -116,7 +116,7 @@ function createTable(headers, content, contentKeys, infoBtnValue) {
     }
     table.appendChild(headerRow);
 
-    // Création des lignes
+   
     for (line of content) {
         const row = document.createElement('tr');
         for (key of contentKeys) {
@@ -125,7 +125,7 @@ function createTable(headers, content, contentKeys, infoBtnValue) {
             row.appendChild(td);
         }
 
-        // Création des boutons Info
+      
         const infoBtnCell = document.createElement('td');
         const infoBtn = document.createElement('button');
         infoBtn.classList.add('infoBtn');
@@ -149,18 +149,18 @@ async function fetchProducts() {
 
     loading();
 
-    // Récupération des infos en bdd
+    
     const r = await fetch("../src/controllers/productRouter.php?fetch=product");
     const productData = await r.json();
     
-    // Création et affichage du tableau
+    
     headers = ['id', 'name', 'category', 'price'];
     keysToDisplay = ['id_pro', 'name_pro', 'category_pro', 'price_pro'];
     infoBtnValue = 'id_pro';
     productTable = createTable(headers, productData, keysToDisplay, infoBtnValue);
     document.body.appendChild(productTable);
 
-    // Ajout d'écouteur d'évènement sur les bonton info
+    
     getInfoBtns = document.querySelectorAll('.infoBtn');
     console.log(getInfoBtns);
     getInfoBtns.forEach(infoBtn => infoBtn.addEventListener('click', (e) => {

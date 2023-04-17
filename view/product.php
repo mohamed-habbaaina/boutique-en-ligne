@@ -24,7 +24,9 @@ $description = $dataProduct['description_pro'];
 $price = $dataProduct['price_pro'];
 $image = $dataProduct['image_pro'];
 $origin = $dataProduct['origin_pro'];
+$origin_descript = $dataProduct['origin_descript'];
 $category = $dataProduct['category_pro'];
+$category_descript = $dataProduct['category_descript'];
 $avg_rating = number_format($dataProduct['avg_rating'],2);
 
 // Handle cart.
@@ -46,7 +48,7 @@ if(isset($_SESSION['user'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/product.css">
-    <script defer src="./../src/controllers/add_cart.js"></script>
+    <!-- <script defer src="./../src/controllers/add_cart.js"></script> -->
     <title>Product</title>
 </head>
 <body>
@@ -70,8 +72,8 @@ if(isset($_SESSION['user'])){
                 <div id="displayCart"></div>
                 <h3><?= $name; ?></h3>
                 <p>Poids</p>
-                <p><?= $origin; ?></p>
-                <p><?= $category; ?></p>
+                <p><?= $origin; ?> : <?= $origin_descript; ?></p>
+                <p><?= $category; ?> : <?= $category_descript; ?></p>
                 <p><?= $avg_rating ?>/5 *</p>
                 <p><?= $price; ?></p>
 
@@ -101,13 +103,17 @@ if(isset($_SESSION['user'])){
             <h2>Description:</h2>
             <p><?= $description; ?></p>
         </div>
-
+ 
         <div class="commentDisplay">
             <form id="addCommentForm">
-            <input type="text" id="addComment">
-            <button id="addCommentBtn">Envoyer</button>
+            <input type="text" id="commentText" name="commentText">
+            <button id="addCommentBtn" value="<?= $id_product;?>">Envoyer</button>
             </form>
         </div>
+        <section id="comment-section">
+            
+        </section>
+
 
     </main>
 

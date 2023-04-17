@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', async () =>{
     
     
             data.forEach(item => {
-    
+                console.log(item)
                 // Format rate eg: 4.666666 => 4.66 & Handled when item.avg_rating === 'null';
                 let rate = item.avg_rating;
                 let formatRate;
@@ -38,12 +38,17 @@ window.addEventListener('DOMContentLoaded', async () =>{
     
                 html += `
                     <div class="displayShop">
-                        <img src="../uploads/${item.image_pro}" alt="${item.name_pro}">
-                        <h3>${item.name_pro}</h3>
-                        <p>${item.category_pro}</p>
-                        <p>${formatRate} ###</p>
-                        <p>${item.price_pro}</p>
-                        <button><a href="./product.php?idProduct=${item.id_pro}">Voir le produit</a></button>
+                        <div class ="productDisplay">
+                            <img src="../uploads/${item.image_pro}" alt="${item.name_pro}">
+                            <h3>${item.name_pro}</h3>
+                            <p>${item.category_pro}</p>
+                            <p>${item.category_descript}</p>
+                            <p>${item.origin_pro}</p>
+                            <p>${item.origin_descript}</p>
+                            <p>${formatRate} ###</p>
+                            <p>${item.price_pro}  $ </p>
+                            <button><a href="./product.php?idProduct=${item.id_pro}">Voir le produit</a></button>
+                        </div>
                     </div>
                 `;
     

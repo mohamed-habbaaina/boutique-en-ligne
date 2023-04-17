@@ -49,3 +49,27 @@ if(isset($_GET["fetch"])){
     }
 }
 
+if(isset($_POST['firstname'])) {
+    $userController->changeFirstname($_POST['id'], $_POST['firstname']);
+}
+
+if(isset($_POST['lastname'])) {
+    $userController->changeLastname($_POST['id'], $_POST['lastname']);
+}
+
+if(isset($_POST['email'])) {
+    $userController->changeEmail($_POST['id'], $_POST['email']);
+}
+
+if(isset($_POST['password'])) {
+    $userController->adminChangePassword($_POST['id'], $_POST['password']);
+}
+
+if(isset($_POST['address']) && isset($_POST['zip'])) {
+    $userController->changeAddress($_POST['id'], $_POST['address'], $_POST['zip']);
+}
+
+if(isset($_POST['phone'])) {
+    $userController->changePhone($_POST['phone'], $_POST['id']);
+}
+

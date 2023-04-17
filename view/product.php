@@ -82,11 +82,9 @@ if(isset($_SESSION['user'])){
                     <input type="hidden" name="id_product" value="<?= $id_product;?>">
                     <input type="hidden" name="id_user" value="<?= $id_user;?>">
                     <input type="number" name="product_quantity" value="<?= 1;?>">
-                    <!-- <button>+ Panier</button> -->
                     <input type="submit" name="add_cart" value="+ Panier"/>
                 </form>
 
-                <?PHP var_dump($id_user, $id_product); ?>
                 <form action="" method="post" id="formBuy">
                     <input type="hidden" name="id_product_buy" value="<?= $id_product;?>">
                     <input type="hidden" name="id_user_buy" value="<?= $id_user;?>">

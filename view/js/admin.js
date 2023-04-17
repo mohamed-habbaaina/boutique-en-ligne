@@ -4,6 +4,7 @@ const userDisplayBtn = document.getElementById("userDisplayBtn");
 const userDisplay = document.getElementById("userDisplay");
 const commentDisplayBtn = document.getElementById("commentDisplayBtn");
 const commentDisplay = document.getElementById("commentDisplay");
+const contentDisplay = document.getElementById("contentDisplay");
 
 // Fonction pour masquer toutes les div
 function hideAll() {
@@ -12,10 +13,8 @@ function hideAll() {
     commentDisplay.style.display = "none";
 }
 
-hideAll();
-
-
 // Masquage initial de toutes les div
+hideAll();
 
 // Gestion des événements de clic sur les boutons
 productDisplayBtn.addEventListener("click", function () {
@@ -140,9 +139,36 @@ function createTable(headers, content, contentKeys, infoBtnValue) {
 }
 
 function loading() {
-    document.body.removeChild(document.body.lastChild);
-    p = document.createElement('p');
-    p.innerText = 'Loading...'
+    while (contentDisplay.firstChild) {
+        contentDisplay.removeChild(contentDisplay.firstChild);
+    }
+    loadingP = document.createElement('p');
+    loadingP.innerText = 'Loading...'
+    contentDisplay.appendChild(loadingP);
+}
+
+async function fetchUser() {
+
+    loading();
+
+    // Récupération des infos en bdd
+    const r = await fetch("../src/controllers/userRouter.php?fetch=user");
+    const userData = await r.json();
+
+    // Création et affichage du tableau
+    headers = ['Id', 'Firsname', 'Lastname', 'Email'];
+    keysToDisplay = ['id_user', 'firstname', 'lastname', 'email'];
+    infoBtnValue = 'id_user';
+    userTable = createTable(headers, userData, keysToDisplay, infoBtnValue);
+    contentDisplay.removeChild(contentDisplay.lastChild);
+    contentDisplay.appendChild(userTable);
+
+    // Ajout d'écouteur d'évènement sur les bonton info
+    getInfoBtn = document.querySelectorAll(".infoBtn");
+    getInfoBtn.forEach(getInfo => getInfo.addEventListener("click", (event) => {
+        window.location = "./adminUserInfo.php?userId=" + event.currentTarget.value;
+
+    }));
 }
 
 async function fetchProducts() {
@@ -162,7 +188,6 @@ async function fetchProducts() {
 
     
     getInfoBtns = document.querySelectorAll('.infoBtn');
-    console.log(getInfoBtns);
     getInfoBtns.forEach(infoBtn => infoBtn.addEventListener('click', (e) => {
         window.location = "./adminProductInfo.php?productId=" + e.currentTarget.value;
     }));

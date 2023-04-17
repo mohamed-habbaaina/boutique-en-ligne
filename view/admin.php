@@ -24,8 +24,9 @@
     </div>
     <div id="commentDisplay">
         <p>COMMENTS</p>
-       
     </div>
+
+    <div id="contentDisplay"></div>
     
     <script src="./js/admin.js"></script>
 </body>

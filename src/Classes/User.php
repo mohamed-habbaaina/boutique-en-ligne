@@ -118,9 +118,42 @@ class User
         echo "Profil updated";
     }
 
+    public function updateFirstname($id, $firstname) {
+        $sqlQuery = "UPDATE user 
+            SET firstname = :firstname
+            WHERE id_user = :id";
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([
+            ':id' => $id,
+            ':firstname' => $firstname,
+        ]);
+    }
+
+    public function updateLastname($id, $lastname) {
+        $sqlQuery = "UPDATE user 
+            SET lastname = :lastname
+            WHERE id_user = :id";
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([
+            ':id' => $id,
+            ':lastname' => $lastname,
+        ]);
+    }
+
+    public function updateEmail($id, $email) {
+        $sqlQuery = "UPDATE user 
+            SET email = :email
+            WHERE id_user = :id";
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([
+            ':id' => $id,
+            ':email' => $email,
+        ]);
+    }
+
     public function updateAddress($profil)
     {
-        $select = "SELECT * FROM customer WHERE id_user=:id limit 1";
+        $select = "SELECT address_cus, zip_cus FROM customer WHERE id_user=:id limit 1";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
             ':id' => $profil["id_user"]
@@ -128,27 +161,26 @@ class User
         $result = $prepare->fetch(\PDO::FETCH_ASSOC);
 
         if (empty($result)) {
-            $register = "INSERT INTO customer (id_user, address_cus, zip_cus, phone_cus) VALUES (:id_user, :address, :zip, :phone)";
+            $register = "INSERT INTO customer (id_user, address_cus, zip_cus) VALUES (:id_user, :address, :zip)";
             $prepare = DbConnection::getDb()->prepare($register);
 
             $prepare->execute([
                 "id_user" => $profil["id_user"],
                 "address" => $profil["address"],
-                "zip" => $profil["postal_code"],
-                "phone" => $profil["phone"],
+                "zip" => $profil["postal_code"]
             ]);
-            echo "Register";
+            echo "Registed";
         } else {
             $select = "UPDATE customer 
-            SET address_cus = :address, zip_cus = :postal_code, phone_cus = :phone
+            SET address_cus = :address, zip_cus = :postal_code
             WHERE id_user = :id";
             $prepare = DbConnection::getDb()->prepare($select);
             $prepare->execute([
                 ':id' => $profil['id_user'],
                 ':address' => $profil['address'],
-                ':postal_code' => $profil['postal_code'],
-                ':phone' => $profil['phone']
+                ':postal_code' => $profil['postal_code']
             ]);
+            echo "Updated";
         }
     }
 
@@ -160,6 +192,17 @@ class User
         $prepare->execute([
             ':password' => $hashed_pwd,
             ':id' => $id
+        ]);
+    }
+
+    public function updatePhone($phone,$id) {
+        $sqlQuery = "UPDATE customer 
+            SET phone_cus = :phone
+            WHERE id_user = :id";
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([
+            ':id' => $id,
+            ':phone' => $phone,
         ]);
     }
 
@@ -208,7 +251,3 @@ class User
         return $orders;
     }
 }
-
-// $user = new User();
-// $info = $user->getUserPurchases(4);
-// echo json_encode($info, JSON_PRETTY_PRINT);

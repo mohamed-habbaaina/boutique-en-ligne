@@ -3,7 +3,9 @@
 #formDisplay{
     padding-top: 2%;
 }
-
+#search input{
+    display: flex;
+}
 .title{
 font-family: 'Inika';
 font-size: 34px;

@@ -38,8 +38,14 @@ session_start();
             <label for="origin">L'Origine</label>
             <input type="text" name="origin" placeholder="Entrer l'origine du produit">
 
+            <label for="origin_descript">Description sur l'origine</label>
+            <input type="text" name="origin_descript" placeholder="Entrer la description de l'origine">
+
             <label for="category">La Catégorie</label>
             <input type="text" name="category" placeholder="Entrer La catégorie">
+
+            <label for="category_descript">Description de la catégorie</label>
+            <input type="text" name="category_descript" placeholder="Entrer la description de la catégorie">
 
             <button>Ajouter</button>
 

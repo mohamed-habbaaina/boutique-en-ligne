@@ -13,3 +13,4 @@ if(isset($_GET["fetch"])){
         $adminController->getProductData();
     }
 }
+

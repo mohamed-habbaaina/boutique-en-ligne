@@ -16,7 +16,7 @@ class Product
      */
     public function getProduct(int $idProduct): array
     {
-        $sqlIdProduct = 'SELECT product.id_pro, name_pro, description_pro, price_pro, image_pro, origin_pro, category_pro, AVG(value_rat) as avg_rating 
+        $sqlIdProduct = 'SELECT product.id_pro, name_pro, description_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, AVG(value_rat) as avg_rating 
         FROM `product` LEFT JOIN `rate` 
         ON product.id_pro = rate.id_pro 
         WHERE product.id_pro=:id 
@@ -33,7 +33,7 @@ class Product
      */
     public function getAllProduct(int $offset): array
     {
-        $sqlAllProduct = 'SELECT product.id_pro, name_pro, price_pro, image_pro, category_pro, AVG(value_rat) as avg_rating 
+        $sqlAllProduct = 'SELECT product.id_pro, name_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, AVG(value_rat) as avg_rating 
         FROM `product` 
         LEFT JOIN `rate` 
         ON product.id_pro = rate.id_pro 
@@ -71,16 +71,18 @@ class Product
     /**
      * add products to database
      */
-    public function insertProduct(string $name, string $description, int $price, string $image, string $origin, string $category): void
+    public function insertProduct(string $name, string $description, int $price, string $image, string $origin, string $origin_descript, string $category, string $category_descript): void
     {
-        $sqlInsert = 'INSERT INTO `product`(`name_pro`, `description_pro`, `price_pro`, `image_pro`, `origin_pro`, `category_pro`) VALUES (:name_pro, :description_pro, :price_pro, :image_pro, :origin_pro, :category_pro)';
+        $sqlInsert = 'INSERT INTO `product`(`name_pro`, `description_pro`, `price_pro`, `image_pro`, `origin_pro`,`origin_descript`,`category_pro`,`category_descript`) VALUES (:name_pro, :description_pro, :price_pro, :image_pro, :origin_pro, :origin_descript, :category_pro, :category_descript)';
         $reqInsertProduct = DbConnection::getDb()->prepare($sqlInsert);
         $reqInsertProduct->bindParam(':name_pro', $name);
         $reqInsertProduct->bindParam(':description_pro', $description);
         $reqInsertProduct->bindParam(':price_pro', $price);
         $reqInsertProduct->bindParam(':image_pro', $image);
         $reqInsertProduct->bindParam(':origin_pro', $origin);
+        $reqInsertProduct->bindParam(':origin_descript', $origin_descript);
         $reqInsertProduct->bindParam(':category_pro', $category);
+        $reqInsertProduct->bindParam(':category_descript', $category_descript);
         $reqInsertProduct->execute();
 
     }

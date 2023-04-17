@@ -251,7 +251,3 @@ class User
         return $orders;
     }
 }
-
-// $user = new User();
-// $info = $user->getUserPurchases(4);
-// echo json_encode($info, JSON_PRETTY_PRINT);

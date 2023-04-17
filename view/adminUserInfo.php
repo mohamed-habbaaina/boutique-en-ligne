@@ -107,8 +107,6 @@ if (isset($_GET["userId"])) {
         }
         ?>
     </ul>
-    <p><?= var_dump($profile) ?></p>
-    <p><?= var_dump($orders) ?></p>
 </body>
 
 </html>

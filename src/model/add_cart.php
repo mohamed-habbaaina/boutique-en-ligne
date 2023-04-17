@@ -8,9 +8,8 @@ $cart = new Cart();
 $id_user = (int) $_SESSION['user']['id'];
 
 $message = [];
-$valide = false;
 
-if($_POST['id_user'])
+if($_POST['id_user'] && $_POST['id_user'] == $id_user)
 {
     // $id_user = $_POST['id_user'];
     $id_product = (int) $_POST['id_product'];

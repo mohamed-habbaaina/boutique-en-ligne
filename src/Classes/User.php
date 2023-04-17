@@ -120,7 +120,7 @@ class User
 
     public function updateAddress($profil)
     {
-        $select = "SELECT * FROM customer WHERE id_user=:id limit 1";
+        $select = "SELECT address_cus, zip_cus FROM customer WHERE id_user=:id limit 1";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
             ':id' => $profil["id_user"]
@@ -128,27 +128,26 @@ class User
         $result = $prepare->fetch(\PDO::FETCH_ASSOC);
 
         if (empty($result)) {
-            $register = "INSERT INTO customer (id_user, address_cus, zip_cus, phone_cus) VALUES (:id_user, :address, :zip, :phone)";
+            $register = "INSERT INTO customer (id_user, address_cus, zip_cus) VALUES (:id_user, :address, :zip)";
             $prepare = DbConnection::getDb()->prepare($register);
 
             $prepare->execute([
                 "id_user" => $profil["id_user"],
                 "address" => $profil["address"],
-                "zip" => $profil["postal_code"],
-                "phone" => $profil["phone"],
+                "zip" => $profil["postal_code"]
             ]);
-            echo "Register";
+            echo "Registed";
         } else {
             $select = "UPDATE customer 
-            SET address_cus = :address, zip_cus = :postal_code, phone_cus = :phone
+            SET address_cus = :address, zip_cus = :postal_code
             WHERE id_user = :id";
             $prepare = DbConnection::getDb()->prepare($select);
             $prepare->execute([
                 ':id' => $profil['id_user'],
                 ':address' => $profil['address'],
-                ':postal_code' => $profil['postal_code'],
-                ':phone' => $profil['phone']
+                ':postal_code' => $profil['postal_code']
             ]);
+            echo "Updated";
         }
     }
 

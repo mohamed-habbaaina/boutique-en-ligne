@@ -9,8 +9,6 @@ require_once('DbConnection.php');
 class User
 {
 
-    private $pdo;
-
     public function __construct()
     {
     }
@@ -23,7 +21,7 @@ class User
         $userCount->execute([
             ':email' => $email
         ]);
-        $isUser = $userCount->fetchColumn() != 0 ? true : false;
+        $isUser = $userCount->fetchColumn() != 0;
 
         if ($isUser) {
             echo "Email already exist";
@@ -106,10 +104,10 @@ class User
 
     public function updateProfil($profil)
     {
-        $select = "UPDATE user 
+        $sqlQuery = "UPDATE user 
             SET firstname = :firstname, lastname = :lastname, email = :email
             WHERE id_user = :id";
-        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
         $prepare->execute([
             ':id' => $profil['id_user'],
             ':firstname' => $profil['firstname'],
@@ -165,7 +163,8 @@ class User
         ]);
     }
 
-    public function getAllUserData(){
+    public function getAllUserData()
+    {
         $select = "SELECT 
         user.id_user as id_user,
         user.firstname as firstname,
@@ -181,7 +180,35 @@ class User
         $prepare->execute();
         $user_result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
         echo json_encode($user_result);
-        
+    }
+
+    public function getUserOrders(int $id)
+    {
+        $sqlQuery = (
+            "SELECT *
+            FROM purshase
+            INNER JOIN cart ON purshase.id_cart = cart.id_cart
+            INNER JOIN cart_product ON cart.id_cart = cart_product.id_cart
+            INNER JOIN product ON cart_product.id_pro = product.id_pro
+            WHERE cart.id_user = :id"
+            );
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([':id' => $id]);
+        $userPurshases = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        // Récupérer les ids des commandes et créer un tableau ou chaque clé représente une commande
+        $ordersIds = [];
+        $orders = [];
+        foreach ($userPurshases as $line) {
+            $id_order = $line['id_ord'];
+            if (!in_array($id_order, $ordersIds)) {
+                $ordersIds[] = $id_order;
+            }
+            $orders[$id_order][] = $line;
+        }
+        return $orders;
     }
 }
 
+// $user = new User();
+// $info = $user->getUserPurchases(4);
+// echo json_encode($info, JSON_PRETTY_PRINT);

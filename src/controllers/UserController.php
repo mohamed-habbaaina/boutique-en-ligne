@@ -3,18 +3,21 @@
 namespace src\controllers;
 
 use src\Classes\User;
+use src\Classes\Product;
 
 require_once("../Classes/User.php");
-
+require_once("../Classes/Product.php");
 
 class UserController
 
 {
     public $user;
+    public $product;
 
     public function __construct()
     {
         $this->user = new User();
+        $this->product = new Product();
     }
 
     public function register($firstname, $lastname, $email, $password, $passwordConfirm)
@@ -45,10 +48,8 @@ class UserController
     }
 
 
-
     public function changeProfil($id, $firstname, $lastname, $email)
     {
-
         $this->user->updateProfil(
             [
                 "id_user" => $id,
@@ -88,11 +89,9 @@ class UserController
         }
     }
 
-    public function getUserData(){
+    public function getUserData()
+    {
         $this->user->getAllUserData();
     }
 
-    public function getInfo($id){
-        $this->user->getData($id);
-    }
 }

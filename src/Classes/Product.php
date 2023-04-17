@@ -94,6 +94,18 @@ class Product
        $reqSearch->execute();
        return $reqSearch->fetchAll(\PDO::FETCH_ASSOC);
    }
+
+   public function getAllProductData(){
+
+    $select="SELECT * FROM product";
+    $prepare = DbConnection::getDb()->prepare($select);
+    $prepare->execute();
+    $result = $prepare->fetch(\PDO::FETCH_ASSOC);
+
+    // echo json_encode($result);
+    echo "ok";
+
+   }
 }
 // $produit = new Product();
 

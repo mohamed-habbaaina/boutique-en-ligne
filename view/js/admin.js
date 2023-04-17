@@ -21,6 +21,7 @@ hideAll();
 productDisplayBtn.addEventListener("click", function () {
     hideAll();
     productDisplay.style.display = "block";
+    fetchProducts();
 });
 
 userDisplayBtn.addEventListener("click", function () {
@@ -35,7 +36,10 @@ commentDisplayBtn.addEventListener("click", function () {
 });
 
 function fetchUser() {
-    fetch("../src/controllers/userRouter.php?fetchUser=test")
+
+    loading();
+
+    fetch("../src/controllers/userRouter.php?fetch=user")
         .then((response) => {
             return response.json()
         })
@@ -56,7 +60,7 @@ function fetchUser() {
             // Ajouter chaque ligne de données au tableau
             const rows = content.map(user => {
                 const row = document.createElement('tr');
-            
+
                 const firstnameCell = document.createElement('td');
                 firstnameCell.textContent = user.firstname;
                 row.appendChild(firstnameCell);
@@ -74,7 +78,7 @@ function fetchUser() {
 
                 infoBtn.classList.add('infoBtn');
                 infoBtn.textContent = "Info";
-                infoBtn.type="submit";
+                infoBtn.type = "submit";
                 infoBtn.value = user.id_user;
                 infoBtnCell.appendChild(infoBtn);
                 row.appendChild(infoBtnCell);
@@ -82,23 +86,84 @@ function fetchUser() {
                 return row;
             });
             rows.forEach(row => table.appendChild(row));
-            
-            
-            
+
+
             // Ajouter le tableau au document
             document.body.appendChild(table);
 
             getInfoBtn = document.querySelectorAll(".infoBtn");
-            
 
-            getInfoBtn.forEach(getInfo => getInfo.addEventListener("click" , (event)=>{
-                
-                    window.location = "./userInfo.php?userId=" + event.currentTarget.value;
-                 
-                }));
-            
+
+            getInfoBtn.forEach(getInfo => getInfo.addEventListener("click", (event) => {
+                console.log("clique ok : " + event.currentTarget.value);
+                window.location = "./adminUserInfo.php?userId=" + event.currentTarget.value;
+
+            }));
         })
+}
 
-        
+function createTable(headers, content, contentKeys, infoBtnValue) {
 
+    // Création de la table
+    const table = document.createElement('table');
+
+    // Création des en-têtes
+    const headerRow = document.createElement('tr');
+    for (header of headers) {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+    }
+    table.appendChild(headerRow);
+
+    // Création des lignes
+    for (line of content) {
+        const row = document.createElement('tr');
+        for (key of contentKeys) {
+            const td = document.createElement('td');
+            td.innerText = line[key];
+            row.appendChild(td);
+        }
+
+        // Création des boutons Info
+        const infoBtnCell = document.createElement('td');
+        const infoBtn = document.createElement('button');
+        infoBtn.classList.add('infoBtn');
+        infoBtn.textContent = "Info";
+        infoBtn.type = "submit";
+        infoBtn.value = line[infoBtnValue];
+        infoBtnCell.appendChild(infoBtn);
+        row.appendChild(infoBtnCell);
+        table.appendChild(row);
+    }
+    return table;
+}
+
+function loading() {
+    document.body.removeChild(document.body.lastChild);
+    p = document.createElement('p');
+    p.innerText = 'Loading...'
+}
+
+async function fetchProducts() {
+
+    loading();
+
+    // Récupération des infos en bdd
+    const r = await fetch("../src/controllers/productRouter.php?fetch=product");
+    const productData = await r.json();
+    
+    // Création et affichage du tableau
+    headers = ['id', 'name', 'category', 'price'];
+    keysToDisplay = ['id_pro', 'name_pro', 'category_pro', 'price_pro'];
+    infoBtnValue = 'id_pro';
+    productTable = createTable(headers, productData, keysToDisplay, infoBtnValue);
+    document.body.appendChild(productTable);
+
+    // Ajout d'écouteur d'évènement sur les bonton info
+    getInfoBtns = document.querySelectorAll('.infoBtn');
+    console.log(getInfoBtns);
+    getInfoBtns.forEach(infoBtn => infoBtn.addEventListener('click', (e) => {
+        window.location = "./adminProductInfo.php?productId=" + e.currentTarget.value;
+    }));
 }

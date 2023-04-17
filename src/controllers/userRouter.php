@@ -56,6 +56,7 @@ if(isset($_POST['firstname'])) {
 
 if(isset($_POST['lastname'])) {
     var_dump($_POST);
+    $userController->changeLastname($_POST['id'], $_POST['lastname']);
 }
 
 if(isset($_POST['email'])) {

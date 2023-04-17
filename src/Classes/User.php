@@ -118,14 +118,25 @@ class User
         echo "Profil updated";
     }
 
-    public function updateName($id, $firstname) {
+    public function updateFirstname($id, $firstname) {
         $sqlQuery = "UPDATE user 
-            SET firstname = :phone
+            SET firstname = :firstname
             WHERE id_user = :id";
         $prepare = DbConnection::getDb()->prepare($sqlQuery);
         $prepare->execute([
             ':id' => $id,
-            ':phone' => $firstname,
+            ':firstname' => $firstname,
+        ]);
+    }
+
+    public function updateLastname($id, $lastname) {
+        $sqlQuery = "UPDATE user 
+            SET lastname = :lastname
+            WHERE id_user = :id";
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([
+            ':id' => $id,
+            ':lastname' => $lastname,
         ]);
     }
 

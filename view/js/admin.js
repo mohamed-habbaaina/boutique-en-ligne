@@ -21,6 +21,7 @@ hideAll();
 productDisplayBtn.addEventListener("click", function () {
     hideAll();
     productDisplay.style.display = "block";
+    fetchProduct();
 });
 
 userDisplayBtn.addEventListener("click", function () {
@@ -35,7 +36,7 @@ commentDisplayBtn.addEventListener("click", function () {
 });
 
 function fetchUser() {
-    fetch("../src/controllers/userRouter.php?fetchUser=test")
+    fetch("../src/controllers/userRouter.php?fetchUser=ok")
         .then((response) => {
             return response.json()
         })
@@ -95,7 +96,15 @@ function fetchUser() {
                  
                 }));
     })
+     
+}
 
-        
-
+function fetchProduct(){
+    fetch("../src/controllers/adminProductRouter.php?fetchProduct=ok")
+        .then((response) => {
+            return response.text()
+        })
+        .then((content) => {
+            console.log(content);
+        })
 }

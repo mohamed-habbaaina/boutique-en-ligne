@@ -5,8 +5,8 @@ namespace src\controllers;
 use src\Classes\Product;
 use src\Classes\User;
 
-require_once('../src/Classes/User.php');
-require_once('../src/Classes/Product.php');
+require_once('../Classes/User.php');
+require_once('../Classes/Product.php');
 
 class AdminController
 {
@@ -22,5 +22,9 @@ class AdminController
 
     public function getInfo($id){
         return $this->user->getData($id);
+    }
+
+    public function getAllProduct(){
+        $this->product->getAllProductData();
     }
 }

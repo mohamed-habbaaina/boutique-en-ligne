@@ -55,22 +55,45 @@ function fetchUser() {
 
         // Ajouter chaque ligne de données au tableau
         const rows = content.map(user => {
+
             const row = document.createElement('tr');
             const firstnameCell = document.createElement('td');
             firstnameCell.textContent = user.firstname;
             row.appendChild(firstnameCell);
+
             const lastnameCell = document.createElement('td');
             lastnameCell.textContent = user.lastname;
             row.appendChild(lastnameCell);
+
             const emailCell = document.createElement('td');
             emailCell.textContent = user.email;
             row.appendChild(emailCell);
+
+            const infoBtnCell = document.createElement('td');
+            const infoBtn = document.createElement('button');
+
+            infoBtn.classList.add('infoBtn');
+            infoBtn.textContent = "Info";
+            infoBtn.type="submit";
+            infoBtn.value = user.id_user;
+            infoBtnCell.appendChild(infoBtn);
+            row.appendChild(infoBtnCell);
+
             return row;
         });
         rows.forEach(row => table.appendChild(row));
 
         // Ajouter le tableau au document
         document.body.appendChild(table);
+
+        getInfoBtn = document.querySelectorAll(".infoBtn");
+            
+
+            getInfoBtn.forEach(getInfo => getInfo.addEventListener("click" , (event)=>{
+                
+                    window.location = "./adminUserInfo.php?userId=" + event.currentTarget.value;
+                 
+                }));
     })
 
         

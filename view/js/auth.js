@@ -109,8 +109,9 @@ function FetchReg() {
               return response.text();
             })
             .then((content) => {
-              regMsg.innerHTML = content;
-              console.log(data);
+              if(content == "Registed"){
+                window.location = "index.php";
+              }
             });
         }
       });

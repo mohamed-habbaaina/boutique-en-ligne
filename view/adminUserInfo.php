@@ -21,7 +21,19 @@ if(isset($_GET["userId"])){
     <title>Document</title>
 </head>
 <body>
-    <p><?= $result['firstname'] ?></p>
+    <div class="userInfo">
+        <h2>User Information</h2>
+        <p><?= $result['id_user'] ?></p>
+        <p><?= $result['firstname'] ?></p>
+        <p><?= $result['lastname'] ?></p>
+        <p><?= $result['email'] ?></p>
+        <p><?= $result['address_cus'] . $result['zip_cus'] ?></p>
+        <p><?= $result['phone_cus'] ?></p>
+    </div>
+    <div class="userpurchase">
+        <h2>Last order</h2>
+    </div>
+    
     
 </body>
 </html>

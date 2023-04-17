@@ -162,6 +162,17 @@ class User
         ]);
     }
 
+    public function updatePhone($phone,$id) {
+        $sqlQuery = "UPDATE customer 
+            SET phone_cus = :phone
+            WHERE id_user = :id";
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([
+            ':id' => $id,
+            ':phone' => $phone,
+        ]);
+    }
+
     public function getAllUserData()
     {
         $select = "SELECT 

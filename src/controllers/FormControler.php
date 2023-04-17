@@ -25,6 +25,6 @@ abstract class FormControler
         return preg_match($phoneRegex, $phone);
     }
 
-    abstract protected function isValidForm();
-    abstract protected function sendMessage();
+    // abstract protected function isValidForm();
+    // abstract protected function sendMessage();
 }

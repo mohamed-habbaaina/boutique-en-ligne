@@ -2,13 +2,15 @@
 
 namespace src\controllers;
 
+use Exception;
 use src\Classes\User;
 use src\Classes\Product;
 
 require_once("../Classes/User.php");
 require_once("../Classes/Product.php");
+require_once("./FormControler.php");
 
-class UserController
+class UserController extends FormControler
 
 {
     public $user;
@@ -60,16 +62,25 @@ class UserController
         );
     }
 
-    public function changeAddress($id, $address, $zip, $phone)
+    public function changeAddress($id, $address, $zip)
     {
-        $this->user->updateAddress(
-            [
-                "id_user" => $id,
-                "address" => $address,
-                "postal_code" => $zip,
-                "phone" => $phone
-            ]
-        );
+        if (strlen($address) > 10 && strlen($zip > 3)) {
+            $this->user->updateAddress(
+                [
+                    "id_user" => $id,
+                    "address" => $address,
+                    "postal_code" => $zip
+                ]
+            );
+        } else {
+            throw new Exception("Paramètres invalides");
+        }
+    }
+
+    public function changePhone($phone,$id) {
+        if ($this->isValidPhone($phone)) {
+            $this->user->updatePhone($phone, $id);
+        }
     }
 
     public function changePassword($id, $password, $newPassword, $newPasswordConfirm)
@@ -93,5 +104,4 @@ class UserController
     {
         $this->user->getAllUserData();
     }
-
 }

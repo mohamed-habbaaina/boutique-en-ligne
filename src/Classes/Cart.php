@@ -112,12 +112,32 @@ class Cart extends Product {
         }
     }
 
+    // check if id_cart exists in the database and store it in a  $_SESSION.
     public function getAllCart($id_cart): array | bool
     {
-        $requAllCart = 'SELECT * FROM `cart_product` WHERE id_cart = :id_cart';
+        $requAllCart = 'SELECT `cart_product`.*, `cart`.`id_user`, `product`.`name_pro`, `product`.`image_pro`, `product`.`price_pro` 
+        FROM `cart_product` INNER JOIN `cart` 
+        ON `cart_product`.`id_cart` = `cart`.`id_cart` 
+        INNER JOIN `product` 
+        ON `cart_product`.`id_pro` = `product`.`id_pro` 
+        WHERE `cart`.`id_cart` = :id_cart';
         $dataAllCart = DbConnection::getDb()->prepare($requAllCart);
         $dataAllCart->bindParam(':id_cart', $id_cart);
         $dataAllCart->execute();
         return $dataAllCart->fetchAll(\PDO::FETCH_ASSOC) ?? false;
     }
+
+    public function checkIdCart($email): array | bool
+    {
+        $reqIdCart = "SELECT `id_cart` FROM `cart` INNER JOIN `user` 
+        ON `cart`.`id_user` = `user`.`id_user` 
+        WHERE `cart`.`state_car` = 'en cours' 
+        AND `user`.`email` = :email";
+        $idCart = DbConnection::getDb()->prepare($reqIdCart);
+        $idCart->bindParam(':email', $email);
+        $idCart->execute();
+
+        return $idCart->fetch(\PDO::FETCH_ASSOC) ?? false;
+    }
+
 }

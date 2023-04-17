@@ -104,6 +104,12 @@ class UserController extends FormControler
         }
     }
 
+    public function adminChangePassword($id, $password) {
+        if (strlen($password) > 10) {
+            $this->user->updatePassword($id, $password);
+        }
+    }
+
     public function changePassword($id, $password, $newPassword, $newPasswordConfirm)
     {
         $profil = $this->user->getData($id);

@@ -66,6 +66,7 @@ if(isset($_POST['email'])) {
 
 if(isset($_POST['password'])) {
     var_dump($_POST);
+    $userController->AdminChangePassword($_POST['id'], $_POST['password']);
 }
 
 if(isset($_POST['address']) && isset($_POST['zip'])) {

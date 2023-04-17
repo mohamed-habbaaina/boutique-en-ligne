@@ -21,7 +21,7 @@ class Cart extends Product {
     }
 
     /**
-     * Create i new cart "en cours".
+     * Create new cart "en cours".
      */
     public function insertCart(int $id_user): void
     {
@@ -37,7 +37,7 @@ class Cart extends Product {
      */
     public function selectProductCartQantity($id_cart, $id_product): array | bool
     {
-        $reqSelecCart = 'SELECT quantity FROM `cart_product` WHERE id_cart = :id_cart AND id_pro = :id_product';
+        $reqSelecCart = 'SELECT * FROM `cart_product` WHERE id_cart = :id_cart AND id_pro = :id_product';
         $dataSelectCart = DbConnection::getDb()->prepare($reqSelecCart);
         $dataSelectCart->bindParam(':id_cart', $id_cart);
         $dataSelectCart->bindParam(':id_product', $id_product);
@@ -74,4 +74,70 @@ class Cart extends Product {
         $reqInsertCart->execute();
 
     }
+
+    /**
+     * ?Secure cart:
+     * check if id_user corresponding to id_cart of $_session['id_user'].
+     */
+    public function checkSecureCart(int $id_cart, int $id_user): bool
+    {
+        $reqCartUser = 'SELECT `cart_product`.`id_cart`, `cart`.`id_user` AS user FROM `cart_product` INNER JOIN `cart` ON `cart_product`.`id_cart` = `cart`.`id_cart` WHERE `cart_product`.`id_cart` = :id_cart LIMIT 1';
+        $dataCartUser = DbConnection::getDb()->prepare($reqCartUser);
+        $dataCartUser->bindParam(':id_cart', $id_cart);
+        if($dataCartUser->execute())
+        {
+            $dataSelectCartUser = $dataCartUser->fetch(\PDO::FETCH_ASSOC);
+            if($dataSelectCartUser['user'] == $id_user)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if connected
+     */
+    public function isConnected(): bool
+    {
+        if(isset($_SESSION['user']))
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    // check if id_cart exists in the database and store it in a  $_SESSION.
+    public function getAllCart($id_cart): array | bool
+    {
+        $requAllCart = 'SELECT `cart_product`.*, `cart`.`id_user`, `product`.`name_pro`, `product`.`image_pro`, `product`.`price_pro` 
+        FROM `cart_product` INNER JOIN `cart` 
+        ON `cart_product`.`id_cart` = `cart`.`id_cart` 
+        INNER JOIN `product` 
+        ON `cart_product`.`id_pro` = `product`.`id_pro` 
+        WHERE `cart`.`id_cart` = :id_cart';
+        $dataAllCart = DbConnection::getDb()->prepare($requAllCart);
+        $dataAllCart->bindParam(':id_cart', $id_cart);
+        $dataAllCart->execute();
+        return $dataAllCart->fetchAll(\PDO::FETCH_ASSOC) ?? false;
+    }
+
+    public function checkIdCart($email): array | bool
+    {
+        $reqIdCart = "SELECT `id_cart` FROM `cart` INNER JOIN `user` 
+        ON `cart`.`id_user` = `user`.`id_user` 
+        WHERE `cart`.`state_car` = 'en cours' 
+        AND `user`.`email` = :email";
+        $idCart = DbConnection::getDb()->prepare($reqIdCart);
+        $idCart->bindParam(':email', $email);
+        $idCart->execute();
+
+        return $idCart->fetch(\PDO::FETCH_ASSOC) ?? false;
+    }
+
 }

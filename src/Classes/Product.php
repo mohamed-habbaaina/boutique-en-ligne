@@ -106,6 +106,18 @@ class Product
 
     // echo json_encode($result);
     echo "ok";
-
    }
+
+   public function delProduct($id) {
+    $sqlUpdate = (
+        'UPDATE `product` SET `state_pro` = :state_pro 
+        WHERE `id_pro` = :id'
+    );
+    $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+    $prepare->execute([
+        ':state_pro' => "deleted",
+        ':id' => $id
+    ]);
+}
+
 }

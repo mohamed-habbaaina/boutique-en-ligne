@@ -19,12 +19,7 @@ session_start();
 <body>
     <?php require_once "./includes/header.php" ?>
     <main>
-    <div id="search">
-
-        <form action="./../src/controllers/searchProduct.js" method="get" id="searchForm">
-            <input type="search" name="search" placeholder="Rechercher un Produit ...">
-        </form>
-
+    
         <div id="displayResult"></div>
     </div>
 

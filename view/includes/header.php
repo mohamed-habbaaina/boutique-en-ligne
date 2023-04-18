@@ -12,13 +12,17 @@ if (isset($_SESSION["user"])) {
         <a href="index.php">Home</a>
         <a href="about.php">About</a>
         <a href="shop.php">Shop</a>
+        <?php if (isset($_SESSION["user"])) : ?>
+            <a href="cart.php">Cart</a>
+            <?php endif ?>
     </div>
     <div class="logo_part">
         <img src="./img/logo1.png">
     </div>
     <div class="right_part">
-        <a href="panier.php">Cart</a>
+        
         <a href="contact.php">Contact</a>
+       
         <div id="menu">
             <ul>
                 <li>
@@ -36,6 +40,12 @@ if (isset($_SESSION["user"])) {
                     </ul>
                 </li>
             </ul>
+            
         </div>
+        <div id="search">
+
+    <form action="./../src/controllers/searchProduct.js" method="get" id="searchForm">
+        <input type="search" name="search" placeholder="Search">
+    </form>
     </div>
 </nav>

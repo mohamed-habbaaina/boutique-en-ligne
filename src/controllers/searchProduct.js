@@ -7,7 +7,7 @@ let search = document.forms['searchForm']['search'];
 let resultDisplay = document.querySelector('#displayResult');
 
 searchForm.addEventListener('input', async function(e) {
-
+    
     // Remove display
     resultDisplay.innerHTML = '';
 

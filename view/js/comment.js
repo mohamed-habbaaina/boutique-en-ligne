@@ -3,6 +3,8 @@ function fetchComment() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id_pro = urlParams.get('idProduct');
+    const commentText = document.querySelector("#commentText");
+   
     console.log(id_pro)
     fetch(`../src/controllers/commentRouter.php?fetchComment=${id_pro}`)
 
@@ -36,7 +38,6 @@ function fetchComment() {
                     result = 'just now';
                 }
                 
-            
                 const commentDiv = document.createElement('div');
                 commentDiv.innerHTML = `
                 <p>${result}</p>
@@ -71,6 +72,8 @@ addCommentBtn.addEventListener("click", function (ev) {
         })
         .then((content) => {
             console.log(content);
+            commentText.value = "";
             fetchComment();
+
         })
 })

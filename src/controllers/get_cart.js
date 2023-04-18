@@ -10,11 +10,13 @@ fetch('./../src/model/getCart.php')
     {
         // console.log(data);
 
+
+        let total = 0;
         data.forEach(etem => {
 
             let price = etem.price_pro / 100;
-            html += `
-            <div class="cart">
+            total += price * etem.quantity;
+            html += `<div class="cart">
                 <img src="./../uploads/${etem.image_pro}" alt="${etem.name_pro}">
                 <div class="detailProduct">
                     <h3>${etem.name_pro}</h3>
@@ -36,6 +38,15 @@ fetch('./../src/model/getCart.php')
 
         });
 
+        html += `
+        <div class="totalCart">
+            <p>Total : ${total} Euro</p>
+            <form>
+
+            </form>
+        </div>
+        `
+        
         displayCart.insertAdjacentHTML('beforeend', html);
     }
 })

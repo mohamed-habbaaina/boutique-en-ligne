@@ -1,8 +1,8 @@
 const formCart = document.forms['formCart'];
 const displayCart = document.querySelector('.displayCart');
 
-formCart.addEventListener('submit', async e => {
-    e.preventDefault();
+formCart.addEventListener('submit', async (eve) => {
+    eve.preventDefault();
 
     let formdata = new FormData(formCart);
     let res = await fetch('./../src/model/add_cart.php', {

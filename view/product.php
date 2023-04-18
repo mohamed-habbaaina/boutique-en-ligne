@@ -48,7 +48,7 @@ if(isset($_SESSION['user'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/product.css">
-    <!-- <script defer src="./../src/controllers/add_cart.js"></script> -->
+    <script defer src="./../src/controllers/add_cart.js"></script>
     <title>Product</title>
 </head>
 <body>
@@ -89,7 +89,7 @@ if(isset($_SESSION['user'])){
                     <input type="hidden" name="id_product_buy" value="<?= $id_product;?>">
                     <input type="hidden" name="id_user_buy" value="<?= $id_user;?>">
                     <input type="hidden" name="product_quantity_buy" value="1">
-                    <input type="submit" name="add_cart_buy" value="Acher"/>
+                    <input type="hidden" name="add_cart_buy" value="Acher"/>
                 </form>
 
                 <?php };?>

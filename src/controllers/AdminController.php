@@ -4,7 +4,6 @@ namespace src\controllers;
 
 use src\Classes\Product;
 use src\Classes\User;
-use src\Classes\Cart;
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/Classes/Product.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/Classes/User.php');
@@ -41,5 +40,9 @@ class AdminController
             $i += 8;
         } while (!empty($tmpProducts));
         echo json_encode($products);
+    }
+
+    public function delUser($id) {
+        $this->user->delUser($id);
     }
 }

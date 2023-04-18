@@ -26,7 +26,7 @@ class User
         if ($isUser) {
             echo "Email already exist";
             die();
-        } else { 
+        } else {
             // Enregistrer l'utilisateur en base de donnée
             $hashed_pwd = password_hash($password, PASSWORD_DEFAULT);
             $sqlQuery = "INSERT INTO user (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
@@ -118,7 +118,8 @@ class User
         echo "Profil updated";
     }
 
-    public function updateFirstname($id, $firstname) {
+    public function updateFirstname($id, $firstname)
+    {
         $sqlQuery = "UPDATE user 
             SET firstname = :firstname
             WHERE id_user = :id";
@@ -129,7 +130,8 @@ class User
         ]);
     }
 
-    public function updateLastname($id, $lastname) {
+    public function updateLastname($id, $lastname)
+    {
         $sqlQuery = "UPDATE user 
             SET lastname = :lastname
             WHERE id_user = :id";
@@ -140,7 +142,8 @@ class User
         ]);
     }
 
-    public function updateEmail($id, $email) {
+    public function updateEmail($id, $email)
+    {
         $sqlQuery = "UPDATE user 
             SET email = :email
             WHERE id_user = :id";
@@ -195,7 +198,8 @@ class User
         ]);
     }
 
-    public function updatePhone($phone,$id) {
+    public function updatePhone($phone, $id)
+    {
         $sqlQuery = "UPDATE customer 
             SET phone_cus = :phone
             WHERE id_user = :id";
@@ -227,14 +231,13 @@ class User
 
     public function getUserOrders(int $id)
     {
-        $sqlQuery = (
-            "SELECT *
+        $sqlQuery = ("SELECT *
             FROM purshase
             INNER JOIN cart ON purshase.id_cart = cart.id_cart
             INNER JOIN cart_product ON cart.id_cart = cart_product.id_cart
             INNER JOIN product ON cart_product.id_pro = product.id_pro
             WHERE cart.id_user = :id"
-            );
+        );
         $prepare = DbConnection::getDb()->prepare($sqlQuery);
         $prepare->execute([':id' => $id]);
         $userPurshases = $prepare->fetchAll(\PDO::FETCH_ASSOC);
@@ -249,5 +252,20 @@ class User
             $orders[$id_order][] = $line;
         }
         return $orders;
+    }
+
+    public function delUser($id)
+    {
+        $sqlQuery = ("DELETE FROM `user`
+            WHERE `user`.`id_user` = :id"
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([':id' => $id]);
+
+        $sqlQuery = ("DELETE FROM `customer`
+            WHERE `id_user` = :id"
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([':id' => $id]);
     }
 }

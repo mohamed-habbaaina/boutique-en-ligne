@@ -34,7 +34,7 @@ commentDisplayBtn.addEventListener("click", function () {
     commentDisplay.style.display = "block";
 });
 
-function createTable(headers, content, contentKeys, infoBtnValue, BtnValue) {
+function createTable(headers, content, contentKeys, BtnValue) {
 
     // Création de la table
     const table = document.createElement('table');
@@ -127,7 +127,7 @@ async function fetchUser() {
                     contentDisplay.appendChild(responseP);
                     setTimeout(() => {
                         fetchUser();
-                    }, 2000);
+                    }, 1000);
                 } else {
                     while (contentDisplay.firstChild) {
                         contentDisplay.removeChild(contentDisplay.firstChild);
@@ -137,7 +137,7 @@ async function fetchUser() {
                     contentDisplay.appendChild(responseP);
                     setTimeout(() => {
                         fetchUser();
-                    }, 2000);
+                    }, 1000);
                 }
             })
     }));
@@ -157,11 +157,40 @@ async function fetchProducts() {
     infoBtnValue = 'id_pro';
     productTable = createTable(headers, productData, keysToDisplay, infoBtnValue);
     contentDisplay.removeChild(contentDisplay.lastChild);
-    commentDisplay.appendChild(productTable);
+    contentDisplay.appendChild(productTable);
 
     // Ajout d'écouteur d'évènement sur les bonton info
     getInfoBtns = document.querySelectorAll('.infoBtn');
     getInfoBtns.forEach(infoBtn => infoBtn.addEventListener('click', (e) => {
         window.location = "./adminProductInfo.php?productId=" + e.currentTarget.value;
+    }));
+
+    // Ajout d'écouteur d'évènement sur les bontons delete
+    DelBtns = document.querySelectorAll(".delBtn");
+    DelBtns.forEach(delBtn => delBtn.addEventListener("click", (event) => {
+        fetch("../src/controllers/productRouter.php?delProduct=" + event.currentTarget.value)
+            .then(r => {
+                if (r.ok) {
+                    while (contentDisplay.firstChild) {
+                        contentDisplay.removeChild(contentDisplay.firstChild);
+                    }
+                    responseP = document.createElement('p');
+                    responseP.innerText = 'La suppression a été effectué';
+                    contentDisplay.appendChild(responseP);
+                    setTimeout(() => {
+                        fetchProducts();
+                    }, 1000);
+                } else {
+                    while (contentDisplay.firstChild) {
+                        contentDisplay.removeChild(contentDisplay.firstChild);
+                    }
+                    responseP = document.createElement('p');
+                    responseP.innerText = 'Un problème est survenu';
+                    contentDisplay.appendChild(responseP);
+                    setTimeout(() => {
+                        fetchProducts();
+                    }, 1000);
+                }
+            })
     }));
 }

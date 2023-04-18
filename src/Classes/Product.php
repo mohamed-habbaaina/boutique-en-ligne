@@ -38,9 +38,10 @@ class Product
         LEFT JOIN `rate` 
         ON product.id_pro = rate.id_pro 
         GROUP BY product.id_pro DESC 
-        LIMIT 8 OFFSET ' . $offset;
+        LIMIT 8 OFFSET :offset';
 
         $dataAllProduct = DbConnection::getDb()->prepare($sqlAllProduct);
+        $dataAllProduct->bindParam(':offset', $offset);
         $dataAllProduct->execute();
         return $dataAllProduct->fetchAll(\PDO::FETCH_ASSOC);
     }

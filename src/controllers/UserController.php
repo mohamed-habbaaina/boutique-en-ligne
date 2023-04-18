@@ -5,6 +5,7 @@ namespace src\controllers;
 use Exception;
 use src\Classes\User;
 use src\Classes\Product;
+use src\Classes\Cart;
 
 require_once("../Classes/User.php");
 require_once("../Classes/Product.php");

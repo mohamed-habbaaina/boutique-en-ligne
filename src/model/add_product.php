@@ -46,6 +46,7 @@ if(isset($_POST['name']))
                         // create image name (last id in DB), eg: last id === 15 => imageName === 16.
                         // image extension
                         $extension = strtolower($extensions[1]);
+                        
                         $imageNameDB = 'image' . $product->creatImageNewName() . '.' . $extension;
                         $path = './../../uploads/';
                         // send image to uploads folder.

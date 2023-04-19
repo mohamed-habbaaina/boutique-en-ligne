@@ -13,6 +13,7 @@
     <button id="productDisplayBtn">Products</button>
     <button id="userDisplayBtn">Users</button>
     <button id="commentDisplayBtn">Comments</button>
+    <button id="messageDisplayBtn">Message</button>
 
     <div id="userDisplay">
         <p>USERS</p>
@@ -24,6 +25,10 @@
     </div>
     <div id="commentDisplay">
         <p>COMMENTS</p>
+    </div>
+
+    <div id="messageDisplay">
+        <p>MESSAGES</p>
     </div>
 
     <div id="contentDisplay"></div>

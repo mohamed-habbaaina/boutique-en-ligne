@@ -2,7 +2,6 @@
 
 namespace src\controllers;
 use src\Classes\Message;
-use src\model\ContactModel;
 
 // Inclure les fichiers nécessaires pour utiliser les classes Message, ContactControler et ContactModel
 require_once("../Classes/Message.php");

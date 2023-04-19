@@ -1,11 +1,13 @@
 <?php
 
 namespace src\model;
+
 use src\Classes\DbConnection;
 use src\Classes\Message;
 
-require_once("../Classes/DbConnection.php");
-require_once("../Classes/Message.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/Classes/DbConnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/Classes/Message.php');
+
 
 class ContactModel
 {
@@ -41,13 +43,37 @@ class ContactModel
             $fetchAssoc = $get_id_date->fetch(\PDO::FETCH_ASSOC);
             // On met à jour l'objet Message avec l'ID et la date récupérés
             $message->setId($fetchAssoc['id_mes']);
-            var_dump($fetchAssoc);
             $message->setDate($fetchAssoc['date_mes']);
-            return true;
-        } else {
-            return false;
         }
+    }
 
-        
+    public function getAllMessages()
+    {
+        $sql_query = ("SELECT id_mes, firstname_mes, lastname_mes, date_mes
+            FROM `message`"
+        );
+        $prepare = DbConnection::getDb()->prepare($sql_query);
+        $prepare->execute();
+        $messages = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        return $messages;
+    }
+
+    public function getMessage($id) {
+        $sql_query = ("SELECT *
+            FROM `message`
+            WHERE id_mes = :id"
+        );
+        $prepare = DbConnection::getDb()->prepare($sql_query);
+        $prepare->execute(['id' => $id]);
+        $messages = $prepare->fetch(\PDO::FETCH_ASSOC);
+        return $messages;
+    }
+
+    public function delMessage($id) {
+        $sqlQuery = ("DELETE FROM `message`
+            WHERE `id_mes` = :id"
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([':id' => $id]);
     }
 }

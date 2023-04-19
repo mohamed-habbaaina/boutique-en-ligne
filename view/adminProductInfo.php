@@ -29,7 +29,6 @@ if (isset($_GET["productId"])) {
 <body>
 
     <?php require_once("./includes/header.php"); ?>
-    <ul>
 
         <h3>Info produit</h3>
 

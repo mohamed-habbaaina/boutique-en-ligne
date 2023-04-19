@@ -34,79 +34,12 @@ commentDisplayBtn.addEventListener("click", function () {
     commentDisplay.style.display = "block";
 });
 
-function fetchUser() {
+function createTable(headers, content, contentKeys, BtnValue) {
 
-    loading();
-
-    fetch("../src/controllers/userRouter.php?fetch=user")
-        .then((response) => {
-            return response.json()
-        })
-        .then((content) => {
-            
-            const table = document.createElement('table');
-
-            // Ajouter l'en-tête du tableau
-            const headerRow = document.createElement('tr');
-            const headers = ['Firstname', 'Lastname', 'Email'];
-            headers.forEach(header => {
-                const th = document.createElement('th');
-                th.textContent = header;
-                headerRow.appendChild(th);
-            });
-            table.appendChild(headerRow);
-
-           
-            const rows = content.map(user => {
-                const row = document.createElement('tr');
-
-                const firstnameCell = document.createElement('td');
-                firstnameCell.textContent = user.firstname;
-                row.appendChild(firstnameCell);
-
-                const lastnameCell = document.createElement('td');
-                lastnameCell.textContent = user.lastname;
-                row.appendChild(lastnameCell);
-
-                const emailCell = document.createElement('td');
-                emailCell.textContent = user.email;
-                row.appendChild(emailCell);
-
-                const infoBtnCell = document.createElement('td');
-                const infoBtn = document.createElement('button');
-
-                infoBtn.classList.add('infoBtn');
-                infoBtn.textContent = "Info";
-                infoBtn.type = "submit";
-                infoBtn.value = user.id_user;
-                infoBtnCell.appendChild(infoBtn);
-                row.appendChild(infoBtnCell);
-
-                return row;
-            });
-            rows.forEach(row => table.appendChild(row));
-
-
-           
-            document.body.appendChild(table);
-
-            getInfoBtn = document.querySelectorAll(".infoBtn");
-
-
-            getInfoBtn.forEach(getInfo => getInfo.addEventListener("click", (event) => {
-                console.log("clique ok : " + event.currentTarget.value);
-                window.location = "./adminUserInfo.php?userId=" + event.currentTarget.value;
-
-            }));
-        })
-}
-
-function createTable(headers, content, contentKeys, infoBtnValue) {
-
-   
+    // Création de la table
     const table = document.createElement('table');
 
-    
+    // Création des en-têtes
     const headerRow = document.createElement('tr');
     for (header of headers) {
         const th = document.createElement('th');
@@ -115,7 +48,7 @@ function createTable(headers, content, contentKeys, infoBtnValue) {
     }
     table.appendChild(headerRow);
 
-   
+    // Création des lignes
     for (line of content) {
         const row = document.createElement('tr');
         for (key of contentKeys) {
@@ -124,15 +57,26 @@ function createTable(headers, content, contentKeys, infoBtnValue) {
             row.appendChild(td);
         }
 
-      
+        // Création des boutons Info
         const infoBtnCell = document.createElement('td');
         const infoBtn = document.createElement('button');
         infoBtn.classList.add('infoBtn');
         infoBtn.textContent = "Info";
         infoBtn.type = "submit";
-        infoBtn.value = line[infoBtnValue];
+        infoBtn.value = line[BtnValue];
         infoBtnCell.appendChild(infoBtn);
         row.appendChild(infoBtnCell);
+        table.appendChild(row);
+
+        // Création des boutons Delete
+        const delBtnCell = document.createElement('td');
+        const delBtn = document.createElement('button');
+        delBtn.classList.add('delBtn');
+        delBtn.textContent = "Delete";
+        delBtn.type = "submit";
+        delBtn.value = line[BtnValue];
+        delBtnCell.appendChild(delBtn);
+        row.appendChild(delBtnCell);
         table.appendChild(row);
     }
     return table;
@@ -163,11 +107,39 @@ async function fetchUser() {
     contentDisplay.removeChild(contentDisplay.lastChild);
     contentDisplay.appendChild(userTable);
 
-    // Ajout d'écouteur d'évènement sur les bonton info
-    getInfoBtn = document.querySelectorAll(".infoBtn");
-    getInfoBtn.forEach(getInfo => getInfo.addEventListener("click", (event) => {
+    // Ajout d'écouteur d'évènement sur les bontons info
+    infoBtns = document.querySelectorAll(".infoBtn");
+    infoBtns.forEach(InfoBtn => InfoBtn.addEventListener("click", (event) => {
         window.location = "./adminUserInfo.php?userId=" + event.currentTarget.value;
+    }));
 
+    // Ajout d'écouteur d'évènement sur les bontons delete
+    DelBtns = document.querySelectorAll(".delBtn");
+    DelBtns.forEach(delBtn => delBtn.addEventListener("click", (event) => {
+        fetch("../src/controllers/userRouter.php?delUser=" + event.currentTarget.value)
+            .then(r => {
+                if (r.ok) {
+                    while (contentDisplay.firstChild) {
+                        contentDisplay.removeChild(contentDisplay.firstChild);
+                    }
+                    responseP = document.createElement('p');
+                    responseP.innerText = 'La suppression a été effectué';
+                    contentDisplay.appendChild(responseP);
+                    setTimeout(() => {
+                        fetchUser();
+                    }, 1000);
+                } else {
+                    while (contentDisplay.firstChild) {
+                        contentDisplay.removeChild(contentDisplay.firstChild);
+                    }
+                    responseP = document.createElement('p');
+                    responseP.innerText = 'Un problème est survenu';
+                    contentDisplay.appendChild(responseP);
+                    setTimeout(() => {
+                        fetchUser();
+                    }, 1000);
+                }
+            })
     }));
 }
 
@@ -175,20 +147,50 @@ async function fetchProducts() {
 
     loading();
 
-    
+    // Récupération des infos en bdd
     const r = await fetch("../src/controllers/productRouter.php?fetch=product");
     const productData = await r.json();
-    
-    
+
+    // Création et affichage du tableau
     headers = ['id', 'name', 'category', 'price'];
     keysToDisplay = ['id_pro', 'name_pro', 'category_pro', 'price_pro'];
     infoBtnValue = 'id_pro';
     productTable = createTable(headers, productData, keysToDisplay, infoBtnValue);
-    document.body.appendChild(productTable);
+    contentDisplay.removeChild(contentDisplay.lastChild);
+    contentDisplay.appendChild(productTable);
 
-    
+    // Ajout d'écouteur d'évènement sur les bonton info
     getInfoBtns = document.querySelectorAll('.infoBtn');
     getInfoBtns.forEach(infoBtn => infoBtn.addEventListener('click', (e) => {
         window.location = "./adminProductInfo.php?productId=" + e.currentTarget.value;
+    }));
+
+    // Ajout d'écouteur d'évènement sur les bontons delete
+    DelBtns = document.querySelectorAll(".delBtn");
+    DelBtns.forEach(delBtn => delBtn.addEventListener("click", (event) => {
+        fetch("../src/controllers/productRouter.php?delProduct=" + event.currentTarget.value)
+            .then(r => {
+                if (r.ok) {
+                    while (contentDisplay.firstChild) {
+                        contentDisplay.removeChild(contentDisplay.firstChild);
+                    }
+                    responseP = document.createElement('p');
+                    responseP.innerText = 'La suppression a été effectué';
+                    contentDisplay.appendChild(responseP);
+                    setTimeout(() => {
+                        fetchProducts();
+                    }, 1000);
+                } else {
+                    while (contentDisplay.firstChild) {
+                        contentDisplay.removeChild(contentDisplay.firstChild);
+                    }
+                    responseP = document.createElement('p');
+                    responseP.innerText = 'Un problème est survenu';
+                    contentDisplay.appendChild(responseP);
+                    setTimeout(() => {
+                        fetchProducts();
+                    }, 1000);
+                }
+            })
     }));
 }

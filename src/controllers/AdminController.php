@@ -41,4 +41,12 @@ class AdminController
         } while (!empty($tmpProducts));
         echo json_encode($products);
     }
+
+    public function delUser($id) {
+        $this->user->delUser($id);
+    }
+
+    public function delProduct($id) {
+        $this->product->delProduct($id);
+    }
 }

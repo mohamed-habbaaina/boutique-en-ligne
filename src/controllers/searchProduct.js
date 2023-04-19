@@ -6,8 +6,13 @@ let search = document.forms['searchForm']['search'];
 
 let resultDisplay = document.querySelector('#displayResult');
 
-searchForm.addEventListener('input', async function(e) {
-    
+// PreventDefault de form.
+searchForm.addEventListener('submit', e => {
+
+    e.preventDefault();
+})
+searchForm.addEventListener('input', async (e) => {
+
     // Remove display
     resultDisplay.innerHTML = '';
 

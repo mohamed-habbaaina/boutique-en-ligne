@@ -3,9 +3,10 @@
 namespace src\controllers;
 
 require_once("./UserController.php");
-
+require_once("./AdminController.php");
 
 $userController = new UserController();
+$adminController = new AdminController();
 
 if (isset($_POST["register"])) {
     
@@ -47,6 +48,10 @@ if(isset($_GET["fetch"])){
     if ($fetch === "user") {
         $userController->getUserData();
     }
+}
+
+if(isset($_GET["delUser"])){
+    $adminController->delUser($_GET['delUser']);
 }
 
 if(isset($_POST['firstname'])) {

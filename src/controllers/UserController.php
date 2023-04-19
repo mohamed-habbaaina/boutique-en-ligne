@@ -2,11 +2,9 @@
 
 namespace src\controllers;
 
-use Exception;
 use src\Classes\User;
 use src\Classes\Product;
 use src\Classes\Cart;
-
 
 require_once("../Classes/User.php");
 require_once("../Classes/Product.php");
@@ -106,7 +104,7 @@ class UserController extends FormControler
                 ]
             );
         } else {
-            throw new Exception("Paramètres invalides");
+            throw new \Exception("Paramètres invalides");
         }
     }
 

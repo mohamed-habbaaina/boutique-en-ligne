@@ -127,6 +127,9 @@ class Cart extends Product {
         return $dataAllCart->fetchAll(\PDO::FETCH_ASSOC) ?? false;
     }
 
+    /**
+     * SELECT id_cart WHERE email
+     */
     public function checkIdCart($email): array | bool
     {
         $reqIdCart = "SELECT `id_cart` FROM `cart` INNER JOIN `user` 
@@ -140,4 +143,15 @@ class Cart extends Product {
         return $idCart->fetch(\PDO::FETCH_ASSOC) ?? false;
     }
 
+    /** 
+     * Delete Product FROM cart_product tabel.
+    */
+    public function deletCartProduct($id_cart, $id_product): void
+    {
+        $reqDelet = 'DELETE FROM `cart_product` WHERE `id_cart`=:id_cart AND `id_pro`=:id_product';
+        $deletProduct = DbConnection::getDb()->prepare($reqDelet);
+        $deletProduct->bindParam(':id_cart', $id_cart);
+        $deletProduct->bindParam(':id_product', $id_product);
+        $deletProduct->execute();
+    }
 }

@@ -38,9 +38,10 @@ class Product
         LEFT JOIN `rate` 
         ON product.id_pro = rate.id_pro 
         GROUP BY product.id_pro DESC 
-        LIMIT 8 OFFSET ' . $offset;
+        LIMIT 8 OFFSET :offset';
 
         $dataAllProduct = DbConnection::getDb()->prepare($sqlAllProduct);
+        $dataAllProduct->bindParam(':offset', $offset);
         $dataAllProduct->execute();
         return $dataAllProduct->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -154,4 +155,17 @@ class Product
 
     echo json_encode($result);
    }
+
+   public function delProduct($id) {
+    $sqlUpdate = (
+        'UPDATE `product` SET `state_pro` = :state_pro 
+        WHERE `id_pro` = :id'
+    );
+    $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+    $prepare->execute([
+        ':state_pro' => "deleted",
+        ':id' => $id
+    ]);
+}
+
 }

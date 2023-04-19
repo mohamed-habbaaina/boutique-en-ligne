@@ -50,7 +50,7 @@ if (isset($_SESSION['user'])) {
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/product.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
-    <!-- <script defer src="./../src/controllers/add_cart.js"></script> -->
+    <script defer src="./../src/controllers/add_cart.js"></script>
     <title>Product</title>
 </head>
 
@@ -88,12 +88,12 @@ if (isset($_SESSION['user'])) {
                         <input type="submit" name="add_cart" value="+ Panier" />
                     </form>
 
-                    <form action="" method="post" id="formBuy">
-                        <input type="hidden" name="id_product_buy" value="<?= $id_product; ?>">
-                        <input type="hidden" name="id_user_buy" value="<?= $id_user; ?>">
-                        <input type="hidden" name="product_quantity_buy" value="1">
-                        <input type="submit" name="add_cart_buy" value="Acher" />
-                    </form>
+                <form action="" method="post" id="formBuy">
+                    <input type="hidden" name="id_product_buy" value="<?= $id_product;?>">
+                    <input type="hidden" name="id_user_buy" value="<?= $id_user;?>">
+                    <input type="hidden" name="product_quantity_buy" value="1">
+                    <input type="hidden" name="add_cart_buy" value="Acher"/>
+                </form>
 
                 <?php }; ?>
 

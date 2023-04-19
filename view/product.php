@@ -102,6 +102,7 @@ if (isset($_SESSION['user'])) {
         <p>Rate :</p>
         <div class="rateDisplay">
             <p id="rateValue"></p>
+            <?php if (isset($_SESSION["user"])) : ?>
             <form method="post" id="postRateForm">
                 <label for="rating">Sélectionnez votre note :</label>
                 <select name="rating" id="rating">
@@ -113,6 +114,7 @@ if (isset($_SESSION['user'])) {
                     <option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
                 </select>
             </form>
+            <?php endif ?>
         </div>
         <div>
             <h2>Description:</h2>
@@ -120,10 +122,12 @@ if (isset($_SESSION['user'])) {
         </div>
 
         <div class="commentDisplay">
+        <?php if (isset($_SESSION["user"])) : ?>
             <form id="addCommentForm">
                 <input type="text" id="commentText" name="commentText">
                 <button id="addCommentBtn" value="<?= $id_product; ?>">Envoyer</button>
             </form>
+            <?php endif ?>
         </div>
         <section id="comment-section">
 

@@ -1,9 +1,9 @@
 function fetchComment() {
-    let commentDiv = document.querySelector("#commentDiv");
+    
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id_pro = urlParams.get('idProduct');
-    const commentText = document.querySelector("#commentText");
+   
    
     console.log(id_pro)
     fetch(`../src/controllers/commentRouter.php?fetchComment=${id_pro}`)
@@ -39,10 +39,12 @@ function fetchComment() {
                 }
                 
                 const commentDiv = document.createElement('div');
+
                 commentDiv.innerHTML = `
                 <p>${result}</p>
                 <p>by ${comment.firstname}</p>
                 <p>${comment.text}</p>
+                <button>go</button>
                 <hr>
               `;
 

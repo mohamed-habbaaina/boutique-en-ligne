@@ -7,9 +7,9 @@ require_once('../src/controllers/AdminController.php');
 
 if (isset($_GET["userId"])) {
     $userId = $_GET['userId'];
-    $user = new AdminController();
-    $profile = $user->getInfo($userId);
-    $orders = $user->getUserOrders($userId);
+    $adminController = new AdminController();
+    $profile = $adminController->getUserInfo($userId);
+    $orders = $adminController->getUserOrders($userId);
 
     $firstname = $profile['firstname'];
     $lastname = $profile['lastname'];

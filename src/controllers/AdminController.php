@@ -20,9 +20,14 @@ class AdminController
         $this->product = new Product();
     }
 
-    public function getInfo($id)
+    public function getUserInfo($id)
     {
         return $this->user->getData($id);
+    }
+
+    public function getProductInfo($id)
+    {
+        return $this->product->getProduct($id);
     }
 
     public function getUserOrders($id)
@@ -48,5 +53,33 @@ class AdminController
 
     public function delProduct($id) {
         $this->product->delProduct($id);
+    }
+
+    public function changeName($id, $newName) {
+        $this->product->updateName($id, $newName);
+    }
+
+    public function changeCategory($id, $newCategory) {
+        $this->product->updateCategory($id, $newCategory);
+    }
+    
+    public function changeCategoryDescription($id, $newCategoryDescription) {
+        $this->product->updateCategoryDescription($id, $newCategoryDescription);
+    }
+
+    public function changeDescription($id, $newDescription) {
+        $this->product->updateDescription($id, $newDescription);
+    }
+
+    public function changeOrigin($id, $newOrigin) {
+        $this->product->updateOrigin($id, $newOrigin);
+    }
+
+    public function changeOriginDescription($id, $newOriginDescription) {
+        $this->product->updateOriginDescription($id, $newOriginDescription);
+    }
+
+    public function changePrice($id, $newPrice) {
+        $this->product->updatePrice($id, $newPrice);
     }
 }

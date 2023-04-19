@@ -47,5 +47,7 @@ class ContactModel
         } else {
             return false;
         }
+
+        
     }
 }

@@ -68,4 +68,12 @@ class ContactModel
         $messages = $prepare->fetch(\PDO::FETCH_ASSOC);
         return $messages;
     }
+
+    public function delMessage($id) {
+        $sqlQuery = ("DELETE FROM `message`
+            WHERE `id_mes` = :id"
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute([':id' => $id]);
+    }
 }

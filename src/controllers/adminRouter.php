@@ -14,3 +14,7 @@ if (isset($_GET["fetch"])) {
         echo json_encode($adminController->getMessagesList());
     }
 }
+
+if (isset($_GET["delMessage"])) {
+    $adminController->delMessage($_GET["delMessage"]);
+}

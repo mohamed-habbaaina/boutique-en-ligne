@@ -60,6 +60,10 @@ class AdminController
         return $this->contact->getMessage($id);
     }
 
+    public function delMessage($id) {
+        $this->contact->delMessage($id);
+    }
+
     public function delUser($id) {
         $this->user->delUser($id);
     }

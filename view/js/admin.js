@@ -91,6 +91,37 @@ function createTable(headers, content, contentKeys, BtnValue) {
     return table;
 }
 
+function listenDelBtn(urlToGet, reloadFunction) {
+    // Ajout d'écouteur d'évènement sur les bontons delete
+    DelBtns = document.querySelectorAll(".delBtn");
+    DelBtns.forEach(delBtn => delBtn.addEventListener("click", (event) => {
+        fetch(urlToGet + event.currentTarget.value)
+            .then(r => {
+                if (r.ok) {
+                    while (contentDisplay.firstChild) {
+                        contentDisplay.removeChild(contentDisplay.firstChild);
+                    }
+                    responseP = document.createElement('p');
+                    responseP.innerText = 'La suppression a été effectué';
+                    contentDisplay.appendChild(responseP);
+                    setTimeout(() => {
+                        reloadFunction();
+                    }, 1000);
+                } else {
+                    while (contentDisplay.firstChild) {
+                        contentDisplay.removeChild(contentDisplay.firstChild);
+                    }
+                    responseP = document.createElement('p');
+                    responseP.innerText = 'Un problème est survenu';
+                    contentDisplay.appendChild(responseP);
+                    setTimeout(() => {
+                        reloadFunction();
+                    }, 1000);
+                }
+            })
+    }));
+}
+
 function loading() {
     while (contentDisplay.firstChild) {
         contentDisplay.removeChild(contentDisplay.firstChild);
@@ -122,34 +153,7 @@ async function fetchUser() {
         window.location = "./adminUserInfo.php?userId=" + event.currentTarget.value;
     }));
 
-    // Ajout d'écouteur d'évènement sur les bontons delete
-    DelBtns = document.querySelectorAll(".delBtn");
-    DelBtns.forEach(delBtn => delBtn.addEventListener("click", (event) => {
-        fetch("../src/controllers/userRouter.php?delUser=" + event.currentTarget.value)
-            .then(r => {
-                if (r.ok) {
-                    while (contentDisplay.firstChild) {
-                        contentDisplay.removeChild(contentDisplay.firstChild);
-                    }
-                    responseP = document.createElement('p');
-                    responseP.innerText = 'La suppression a été effectué';
-                    contentDisplay.appendChild(responseP);
-                    setTimeout(() => {
-                        fetchUser();
-                    }, 1000);
-                } else {
-                    while (contentDisplay.firstChild) {
-                        contentDisplay.removeChild(contentDisplay.firstChild);
-                    }
-                    responseP = document.createElement('p');
-                    responseP.innerText = 'Un problème est survenu';
-                    contentDisplay.appendChild(responseP);
-                    setTimeout(() => {
-                        fetchUser();
-                    }, 1000);
-                }
-            })
-    }));
+    listenDelBtn("../src/controllers/userRouter.php?delUser=", fetchUser);
 }
 
 async function fetchProducts() {
@@ -174,34 +178,7 @@ async function fetchProducts() {
         window.location = "./adminProductInfo.php?productId=" + e.currentTarget.value;
     }));
 
-    // Ajout d'écouteur d'évènement sur les bontons delete
-    DelBtns = document.querySelectorAll(".delBtn");
-    DelBtns.forEach(delBtn => delBtn.addEventListener("click", (event) => {
-        fetch("../src/controllers/productRouter.php?delProduct=" + event.currentTarget.value)
-            .then(r => {
-                if (r.ok) {
-                    while (contentDisplay.firstChild) {
-                        contentDisplay.removeChild(contentDisplay.firstChild);
-                    }
-                    responseP = document.createElement('p');
-                    responseP.innerText = 'La suppression a été effectué';
-                    contentDisplay.appendChild(responseP);
-                    setTimeout(() => {
-                        fetchProducts();
-                    }, 1000);
-                } else {
-                    while (contentDisplay.firstChild) {
-                        contentDisplay.removeChild(contentDisplay.firstChild);
-                    }
-                    responseP = document.createElement('p');
-                    responseP.innerText = 'Un problème est survenu';
-                    contentDisplay.appendChild(responseP);
-                    setTimeout(() => {
-                        fetchProducts();
-                    }, 1000);
-                }
-            })
-    }));
+    listenDelBtn("../src/controllers/productRouter.php?delProduct=", fetchProducts);
 }
 
 async function fetchMessages() {
@@ -225,4 +202,6 @@ async function fetchMessages() {
     getInfoBtns.forEach(infoBtn => infoBtn.addEventListener('click', (e) => {
         window.location = "./adminMessagesInfo.php?messageId=" + e.currentTarget.value;
     }));
+
+    listenDelBtn("../src/controllers/adminRouter.php?delMessage=", fetchMessages);
 }   

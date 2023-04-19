@@ -5,8 +5,9 @@ namespace src\model;
 use src\Classes\DbConnection;
 use src\Classes\Message;
 
-require_once("../Classes/DbConnection.php");
-require_once("../Classes/Message.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/Classes/DbConnection.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/Classes/Message.php');
+
 
 class ContactModel
 {
@@ -54,6 +55,17 @@ class ContactModel
         $prepare = DbConnection::getDb()->prepare($sql_query);
         $prepare->execute();
         $messages = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        return $messages;
+    }
+
+    public function getMessage($id) {
+        $sql_query = ("SELECT *
+            FROM `message`
+            WHERE id_mes = :id"
+        );
+        $prepare = DbConnection::getDb()->prepare($sql_query);
+        $prepare->execute(['id' => $id]);
+        $messages = $prepare->fetch(\PDO::FETCH_ASSOC);
         return $messages;
     }
 }

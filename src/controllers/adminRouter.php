@@ -11,6 +11,6 @@ $adminController = new AdminController();
 if (isset($_GET["fetch"])) {
     $fetch = $_GET["fetch"];
     if ($fetch === "messages") {
-        echo json_encode($adminController->getMessagesData());
+        echo json_encode($adminController->getMessagesList());
     }
 }

@@ -51,9 +51,13 @@ class AdminController
         echo json_encode($products);
     }
 
-    public function getMessagesData()
+    public function getMessagesList()
     {
         return $this->contact->getAllMessages();
+    }
+
+    public function getMessage($id) {
+        return $this->contact->getMessage($id);
     }
 
     public function delUser($id) {

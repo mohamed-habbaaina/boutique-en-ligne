@@ -78,7 +78,7 @@ if(isset($_SESSION['user'])){
                 <p><?= $price; ?></p>
 
                 <?php if(isset($_SESSION['user'])){;?>
-                <form action="./../src/model/add_cart.php" method="post" id="formCart">
+                <form action="./../src/controllers/add_cart.js" method="post" id="formCart">
                     <input type="hidden" name="id_product" value="<?= $id_product;?>">
                     <input type="hidden" name="id_user" value="<?= $id_user;?>">
                     <input type="number" name="product_quantity" value="<?= 1;?>">

@@ -19,9 +19,7 @@ if($_POST['id_user'] && $_POST['id_user'] == $id_user)
     $id_product = (int) $_POST['id_product'];
     $product_quantity = (int) $_POST['product_quantity'];
 
-    $dataCart = $cart->selectProductCartQantity($id_cart, $id_product);
+    $cart->updatProductCart($product_quantity, $id_cart, $id_product);
 
-    // $
-
-
+    header('Location: ./../../view/cart.php');
 }

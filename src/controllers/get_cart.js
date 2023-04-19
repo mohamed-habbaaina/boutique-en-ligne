@@ -8,31 +8,33 @@ fetch('./../src/model/getCart.php')
 
     if(data)
     {
-        // console.log(data);
-
 
         let total = 0;
-        data.forEach(etem => {
+        data.forEach(item => {
 
-            let price = etem.price_pro / 100;
-            total += price * etem.quantity;
+            console.log(data);
+            let = id_cart = item.id_cart;
+
+            let price = item.price_pro / 100;
+            total += price * item.quantity;
             html += `<div class="cart">
-                <img src="./../uploads/${etem.image_pro}" alt="${etem.name_pro}">
+                <div class="displayMessageCart"></div>
+                <img src="./../uploads/${item.image_pro}" alt="${item.name_pro}">
                 <div class="detailProduct">
-                    <h3>${etem.name_pro}</h3>
-                    <p>${price}</p>
+                    <h3>${item.name_pro}</h3>
+                    <p>${price} Euro</p>
 
                     <form action="./../src/model/updateCart.php" method="post">
-                        <input type="hidden" name="id_product" value="${etem.id_pro}">
-                        <input type="hidden" name="id_user" value="${etem.id_user}">
-                        <input type="number" name="product_quantity" value="${etem.quantity}">
+                        <input type="hidden" name="id_product" value="${item.id_pro}">
+                        <input type="hidden" name="id_user" value="${item.id_user}">
+                        <input type="number" name="product_quantity" value="${item.quantity}">
                         <input type="submit" name="update_cart" value="Quantity"/>
                     </form>
 
                 </div>
                 <div class="btn-cart">
-                    <button><a href="product.php?idProduct=${etem.id_pro}">Detait</a></button>
-                    <button><a href="deleteCart.php?idProduct=${etem.id_pro}">Delete</a></button>
+                    <button><a href="product.php?idProduct=${item.id_pro}">Detait</a></button>
+                    <button><a href="../src/model/deleteCart.php?idProduct=${item.id_pro}">Delete</a></button>
                 </div>
             </div>`;
 
@@ -40,14 +42,23 @@ fetch('./../src/model/getCart.php')
 
         html += `
         <div class="totalCart">
-            <p>Total : ${total} Euro</p>
-            <form>
+            <p>Total : ${total.toFixed(2)} Euro</p>
+        </div>
 
+        <div class="paymentCart">
+            <form action="./payment.php" method="post">
+                <input type="hidden" name="id_cart" value="${id_cart}">
+                <input type="hidden" name="total" value="${total.toFixed(2)}">
+                <input type="submit" name="payment_cart" value="Passé Commande"/>
             </form>
         </div>
         `
         
         displayCart.insertAdjacentHTML('beforeend', html);
+    }
+    else
+    {
+        displayCart.innerHTML = 'Votre Panier est vide !';
     }
 })
 })

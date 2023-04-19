@@ -1,6 +1,7 @@
 <?php
 
 namespace src\model;
+
 use src\Classes\DbConnection;
 use src\Classes\Message;
 
@@ -41,13 +42,18 @@ class ContactModel
             $fetchAssoc = $get_id_date->fetch(\PDO::FETCH_ASSOC);
             // On met à jour l'objet Message avec l'ID et la date récupérés
             $message->setId($fetchAssoc['id_mes']);
-            var_dump($fetchAssoc);
             $message->setDate($fetchAssoc['date_mes']);
-            return true;
-        } else {
-            return false;
         }
+    }
 
-        
+    public function getAllMessages()
+    {
+        $sql_query = ("SELECT id_mes, firstname_mes, lastname_mes, date_mes
+            FROM `message`"
+        );
+        $prepare = DbConnection::getDb()->prepare($sql_query);
+        $prepare->execute();
+        $messages = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        return $messages;
     }
 }

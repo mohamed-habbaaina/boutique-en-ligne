@@ -1,9 +1,11 @@
-const productDisplayBtn = document.getElementById("productDisplayBtn");
-const productDisplay = document.getElementById("productDisplay");
-const userDisplayBtn = document.getElementById("userDisplayBtn");
 const userDisplay = document.getElementById("userDisplay");
-const commentDisplayBtn = document.getElementById("commentDisplayBtn");
+const userDisplayBtn = document.getElementById("userDisplayBtn");
+const productDisplay = document.getElementById("productDisplay");
+const productDisplayBtn = document.getElementById("productDisplayBtn");
 const commentDisplay = document.getElementById("commentDisplay");
+const commentDisplayBtn = document.getElementById("commentDisplayBtn");
+const messageDisplay = document.getElementById("messageDisplay");
+const messageDisplayBtn = document.getElementById("messageDisplayBtn");
 const contentDisplay = document.getElementById("contentDisplay");
 
 // Fonction pour masquer toutes les div
@@ -11,6 +13,7 @@ function hideAll() {
     productDisplay.style.display = "none";
     userDisplay.style.display = "none";
     commentDisplay.style.display = "none";
+    messageDisplay.style.display = "none";
 }
 
 // Masquage initial de toutes les div
@@ -32,6 +35,12 @@ userDisplayBtn.addEventListener("click", function () {
 commentDisplayBtn.addEventListener("click", function () {
     hideAll();
     commentDisplay.style.display = "block";
+});
+
+messageDisplayBtn.addEventListener("click", function () {
+    hideAll();
+    messageDisplay.style.display = "block";
+    fetchMessages();
 });
 
 function createTable(headers, content, contentKeys, BtnValue) {
@@ -95,7 +104,7 @@ async function fetchUser() {
 
     loading();
 
-    // Récupération des infos en bdd
+    // Récupération des infos
     const r = await fetch("../src/controllers/userRouter.php?fetch=user");
     const userData = await r.json();
 
@@ -147,7 +156,7 @@ async function fetchProducts() {
 
     loading();
 
-    // Récupération des infos en bdd
+    // Récupération des infos
     const r = await fetch("../src/controllers/productRouter.php?fetch=product");
     const productData = await r.json();
 
@@ -194,3 +203,26 @@ async function fetchProducts() {
             })
     }));
 }
+
+async function fetchMessages() {
+
+    loading();
+
+    // Récupération des infos
+    const r = await fetch("../src/controllers/adminRouter.php?fetch=messages");
+    const messagesData = await r.json();
+
+    // Création et affichage du tableau
+    headers = ['Id', 'Firtname', 'Lastname', 'Date'];
+    keysToDisplay = ['id_mes', 'firstname_mes', 'lastname_mes', 'date_mes'];
+    infoBtnValue = 'id_mes';
+    productTable = createTable(headers, messagesData, keysToDisplay, infoBtnValue);
+    contentDisplay.removeChild(contentDisplay.lastChild);
+    contentDisplay.appendChild(productTable);
+
+    // Ajout d'écouteur d'évènement sur les bonton info
+    getInfoBtns = document.querySelectorAll('.infoBtn');
+    getInfoBtns.forEach(infoBtn => infoBtn.addEventListener('click', (e) => {
+        window.location = "./adminMessagesInfo.php?messageId=" + e.currentTarget.value;
+    }));
+}   

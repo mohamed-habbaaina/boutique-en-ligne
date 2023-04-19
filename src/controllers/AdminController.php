@@ -4,20 +4,24 @@ namespace src\controllers;
 
 use src\Classes\Product;
 use src\Classes\User;
+use src\model\ContactModel;
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/Classes/Product.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/Classes/User.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/boutique-en-ligne/src/model/ContactModel.php');
 
 class AdminController
 {
 
     public $user;
     public $product;
+    public $contact;
 
     public function __construct()
     {
         $this->user = new User();
         $this->product = new Product();
+        $this->contact = new ContactModel();
     }
 
     public function getUserInfo($id)
@@ -45,6 +49,11 @@ class AdminController
             $i += 8;
         } while (!empty($tmpProducts));
         echo json_encode($products);
+    }
+
+    public function getMessagesData()
+    {
+        return $this->contact->getAllMessages();
     }
 
     public function delUser($id) {

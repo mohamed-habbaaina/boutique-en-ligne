@@ -18,6 +18,7 @@ if(!$cart->isConnected())
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./style/style.css">
     <script defer src="./../src/controllers/get_cart.js"></script>
+    <script defer src="./../src/controllers/updateCart.js"></script>
     <title>Cart</title>
 </head>
 <body>
@@ -30,9 +31,6 @@ if(!$cart->isConnected())
             </div>
             
             <div class="paymentCart">
-                <form action="" method="post">
-
-                </form>
             </div>
         </div>
     </main>

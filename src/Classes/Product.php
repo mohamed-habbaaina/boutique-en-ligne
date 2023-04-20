@@ -119,7 +119,6 @@ class Product
         "id_pro" => $id_pro
     ]);
     $result = $rateCount->fetchColumn();
-    var_dump($result);
     return $result;
    }
 
@@ -166,6 +165,20 @@ class Product
         ':state_pro' => "deleted",
         ':id' => $id
     ]);
-}
+    }
+    public function selectMostLiked(){
+        $select ="SELECT AVG(rate.value_rat) as rate_avg, product.*
+        FROM rate
+        INNER JOIN product
+        ON rate.id_pro = product.id_pro
+        GROUP BY product.id_pro
+        ORDER BY AVG(rate.value_rat) DESC LIMIT 3";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute();
+
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($result);
+    }
+
 
 }

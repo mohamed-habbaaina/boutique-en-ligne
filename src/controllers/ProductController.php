@@ -32,5 +32,11 @@ Class ProductController{
     public function fetchRate($id_pro){
         $this->product->selectRate($id_pro);
     }
+
+    public function getMostLiked(){
+      return $this->product->selectMostLiked();
+    }
+
+    
 }
 ?>

@@ -16,4 +16,8 @@ if(isset($_POST["addRate"])){
 if(isset($_GET["fetchRate"])){
     $productController->fetchRate($_GET["fetchRate"]);
 }
+
+if(isset($_GET["mostLiked"])){
+    $productController->getMostLiked();
+}
 ?>

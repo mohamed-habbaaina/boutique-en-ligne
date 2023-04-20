@@ -62,3 +62,111 @@ h2 {
 #about_section p {
     font-size: 24px;
 }
+
+/* aboutshop */
+.aboutshopTextLeft{
+margin-left: 5%;
+padding-top: 5%;
+position: relative;
+width: 625px;
+height: 190px;
+
+
+font-family: 'Inika';
+font-style: normal;
+font-weight: 400;
+font-size: 28px;
+line-height: 36px;
+
+color: #000000;
+}
+.imgRight{
+margin-right: 5%;
+padding-top: 5%;
+
+display: flex;
+left: 25%;
+justify-content: flex-end;
+
+}
+.imgRight img{
+   
+    width: 800px;
+}
+
+.aboutshopTextRight{
+margin-right: 5%;
+padding-top: 5%;
+position: relative;
+width: 925px;
+height: 190px;
+left: 36%;
+font-family: 'Inika';
+font-style: normal;
+font-weight: 400;
+font-size: 28px;
+line-height: 36px;
+
+color: #000000;
+}
+.imgLeft{
+margin-left: 5%;
+padding-bottom: 5%;
+display: flex;
+padding-top: 5%;
+}
+.imgLeft img{
+    
+    width: 800px;
+}
+
+/* MOST LIKED DIV */
+.mostLiked{
+    padding: 3%;
+    font-family: 'Inika';
+}
+.grid-container {
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    gap: 40px;
+    justify-content: center;
+  }
+  
+  .gridProduct {
+    grid-auto-flow: column;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 20px;
+    text-align: center;
+  }
+  .productImg{
+    height: 50%;
+  }
+  .productInfo{
+    height: 50%;
+  }
+  .gridProduct h1 {
+    margin-top: 0;
+  }
+
+  .gridProduct img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .gridProduct p{
+    font-size: 18px;
+  }
+  .gridProduct a {
+    display: block;
+    margin-bottom: 10px;
+  }
+  #starRating{
+    color: gold;
+  }
+  #productPrice{
+    font-size: 20px;
+    font-style: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }

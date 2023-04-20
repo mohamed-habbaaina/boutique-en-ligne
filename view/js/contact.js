@@ -85,11 +85,11 @@ phone_input.addEventListener('input', (e) => {
 })
 
 // On récupère l'élément du formulaire et l'élément pour afficher les messages du formulaire
-const form = document.querySelector('form');
+const message_form = document.querySelector('#message_form');
 const form_message = document.getElementById('form_message');
 
 // On ajoute un écouteur d'événement sur la soumission du formulaire
-form.addEventListener('submit', (event) => {
+message_form.addEventListener('submit', (event) => {
     // On empêche le comportement par défaut de la soumission du formulaire
     event.preventDefault();
 
@@ -101,7 +101,7 @@ form.addEventListener('submit', (event) => {
         phone_input.value)) {
 
         // Si le formulaire est valide, on crée un objet FormData avec les données du formulaire
-        const formData = new FormData(form);
+        const formData = new FormData(message_form);
 
         // On envoie les données du formulaire au serveur via une requête POST en utilisant fetch
         fetch('../src/controllers/contact_router.php', {
@@ -109,11 +109,9 @@ form.addEventListener('submit', (event) => {
             body: formData
         })
             .then(response => {
+                console.log(response);
                 if (response.status === 200) {
-                    // Si la requête réussit, on récupère le texte et on l'affiche
-                    response.text().then((text) => {
-                        form_message.innerHTML = text;
-                    })
+                    form_message.innerHTML = "Votre message à été envoyé";
                 } else {
                     // Sinon, on affiche un message d'erreur
                     form_message.innerHTML = "La requête renvoie un code de status " + response.status + ".";

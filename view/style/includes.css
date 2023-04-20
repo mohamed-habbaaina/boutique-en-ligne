@@ -12,7 +12,7 @@ nav{
     width: 33%;
     display: flex;
     justify-content: center;
-    gap: 25%;
+    gap: 15%;
 }
 .left_part a{
     text-decoration: none;
@@ -33,7 +33,7 @@ nav{
     width: 33%;
     display: flex;
     justify-content: center;
-    gap: 25%;
+    gap: 15%;
     
 }
 .right_part ul{
@@ -115,3 +115,4 @@ nav{
     text-align: left;
     text-decoration: none;
   }
+

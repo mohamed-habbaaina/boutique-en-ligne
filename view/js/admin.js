@@ -1,9 +1,11 @@
-const productDisplayBtn = document.getElementById("productDisplayBtn");
-const productDisplay = document.getElementById("productDisplay");
-const userDisplayBtn = document.getElementById("userDisplayBtn");
 const userDisplay = document.getElementById("userDisplay");
-const commentDisplayBtn = document.getElementById("commentDisplayBtn");
+const userDisplayBtn = document.getElementById("userDisplayBtn");
+const productDisplay = document.getElementById("productDisplay");
+const productDisplayBtn = document.getElementById("productDisplayBtn");
 const commentDisplay = document.getElementById("commentDisplay");
+const commentDisplayBtn = document.getElementById("commentDisplayBtn");
+const messageDisplay = document.getElementById("messageDisplay");
+const messageDisplayBtn = document.getElementById("messageDisplayBtn");
 const contentDisplay = document.getElementById("contentDisplay");
 
 // Fonction pour masquer toutes les div
@@ -11,6 +13,7 @@ function hideAll() {
     productDisplay.style.display = "none";
     userDisplay.style.display = "none";
     commentDisplay.style.display = "none";
+    messageDisplay.style.display = "none";
 }
 
 // Masquage initial de toutes les div
@@ -32,6 +35,12 @@ userDisplayBtn.addEventListener("click", function () {
 commentDisplayBtn.addEventListener("click", function () {
     hideAll();
     commentDisplay.style.display = "block";
+});
+
+messageDisplayBtn.addEventListener("click", function () {
+    hideAll();
+    messageDisplay.style.display = "block";
+    fetchMessages();
 });
 
 function createTable(headers, content, contentKeys, BtnValue) {
@@ -82,6 +91,37 @@ function createTable(headers, content, contentKeys, BtnValue) {
     return table;
 }
 
+function listenDelBtn(urlToGet, reloadFunction) {
+    // Ajout d'écouteur d'évènement sur les bontons delete
+    DelBtns = document.querySelectorAll(".delBtn");
+    DelBtns.forEach(delBtn => delBtn.addEventListener("click", (event) => {
+        fetch(urlToGet + event.currentTarget.value)
+            .then(r => {
+                if (r.ok) {
+                    while (contentDisplay.firstChild) {
+                        contentDisplay.removeChild(contentDisplay.firstChild);
+                    }
+                    responseP = document.createElement('p');
+                    responseP.innerText = 'La suppression a été effectué';
+                    contentDisplay.appendChild(responseP);
+                    setTimeout(() => {
+                        reloadFunction();
+                    }, 1000);
+                } else {
+                    while (contentDisplay.firstChild) {
+                        contentDisplay.removeChild(contentDisplay.firstChild);
+                    }
+                    responseP = document.createElement('p');
+                    responseP.innerText = 'Un problème est survenu';
+                    contentDisplay.appendChild(responseP);
+                    setTimeout(() => {
+                        reloadFunction();
+                    }, 1000);
+                }
+            })
+    }));
+}
+
 function loading() {
     while (contentDisplay.firstChild) {
         contentDisplay.removeChild(contentDisplay.firstChild);
@@ -95,7 +135,7 @@ async function fetchUser() {
 
     loading();
 
-    // Récupération des infos en bdd
+    // Récupération des infos
     const r = await fetch("../src/controllers/userRouter.php?fetch=user");
     const userData = await r.json();
 
@@ -113,47 +153,20 @@ async function fetchUser() {
         window.location = "./adminUserInfo.php?userId=" + event.currentTarget.value;
     }));
 
-    // Ajout d'écouteur d'évènement sur les bontons delete
-    DelBtns = document.querySelectorAll(".delBtn");
-    DelBtns.forEach(delBtn => delBtn.addEventListener("click", (event) => {
-        fetch("../src/controllers/userRouter.php?delUser=" + event.currentTarget.value)
-            .then(r => {
-                if (r.ok) {
-                    while (contentDisplay.firstChild) {
-                        contentDisplay.removeChild(contentDisplay.firstChild);
-                    }
-                    responseP = document.createElement('p');
-                    responseP.innerText = 'La suppression a été effectué';
-                    contentDisplay.appendChild(responseP);
-                    setTimeout(() => {
-                        fetchUser();
-                    }, 1000);
-                } else {
-                    while (contentDisplay.firstChild) {
-                        contentDisplay.removeChild(contentDisplay.firstChild);
-                    }
-                    responseP = document.createElement('p');
-                    responseP.innerText = 'Un problème est survenu';
-                    contentDisplay.appendChild(responseP);
-                    setTimeout(() => {
-                        fetchUser();
-                    }, 1000);
-                }
-            })
-    }));
+    listenDelBtn("../src/controllers/userRouter.php?delUser=", fetchUser);
 }
 
 async function fetchProducts() {
 
     loading();
 
-    // Récupération des infos en bdd
+    // Récupération des infos
     const r = await fetch("../src/controllers/productRouter.php?fetch=product");
     const productData = await r.json();
 
     // Création et affichage du tableau
-    headers = ['id', 'name', 'category', 'price'];
-    keysToDisplay = ['id_pro', 'name_pro', 'category_pro', 'price_pro'];
+    headers = ['id', 'name', 'category', 'origin', 'price'];
+    keysToDisplay = ['id_pro', 'name_pro', 'category_pro', 'origin_pro', 'price_pro'];
     infoBtnValue = 'id_pro';
     productTable = createTable(headers, productData, keysToDisplay, infoBtnValue);
     contentDisplay.removeChild(contentDisplay.lastChild);
@@ -165,32 +178,30 @@ async function fetchProducts() {
         window.location = "./adminProductInfo.php?productId=" + e.currentTarget.value;
     }));
 
-    // Ajout d'écouteur d'évènement sur les bontons delete
-    DelBtns = document.querySelectorAll(".delBtn");
-    DelBtns.forEach(delBtn => delBtn.addEventListener("click", (event) => {
-        fetch("../src/controllers/productRouter.php?delProduct=" + event.currentTarget.value)
-            .then(r => {
-                if (r.ok) {
-                    while (contentDisplay.firstChild) {
-                        contentDisplay.removeChild(contentDisplay.firstChild);
-                    }
-                    responseP = document.createElement('p');
-                    responseP.innerText = 'La suppression a été effectué';
-                    contentDisplay.appendChild(responseP);
-                    setTimeout(() => {
-                        fetchProducts();
-                    }, 1000);
-                } else {
-                    while (contentDisplay.firstChild) {
-                        contentDisplay.removeChild(contentDisplay.firstChild);
-                    }
-                    responseP = document.createElement('p');
-                    responseP.innerText = 'Un problème est survenu';
-                    contentDisplay.appendChild(responseP);
-                    setTimeout(() => {
-                        fetchProducts();
-                    }, 1000);
-                }
-            })
-    }));
+    listenDelBtn("../src/controllers/productRouter.php?delProduct=", fetchProducts);
 }
+
+async function fetchMessages() {
+
+    loading();
+
+    // Récupération des infos
+    const r = await fetch("../src/controllers/adminRouter.php?fetch=messages");
+    const messagesData = await r.json();
+
+    // Création et affichage du tableau
+    headers = ['Id', 'Firtname', 'Lastname', 'Date'];
+    keysToDisplay = ['id_mes', 'firstname_mes', 'lastname_mes', 'date_mes'];
+    infoBtnValue = 'id_mes';
+    productTable = createTable(headers, messagesData, keysToDisplay, infoBtnValue);
+    contentDisplay.removeChild(contentDisplay.lastChild);
+    contentDisplay.appendChild(productTable);
+
+    // Ajout d'écouteur d'évènement sur les bonton info
+    getInfoBtns = document.querySelectorAll('.infoBtn');
+    getInfoBtns.forEach(infoBtn => infoBtn.addEventListener('click', (e) => {
+        window.location = "./adminMessagesInfo.php?messageId=" + e.currentTarget.value;
+    }));
+
+    listenDelBtn("../src/controllers/adminRouter.php?delMessage=", fetchMessages);
+}   

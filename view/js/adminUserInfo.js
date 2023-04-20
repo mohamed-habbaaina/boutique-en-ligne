@@ -5,9 +5,17 @@ const forms = document.querySelectorAll('form');
 forms.forEach(form => form.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(form);
-    console.log(formData);
+    
     fetch("../src/controllers/userRouter.php", {
         method: 'POST',
         body: formData
+    }).then(r => {
+        if (r.ok) {
+            const main = document.querySelector('main');
+            main.innerText = "updating..."
+            setTimeout(() => {
+                window.location.reload();
+            },1500);
+        }
     })
 }))

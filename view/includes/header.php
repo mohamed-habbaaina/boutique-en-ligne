@@ -44,7 +44,7 @@ if (isset($_SESSION["user"])) {
         </div>
         <div id="search">
 
-    <form action="./../src/controllers/searchProduct.js" method="get" id="searchForm">
+        <form action="./../src/controllers/searchProduct.js" method="get" id="searchForm">
         <input type="search" name="search" placeholder="Search">
     </form>
     </div>

@@ -24,13 +24,15 @@ function fetchRate() {
                     <h3>${product.name_pro}</h3>
                 </div>
                 <div class="productInfo">
-                <div class=">productPrice">
-                <p id="productPrice">${product.price_pro} €</p>
-                </div>
-                <div class=">productOrigin">${product.origin_pro}</div>
-                <div class=">productCategory">${product.category_pro}</div>
-                <div class=">productWeight" id="starRating">${starRating}</div>
-                <a href="product.php?idProduct=${product.id_pro}">see more...</a>
+                    <div class=">productPrice">
+                        <p id="productPrice">${product.price_pro} €</p>
+                    </div>
+                    <div class=">productOrigin">${product.origin_pro}</div>
+                    <div class=">productCategory">${product.category_pro}</div>
+                    <div class=">productWeight" id="starRating">${starRating}</div>
+                    <div class="seeMore">
+                        <a href="product.php?idProduct=${product.id_pro}">see more...</a>
+                    </div>
                 </div>
 
               `;

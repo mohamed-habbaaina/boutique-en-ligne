@@ -250,4 +250,15 @@ class Product
             ':id' => $id
         ]);
     }
+
+    public function updateImage($id, $name) {
+        $sqlUpdate = ('UPDATE `product` SET `image_pro` = :image_pro 
+        WHERE `id_pro` = :id'
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+        $prepare->execute([
+            ':image_pro' => $name,
+            ':id' => $id
+        ]);
+    }
 }

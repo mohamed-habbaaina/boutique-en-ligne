@@ -165,8 +165,8 @@ async function fetchProducts() {
     const productData = await r.json();
 
     // Création et affichage du tableau
-    headers = ['id', 'name', 'category', 'price'];
-    keysToDisplay = ['id_pro', 'name_pro', 'category_pro', 'price_pro'];
+    headers = ['id', 'name', 'category', 'origin', 'price'];
+    keysToDisplay = ['id_pro', 'name_pro', 'category_pro', 'origin_pro', 'price_pro'];
     infoBtnValue = 'id_pro';
     productTable = createTable(headers, productData, keysToDisplay, infoBtnValue);
     contentDisplay.removeChild(contentDisplay.lastChild);

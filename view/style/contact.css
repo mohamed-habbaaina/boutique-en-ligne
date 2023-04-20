@@ -44,14 +44,14 @@
     width: 90%;
 }
 
-textarea {
+.form textarea {
     position: relative;
     bottom: 1rem;
     border: none;
     width: 90%;
 }
 
-label {
+.form label {
     display: block;
     color: #999;
     position: absolute;
@@ -61,19 +61,19 @@ label {
     transition: all 0.2s ease-out;
 }
 
-input:focus {
+.form input:focus {
     outline: none;
 }
 
-input:focus+label,
-input:not(:placeholder-shown)+label {
+.form input:focus+label,
+.form input:not(:placeholder-shown)+label {
     color: #111;
     transform: translate(0.25rem, -1.3rem);
     font-size: 0.8rem;
 }
 
-textarea:focus+label,
-textarea:not(:placeholder-shown)+label {
+.form textarea:focus+label,
+.form textarea:not(:placeholder-shown)+label {
     color: #111;
     transform: translate(0.25rem, -1.3rem);
     font-size: 0rem;

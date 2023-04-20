@@ -60,10 +60,6 @@ session_start();
         <?php require_once("./includes/footer.php"); ?>
     </main>
 
-    <script src="./js/contact.js"></script>
-    <script src="./js/auth.js"></script>
-    <script src="../src/controllers/searchProduct.js"></script>
-
 </body>
 
 </html>

@@ -8,6 +8,7 @@
     <title>About Us</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/includes.css">
+    <link rel="stylesheet" href="style/contact.css">
 </head>
 
 <body>
@@ -29,8 +30,6 @@
         </section>
     </main>
 
-
-    <script src="./js/contact.js"></script>
     </script>
 
 </body>

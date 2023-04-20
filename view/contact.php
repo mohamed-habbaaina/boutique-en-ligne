@@ -23,7 +23,7 @@
             <div id="contact_form">
                 <h3>Formulaire de contact</h3>
                 <h4 id="form_message"></h4>
-                <form action="" methode="post" id="message_form">
+                <form action="" methode="post" id="message_form" class="form">
                     <div id="name_form">
                         <div class="input_container" id="firstname_div">
                             <input type="text" name="contact_firstname" id="firstname_input" placeholder=" ">
@@ -58,6 +58,7 @@
 
     <script src="./js/contact.js"></script>
     <script src="./js/auth.js"></script>
+    <script src="../src/controllers/searchProduct.js"></script>
 
 </body>
 

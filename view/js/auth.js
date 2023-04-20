@@ -1,5 +1,6 @@
 let regDisplayBtn = document.querySelector("#regDisplayBtn");
 let logDisplayBtn = document.querySelector("#logDisplayBtn");
+const main = document.querySelector('main');
 
 function FetchReg() {
   fetch("register.php")
@@ -7,10 +8,9 @@ function FetchReg() {
       return response.text();
     })
     .then((form) => {
-      formDisplay.innerHTML = form;
+      main.innerHTML = form;
       let regBtn = document.querySelector("#regBtn");
       let regForm = document.querySelector("#regForm");
-      let regMsg = document.querySelector("#regMsg");
       let regPassword = document.querySelector("#regPassword");
       let regPasswordConfirm = document.querySelector("#regPasswordConfirm");
       
@@ -130,7 +130,7 @@ function FetchLog() {
       return response.text();
     })
     .then((form) => {
-      formDisplay.innerHTML = form;
+      main.innerHTML = form;
       let logBtn = document.querySelector("#logBtn");
       let logForm = document.querySelector("#logForm");
       let logMsg = document.querySelector("#logMsg");

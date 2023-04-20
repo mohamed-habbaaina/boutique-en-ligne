@@ -58,8 +58,7 @@ if(isset($_SESSION['user'])){
 
         <div>
             <div class="displayCart">
-                <!-- tomporaire por le css-->
-                <!-- Vous avez maitenant 4 produit dans le panier ! -->
+                <!-- Display Js -->
 
             </div>
             <div>
@@ -95,6 +94,11 @@ if(isset($_SESSION['user'])){
                 <?php };?>
 
             </div>
+            
+            <?php if(isset($_SESSION['user'])){;?>
+            <button><a href="./cart.php">cart</a></button>
+            <?php };?>
+
         </div>
         
         <div>

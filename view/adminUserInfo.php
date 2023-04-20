@@ -94,9 +94,10 @@ if (isset($_GET["userId"])) {
                 </tr>
             </table>
 
-            <h3>Commandes utilisateur</h3>
-
-            <?php foreach ($orders as $order) {
+            <?php
+            echo !empty($orders) ? '<h3>Commandes utilisateur</h3>' : '';
+            
+            foreach ($orders as $order) {
                 $id_ord = $order[0]['id_ord'];
                 $date_ord = $order[0]['date_ord'];
 

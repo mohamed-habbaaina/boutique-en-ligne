@@ -31,13 +31,13 @@ searchForm.addEventListener('input', async (e) => {
         resultDisplay.innerHTML = '';
 
         // Display link Db
-        html += '<ul>';
-        data.forEach(item => {
-            html += `
-                <li class=""><a href="./product.php?idProduct=${item.id_pro}">${item.name_pro}</a></li>
-            `
-        });
-        html += '</ul>';
+        if (data.length > 0) {
+            html += '<ul>';
+            data.forEach(item => {
+                html += `<li class=""><a href="./product.php?idProduct=${item.id_pro}">${item.name_pro}</a></li>`
+            });
+            html += '</ul>';
+        }
         
         resultDisplay.insertAdjacentHTML('beforeend', html);
 

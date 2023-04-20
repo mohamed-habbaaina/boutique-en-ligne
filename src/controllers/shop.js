@@ -40,12 +40,12 @@ window.addEventListener('DOMContentLoaded', async () =>{
                     <div class="displayShop">
                         <div class ="productDisplay">
                         <a href="./product.php?idProduct=${item.id_pro}"><img src="../uploads/${item.image_pro}" alt="${item.name_pro}"></a>
-                            <h3>${item.name_pro}</h3>
+                        <a href="./product.php?idProduct=${item.id_pro}"><h3>${item.name_pro}</h3></a>
                             <p>${item.category_pro}</p>
                             <p>${item.category_descript}</p>
                             <p>${item.origin_pro}</p>
                             <p>${item.origin_descript}</p>
-                            <p>${formatRate} ###</p>
+                            <p>${formatRate}</p>
                             <p>${item.price_pro}  $ </p>
                         </div>
                     </div>

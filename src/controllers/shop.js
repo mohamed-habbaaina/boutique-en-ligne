@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', async () =>{
                     <div class="displayShop">
                         <div class ="productDisplay">
                             <img src="../uploads/${item.image_pro}" alt="${item.name_pro}">
-                            <h3>${item.name_pro}</h3>
+                            <h4>${item.name_pro}</h4>
                             <p>${item.category_pro}</p>
                             <p>${item.category_descript}</p>
                             <p>${item.origin_pro}</p>

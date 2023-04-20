@@ -152,7 +152,7 @@ padding-top: 5%;
   .gridProduct img {
     width: 100%;
     max-width: 200px;
-    height: auto;
+    height: 100%;
     margin-bottom: 10px;
   }
   .gridProduct p{

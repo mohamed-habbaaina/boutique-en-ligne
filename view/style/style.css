@@ -36,17 +36,16 @@ margin-right: auto;
 
 #displayResult {
     position: absolute;
-    background-color: #eee;
+    padding-top: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 #displayResult ul {
     width: 195px;
-    padding-top: 10px;
     padding-left: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
     background-color: #fff;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 #displayResult a:hover {

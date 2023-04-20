@@ -31,7 +31,6 @@ if (isset($_GET["productId"])) {
     <?php require_once("./includes/header.php"); ?>
 
         <h3>Info produit</h3>
-
         <table>
             <tr>
                 <td>Id</td>
@@ -90,6 +89,14 @@ if (isset($_GET["productId"])) {
                     <input type="hidden" value="<?= $data['id_pro']?>" name="id">
                     <td><label for="price">price</label></td>
                     <td><input type="text" value="<?= $data['price_pro'] ?>" id="price" name="price"></input></td>
+                    <td><input type="submit" value="change"></td>
+                </form>
+            </tr>
+            <tr>
+                <form action="" id="imageForm" class="changeForm">
+                    <input type="hidden" value="<?= $data['id_pro']?>" name="id">
+                    <td><label for="image">image</label></td>
+                    <td><input type="file" value="<?= $data['image_pro'] ?>" id="image" name="image"></input></td>
                     <td><input type="submit" value="change"></td>
                 </form>
             </tr>

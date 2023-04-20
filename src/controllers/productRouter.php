@@ -46,3 +46,7 @@ if (isset($_POST['originDescription'])) {
 if (isset($_POST['price'])) {
     $adminController->changePrice($_POST['id'], $_POST['price']);
 }
+
+if (isset($_POST['id']) && isset($_FILES['image'])) {
+    $adminController->changeProductImage($_POST['id'], $_FILES['image']);
+}

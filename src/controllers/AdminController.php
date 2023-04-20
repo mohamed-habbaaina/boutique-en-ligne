@@ -99,4 +99,23 @@ class AdminController
     public function changePrice($id, $newPrice) {
         $this->product->updatePrice($id, $newPrice);
     }
+
+    public function changeProductImage($id, $imageData) {
+        // vérifier si il n'y a pas d'erreur
+        if ($imageData['error'] == 0) {
+            // vérifier la taille du fichier
+            if ($imageData['size'] <= 2000000) {
+                // Autoriser seulement certaines extensions
+                $fileInfo = pathinfo($imageData['name']);
+                $extension = $fileInfo['extension'];
+                $allowedExtentions = ['jpg', 'jpeg', 'gif', 'png', 'bnp'];
+                if (in_array($extension, $allowedExtentions)) {
+                    // Stocker l'image
+                    $imageName = basename($imageData['name']);
+                    move_uploaded_file($imageData['tmp_name'], '../../uploads/' . $imageName);
+                    $this->product->updateImage($id, $imageName);
+                }
+            }
+        }
+    }
 }

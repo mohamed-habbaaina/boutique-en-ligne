@@ -18,25 +18,23 @@ fetch('./../src/model/getCart.php')
             let price = item.price_pro / 100;
             total += price * item.quantity;
             html += `<div class="cart">
-                <div class="displayMessageCart"></div>
-                <img src="./../uploads/${item.image_pro}" alt="${item.name_pro}">
-                <div class="detailProduct">
-                    <h3>${item.name_pro}</h3>
-                    <p>${price} Euro</p>
+                        <p class="displayMessageCart"></p>
+                        <a href="product.php?idProduct=${item.id_pro}"><img src="./../uploads/${item.image_pro}" alt="${item.name_pro}"></a>
+                        <div class="detailProduct">
+                            <h3>${item.name_pro}</h3>
+                            <p>${price} Euro</p>
 
-                    <form action="./../src/model/updateCart.php" method="post">
-                        <input type="hidden" name="id_product" value="${item.id_pro}">
-                        <input type="hidden" name="id_user" value="${item.id_user}">
-                        <input type="number" name="product_quantity" value="${item.quantity}">
-                        <input type="submit" name="update_cart" value="Quantity"/>
-                    </form>
-
-                </div>
-                <div class="btn-cart">
-                    <button><a href="product.php?idProduct=${item.id_pro}">Detait</a></button>
-                    <button><a href="../src/model/deleteCart.php?idProduct=${item.id_pro}">Delete</a></button>
-                </div>
-            </div>`;
+                            <form action="./../src/model/updateCart.php" method="post">
+                                <input type="hidden" name="id_product" value="${item.id_pro}">
+                                <input type="hidden" name="id_user" value="${item.id_user}">
+                                <input type="number" name="product_quantity" value="${item.quantity}">
+                                <input type="submit" name="update_cart" value="Quantity"/>
+                            </form>
+                        </div>
+                        <div class="btn-cart">
+                            <button><a href="../src/model/deleteCart.php?idProduct=${item.id_pro}">Delete</a></button>
+                        </div>
+                    </div>`;
 
         });
 

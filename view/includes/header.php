@@ -47,5 +47,8 @@ if (isset($_SESSION["user"])) {
     <form action="./../src/controllers/searchProduct.js" method="get" id="searchForm">
         <input type="search" name="search" placeholder="Search">
     </form>
+    <div id="displayResult"></div>
     </div>
 </nav>
+<script defer src="./../src/controllers/searchProduct.js" defer></script>
+<script src="./js/auth.js" defer></script>

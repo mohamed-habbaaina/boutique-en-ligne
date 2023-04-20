@@ -96,7 +96,7 @@ if (isset($_GET["productId"])) {
                 <form action="" id="imageForm" class="changeForm">
                     <input type="hidden" value="<?= $data['id_pro']?>" name="id">
                     <td><label for="image">image</label></td>
-                    <td><input type="file" value="<?= $data['image_pro'] ?>" id="image" name="image"></input></td>
+                    <td><?= $data['image_pro'] ?><br><input type="file" value="<?= $data['image_pro'] ?>" id="image" name="image"></input></td>
                     <td><input type="submit" value="change"></td>
                 </form>
             </tr>

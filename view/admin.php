@@ -19,6 +19,8 @@ session_start();
 
     <?php require_once "./includes/header.php" ?>
 
+    <main>
+
     <?php
     if (!isset($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'admin') {
         echo "Access denied, you have to be admin";
@@ -26,7 +28,6 @@ session_start();
     }
     ?>
     
-    <main>
         <button id="productDisplayBtn">Products</button>
         <button id="userDisplayBtn">Users</button>
         <button id="commentDisplayBtn">Comments</button>

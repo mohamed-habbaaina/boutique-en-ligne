@@ -19,9 +19,13 @@ class AdminController
 
     public function __construct()
     {
-        $this->user = new User();
-        $this->product = new Product();
-        $this->contact = new ContactModel();
+        if (!isset($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'admin') {
+            return "Access denied, you have to be admin";
+        } else {
+            $this->user = new User();
+            $this->product = new Product();
+            $this->contact = new ContactModel();
+        }
     }
 
     public function getUserInfo($id)
@@ -56,51 +60,63 @@ class AdminController
         return $this->contact->getAllMessages();
     }
 
-    public function getMessage($id) {
+    public function getMessage($id)
+    {
         return $this->contact->getMessage($id);
     }
 
-    public function delMessage($id) {
+    public function delMessage($id)
+    {
         $this->contact->delMessage($id);
     }
 
-    public function delUser($id) {
+    public function delUser($id)
+    {
         $this->user->delUser($id);
     }
 
-    public function delProduct($id) {
+    public function delProduct($id)
+    {
         $this->product->delProduct($id);
     }
 
-    public function changeName($id, $newName) {
+    public function changeName($id, $newName)
+    {
         $this->product->updateName($id, $newName);
     }
 
-    public function changeCategory($id, $newCategory) {
+    public function changeCategory($id, $newCategory)
+    {
         $this->product->updateCategory($id, $newCategory);
     }
-    
-    public function changeCategoryDescription($id, $newCategoryDescription) {
+
+    public function changeCategoryDescription($id, $newCategoryDescription)
+    {
         $this->product->updateCategoryDescription($id, $newCategoryDescription);
     }
 
-    public function changeDescription($id, $newDescription) {
+    public function changeDescription($id, $newDescription)
+    {
         $this->product->updateDescription($id, $newDescription);
     }
 
-    public function changeOrigin($id, $newOrigin) {
+    public function changeOrigin($id, $newOrigin)
+    {
         $this->product->updateOrigin($id, $newOrigin);
     }
 
-    public function changeOriginDescription($id, $newOriginDescription) {
+    public function changeOriginDescription($id, $newOriginDescription)
+    {
         $this->product->updateOriginDescription($id, $newOriginDescription);
     }
 
-    public function changePrice($id, $newPrice) {
+    public function changePrice($id, $newPrice)
+    {
         $this->product->updatePrice($id, $newPrice);
     }
 
-    public function changeProductImage($id, $imageData) {
+    public function changeProductImage($id, $imageData)
+    {
         // vérifier si il n'y a pas d'erreur
         if ($imageData['error'] == 0) {
             // vérifier la taille du fichier

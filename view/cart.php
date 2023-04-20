@@ -3,6 +3,8 @@ session_start();
 use src\Classes\Cart;
 require_once('./../src/Classes/Cart.php');
 $cart = new cart();
+
+// Secure page
 if(!$cart->isConnected())
 {
     header("Location: index.php");
@@ -18,7 +20,7 @@ if(!$cart->isConnected())
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./style/style.css">
     <script defer src="./../src/controllers/get_cart.js"></script>
-    <script defer src="./../src/controllers/updateCart.js"></script>
+    <!-- <script defer src="./../src/controllers/updateCart.js"></script> -->
     <title>Cart</title>
 </head>
 <body>

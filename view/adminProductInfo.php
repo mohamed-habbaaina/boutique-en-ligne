@@ -20,7 +20,7 @@ if (isset($_GET["productId"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infos <?= $name; ?></title>
-    <!-- <link rel="stylesheet" href="style/contact.css"> -->
+    <link rel="stylesheet" href="style/contact.css">
     <link rel="stylesheet" href="style/includes.css">
     <link rel="stylesheet" href="style/style.css">
     <script src="./js/adminProductInfo.js" defer></script>
@@ -30,6 +30,7 @@ if (isset($_GET["productId"])) {
 
     <?php require_once("./includes/header.php"); ?>
 
+    <main>
         <h3>Info produit</h3>
         <table>
             <tr>
@@ -38,7 +39,7 @@ if (isset($_GET["productId"])) {
             </tr>
             <tr>
                 <form action="" id="nameForm" class="changeForm">
-                    <input type="hidden" value="<?= $data['id_pro']?>" name="id">
+                    <input type="hidden" value="<?= $data['id_pro'] ?>" name="id">
                     <td><label for="name">Name</label></td>
                     <td><input type="text" value="<?= $data['name_pro'] ?>" id="name" name="name"></input></td>
                     <td><input type="submit" value="change"></td>
@@ -86,7 +87,7 @@ if (isset($_GET["productId"])) {
             </tr>
             <tr>
                 <form action="" id="priceForm" class="changeForm">
-                    <input type="hidden" value="<?= $data['id_pro']?>" name="id">
+                    <input type="hidden" value="<?= $data['id_pro'] ?>" name="id">
                     <td><label for="price">price</label></td>
                     <td><input type="text" value="<?= $data['price_pro'] ?>" id="price" name="price"></input></td>
                     <td><input type="submit" value="change"></td>
@@ -94,10 +95,15 @@ if (isset($_GET["productId"])) {
             </tr>
             <tr>
                 <form action="" id="imageForm" class="changeForm">
-                    <input type="hidden" value="<?= $data['id_pro']?>" name="id">
+                    <input type="hidden" value="<?= $data['id_pro'] ?>" name="id">
                     <td><label for="image">image</label></td>
                     <td><?= $data['image_pro'] ?><br><input type="file" value="<?= $data['image_pro'] ?>" id="image" name="image"></input></td>
                     <td><input type="submit" value="change"></td>
                 </form>
             </tr>
         </table>
+
+    </main>
+</body>
+
+</html>

@@ -110,7 +110,7 @@ function FetchReg() {
             })
             .then((content) => {
               if(content == "Registed"){
-                window.location = "index.php";
+                FetchLog();
               }
             });
         }

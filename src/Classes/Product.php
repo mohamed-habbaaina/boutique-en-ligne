@@ -172,7 +172,7 @@ class Product
         INNER JOIN product
         ON rate.id_pro = product.id_pro
         GROUP BY product.id_pro
-        ORDER BY AVG(rate.value_rat) DESC LIMIT 3";
+        ORDER BY AVG(rate.value_rat) DESC LIMIT 4";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute();
 
@@ -259,4 +259,66 @@ class Product
         $prepare->execute(['id' => $id]);
 
     }
+
+    public function updateName($id, $newName)
+    {
+        $sqlUpdate = ('UPDATE `product` SET `name_pro` = :name_pro 
+        WHERE `id_pro` = :id'
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+        $prepare->execute([
+            ':name_pro' => $newName,
+            ':id' => $id
+        ]);
+    }
+
+
+    public function updateDescription($id, $newDescription)
+    {
+        $sqlUpdate = ('UPDATE `product` SET `description_pro` = :description_pro 
+            WHERE `id_pro` = :id'
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+        $prepare->execute([
+            ':description_pro' => $newDescription,
+            ':id' => $id
+        ]);
+    }
+
+    public function updateCategory($id, $newCategory)
+    {
+        $sqlUpdate = ('UPDATE `product` SET `category_pro` = :category_pro 
+        WHERE `id_pro` = :id'
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+        $prepare->execute([
+            ':category_pro' => $newCategory,
+            ':id' => $id
+        ]);
+    }
+
+    public function updateCategoryDescription($id, $newCategoryDescription)
+    {
+        $sqlUpdate = ('UPDATE `product` SET `category_descript` = :category_descript 
+            WHERE `id_pro` = :id'
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+        $prepare->execute([
+            ':category_descript' => $newCategoryDescription,
+            ':id' => $id
+        ]);
+    }
+
+    public function updateOrigin($id, $newOrigin)
+    {
+        $sqlUpdate = ('UPDATE `product` SET `origin_pro` = :origin_pro 
+        WHERE `id_pro` = :id'
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+        $prepare->execute([
+            ':origin_pro' => $newOrigin,
+            ':id' => $id
+        ]);
+    }
+
 }

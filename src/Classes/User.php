@@ -90,23 +90,17 @@ class User
 
     public function getData($id)
     {
-        $select = "SELECT * FROM user WHERE id_user=:id";
+        $select = ("SELECT u.*, c.*, w.*
+            FROM user u
+            LEFT JOIN customer c ON u.id_user = c.id_user
+            LEFT JOIN worker w ON u.id_user = w.id_user
+            WHERE u.id_user = :id"
+        );
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
             ':id' => $id
         ]);
-        $user_result = $prepare->fetch(\PDO::FETCH_ASSOC);
-        $select = "SELECT * FROM customer WHERE id_user=:id";
-        $prepare = DbConnection::getDb()->prepare($select);
-        $prepare->execute([
-            ':id' => $id
-        ]);
-        $customer_result = $prepare->fetch(\PDO::FETCH_ASSOC);
-        if ($customer_result !== false) {
-            return array_merge($user_result, $customer_result);
-        } else {
-            return $user_result;
-        }
+        return $prepare->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function updateProfil($profil)

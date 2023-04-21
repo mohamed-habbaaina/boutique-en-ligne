@@ -25,6 +25,7 @@ Class Comment{
     public function selectComment($id_pro){
 
         $select = "SELECT 
+        comment.id_com as id,
         comment.date_com as date,
         comment.text_com as text,
         user.firstname as firstname,

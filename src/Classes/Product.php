@@ -98,61 +98,62 @@ class Product
     public function getAllProductData()
     {
 
-    $select="SELECT * FROM product";
-    $prepare = DbConnection::getDb()->prepare($select);
-    $prepare->execute();
-    $result = $prepare->fetch(\PDO::FETCH_ASSOC);
+        $select = "SELECT * FROM product";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute();
+        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
 
-    echo json_encode($result);
-   
+        echo json_encode($result);
+    }
 
-   }
+    public function isRated($id_user, $id_pro)
+    {
 
-   public function isRated($id_user, $id_pro){
-    
-    $select = "SELECT id_rate FROM rate WHERE id_user = :id_user AND id_pro = :id_pro";
-    $rateCount = DbConnection::getDb()->prepare($select);
-    $rateCount->execute([
-        "id_user" => $id_user,
-        "id_pro" => $id_pro
-    ]);
-    $result = $rateCount->fetchColumn();
-    var_dump($result);
-    return $result;
-   }
+        $select = "SELECT id_rate FROM rate WHERE id_user = :id_user AND id_pro = :id_pro";
+        $rateCount = DbConnection::getDb()->prepare($select);
+        $rateCount->execute([
+            "id_user" => $id_user,
+            "id_pro" => $id_pro
+        ]);
+        $result = $rateCount->fetchColumn();
+        var_dump($result);
+        return $result;
+    }
 
-   public function insertRate($value_rat, $id_user, $id_pro){
-    $insert = "INSERT INTO rate (value_rat, id_user, id_pro) VALUE (:value_rat, :id_user, :id_pro)";
-    $prepare = DbConnection::getDb()->prepare($insert);
-    $prepare->execute([
-        "value_rat" => $value_rat,
-        "id_user" => $id_user,
-        "id_pro" => $id_pro
-    ]);
-   }
+    public function insertRate($value_rat, $id_user, $id_pro)
+    {
+        $insert = "INSERT INTO rate (value_rat, id_user, id_pro) VALUE (:value_rat, :id_user, :id_pro)";
+        $prepare = DbConnection::getDb()->prepare($insert);
+        $prepare->execute([
+            "value_rat" => $value_rat,
+            "id_user" => $id_user,
+            "id_pro" => $id_pro
+        ]);
+    }
 
-   public function updateRate($id_rate, $value_rat, $id_user, $id_pro){
-    $update = "UPDATE rate SET value_rat = :value_rat, id_user = :id_user, id_pro= :id_pro WHERE id_rate = :id_rate";
-    $prepare = DbConnection::getDb()->prepare($update);
-    $prepare->execute([
-        "value_rat" => $value_rat,
-        "id_user" => $id_user,
-        "id_pro" => $id_pro,
-        "id_rate" => $id_rate
-    ]);
+    public function updateRate($id_rate, $value_rat, $id_user, $id_pro)
+    {
+        $update = "UPDATE rate SET value_rat = :value_rat, id_user = :id_user, id_pro= :id_pro WHERE id_rate = :id_rate";
+        $prepare = DbConnection::getDb()->prepare($update);
+        $prepare->execute([
+            "value_rat" => $value_rat,
+            "id_user" => $id_user,
+            "id_pro" => $id_pro,
+            "id_rate" => $id_rate
+        ]);
+    }
 
-   }
+    public function selectRate($id_pro)
+    {
+        $select = "SELECT AVG(value_rat) as avg_rate FROM rate WHERE id_pro = :id_pro";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute([
+            "id_pro" => $id_pro
+        ]);
+        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
 
-   public function selectRate($id_pro){
-    $select = "SELECT AVG(value_rat) as avg_rate FROM rate WHERE id_pro = :id_pro";
-    $prepare = DbConnection::getDb()->prepare($select);
-    $prepare->execute([
-        "id_pro" => $id_pro
-    ]);
-    $result = $prepare->fetch(\PDO::FETCH_ASSOC);
-
-    echo json_encode($result);
-   }
+        echo json_encode($result);
+    }
 
     public function delProduct($id)
     {
@@ -251,7 +252,8 @@ class Product
         ]);
     }
 
-    public function updateImage($id, $name) {
+    public function updateImage($id, $name)
+    {
         $sqlUpdate = ('UPDATE `product` SET `image_pro` = :image_pro 
         WHERE `id_pro` = :id'
         );
@@ -260,5 +262,15 @@ class Product
             ':image_pro' => $name,
             ':id' => $id
         ]);
+    }
+
+    public function delComment($id)
+    {
+        $sqlQuery = (
+            'DELETE FROM comment WHERE id_com = :id'
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlQuery);
+        $prepare->execute(['id' => $id]);
+
     }
 }

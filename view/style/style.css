@@ -22,12 +22,12 @@ margin-right: auto;
 .background{
    display: flex;
    justify-content: center;
-   
 
 }
 .background img{
     width: 80%;
     height: 600px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .profilNameDisplay, .profilContactDisplay, .profilPwdDisplay {
@@ -89,60 +89,56 @@ h2 {
 }
 
 /* aboutshop */
-.aboutshopTextLeft{
-margin-left: 5%;
-padding-top: 5%;
-position: relative;
-width: 625px;
-height: 190px;
+.aboutShop{
+    font-family: 'Inika';
+    margin-top: 5%;
+    margin-bottom: 5%;
+   
+    margin: 10%;
 
-
-font-family: 'Inika';
-font-style: normal;
-font-weight: 400;
-font-size: 28px;
-line-height: 36px;
-
-color: #000000;
 }
+.displayAboutShop{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+.displayAboutShop p{
+    font-size: 28px;
+}
+.aboutshopTextLeft{
+width: 50%;
+
+padding: 5%;
+color: #000000;
+
+}
+
 .imgRight{
-margin-right: 5%;
-padding-top: 5%;
-
 display: flex;
-left: 25%;
 justify-content: flex-end;
-
+box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .imgRight img{
-   
-    width: 800px;
+    width: 580px;
+    height: 400px;
 }
 
 .aboutshopTextRight{
-margin-right: 5%;
-padding-top: 5%;
-position: relative;
-width: 925px;
-height: 190px;
-left: 36%;
-font-family: 'Inika';
-font-style: normal;
-font-weight: 400;
-font-size: 28px;
-line-height: 36px;
-
+width: 50%;
 color: #000000;
+padding: 5%;
+
 }
+
 .imgLeft{
-margin-left: 5%;
-padding-bottom: 5%;
-display: flex;
-padding-top: 5%;
+    display: flex;
+    justify-content: flex-start;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .imgLeft img{
-    
-    width: 800px;
+    width: 580px;
+    height: 400px;
 }
 
 /* MOST LIKED DIV */
@@ -153,8 +149,8 @@ padding-top: 5%;
 .grid-container {
     margin-top: 5%;
     display: grid;
-    grid-template-columns: repeat(3, 300px);
-    gap: 40px;
+    grid-template-columns: repeat(4, 300px);
+    gap: 60px;
     justify-content: center;
   }
   
@@ -196,4 +192,36 @@ padding-top: 5%;
     font-size: 20px;
     font-style: bold;
     font-family: Arial, Helvetica, sans-serif;
+  }
+
+
+
+  @media only screen and (max-width: 768px) {
+    .aboutShop {
+      margin: 5%;
+    }
+    .displayAboutShop {
+      flex-direction: column;
+      margin-top: 5%;
+      margin-bottom: 5%;
+    }
+    .aboutshopTextLeft {
+        padding: 5%;
+        width: 100%;
+    }
+    .aboutshopTextRight {
+      padding: 5%;
+      width: 100%;
+    }
+    .imgRight img{
+        width: 100%;
+        height: auto;
+    }
+    .imgLeft img {
+      width: 100%;
+      height: auto;
+    }
+    .displayAboutShop p {
+      font-size: 24px;
+    }
   }

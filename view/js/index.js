@@ -43,7 +43,7 @@ function fetchRate() {
             
             
 }
-fetchRate();
+
 
 function getStarRating(rating) {
     const maxRating = 5; // maximum rating for the star system
@@ -69,3 +69,4 @@ function getStarRating(rating) {
   
     return starRating;
   }
+  fetchRate();

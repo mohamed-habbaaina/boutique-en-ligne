@@ -117,7 +117,6 @@ class Product
         "id_pro" => $id_pro
     ]);
     $result = $rateCount->fetchColumn();
-    var_dump($result);
     return $result;
    }
 
@@ -158,107 +157,60 @@ class Product
     {
         $sqlUpdate = ('UPDATE `product` SET `state_pro` = :state_pro 
         WHERE `id_pro` = :id'
-        );
-        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
-        $prepare->execute([
-            ':state_pro' => "deleted",
-            ':id' => $id
-        ]);
+    );
+    $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+    $prepare->execute([
+        ':state_pro' => "deleted",
+        ':id' => $id
+    ]);
+    }
+    public function selectMostLiked(){
+        $select ="SELECT AVG(rate.value_rat) as rate_avg, product.*
+        FROM rate
+        INNER JOIN product
+        ON rate.id_pro = product.id_pro
+        GROUP BY product.id_pro
+        ORDER BY AVG(rate.value_rat) DESC LIMIT 3";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute();
+
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($result);
     }
 
-    public function updateName($id, $newName)
-    {
-        $sqlUpdate = ('UPDATE `product` SET `name_pro` = :name_pro 
-        WHERE `id_pro` = :id'
-        );
-        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
-        $prepare->execute([
-            ':name_pro' => $newName,
-            ':id' => $id
-        ]);
+    public function selectAllCategory(){
+        $select = "SELECT DISTINCT category_pro FROM product";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute();
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($result);
+    }
+    
+    public function selectAllOrigin(){
+        $select = "SELECT DISTINCT origin_pro FROM product";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute();
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($result);
     }
 
-
-    public function updateDescription($id, $newDescription)
-    {
-        $sqlUpdate = ('UPDATE `product` SET `description_pro` = :description_pro 
-            WHERE `id_pro` = :id'
-        );
-        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+    public function selectOneCategory($category){
+        $select ="SELECT * FROM product WHERE category_pro = :category";
+        $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
-            ':description_pro' => $newDescription,
-            ':id' => $id
+            "category" => $category
         ]);
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($result);
     }
 
-    public function updateCategory($id, $newCategory)
-    {
-        $sqlUpdate = ('UPDATE `product` SET `category_pro` = :category_pro 
-        WHERE `id_pro` = :id'
-        );
-        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+    public function selectOneOrigin($origin){
+        $select ="SELECT * FROM product WHERE origin_pro = :origin";
+        $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
-            ':category_pro' => $newCategory,
-            ':id' => $id
+            "origin" => $origin
         ]);
-    }
-
-    public function updateCategoryDescription($id, $newCategoryDescription)
-    {
-        $sqlUpdate = ('UPDATE `product` SET `category_descript` = :category_descript 
-            WHERE `id_pro` = :id'
-        );
-        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
-        $prepare->execute([
-            ':category_descript' => $newCategoryDescription,
-            ':id' => $id
-        ]);
-    }
-
-    public function updateOrigin($id, $newOrigin)
-    {
-        $sqlUpdate = ('UPDATE `product` SET `origin_pro` = :origin_pro 
-        WHERE `id_pro` = :id'
-        );
-        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
-        $prepare->execute([
-            ':origin_pro' => $newOrigin,
-            ':id' => $id
-        ]);
-    }
-
-    public function updateOriginDescription($id, $newOriginDescription)
-    {
-        $sqlUpdate = ('UPDATE `product` SET `origin_descript` = :origin_descript 
-            WHERE `id_pro` = :id'
-        );
-        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
-        $prepare->execute([
-            ':origin_descript' => $newOriginDescription,
-            ':id' => $id
-        ]);
-    }
-
-    public function updatePrice($id, $newPrice)
-    {
-        $sqlUpdate = ('UPDATE `product` SET `price_pro` = :price_pro 
-        WHERE `id_pro` = :id'
-        );
-        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
-        $prepare->execute([
-            ':price_pro' => $newPrice,
-            ':id' => $id
-        ]);
-    }
-
-    public function updateImage($id, $name) {
-        $sqlUpdate = ('UPDATE `product` SET `image_pro` = :image_pro 
-        WHERE `id_pro` = :id'
-        );
-        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
-        $prepare->execute([
-            ':image_pro' => $name,
-            ':id' => $id
-        ]);
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($result);
     }
 }

@@ -32,5 +32,29 @@ Class ProductController{
     public function fetchRate($id_pro){
         $this->product->selectRate($id_pro);
     }
+
+    public function getMostLiked(){
+      return $this->product->selectMostLiked();
+    }
+
+    public function getCategory(){
+        return $this->product->selectAllCategory();
+    }
+
+    public function getOrigin(){
+        return $this->product->selectAllOrigin();
+
+    }
+
+    public function displayCategory($category){
+        return $this->product->selectOneCategory($category);
+    }
+    
+    public function displayOrigin($origin){
+        return $this->product->selectOneOrigin($origin);
+    }
+
+    
+
 }
 ?>

@@ -16,4 +16,25 @@ if(isset($_POST["addRate"])){
 if(isset($_GET["fetchRate"])){
     $productController->fetchRate($_GET["fetchRate"]);
 }
+
+if(isset($_GET["mostLiked"])){
+    $productController->getMostLiked();
+}
+
+if(isset($_GET["fetchCategory"])){
+    $productController->getCategory();
+}
+
+if(isset($_GET["fetchOrigin"])){
+    $productController->getOrigin();
+}
+
+if(isset($_POST["displayCategory"])){
+    $productController->displayCategory($_POST["displayCategory"]);
+}
+
+if(isset($_POST["displayOrigin"])){
+    $productController->displayOrigin($_POST["displayOrigin"]);
+}
+
 ?>

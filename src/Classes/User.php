@@ -90,7 +90,9 @@ class User
 
     public function getData($id)
     {
+        
         $select = "SELECT * FROM user WHERE id_user=:id";
+
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
             ':id' => $id

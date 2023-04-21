@@ -47,8 +47,7 @@ function fetchComment() {
                 <button>go</button>
                 <hr>
               `;
-
-             
+              
                 commentSection.appendChild(commentDiv);
             });
         })

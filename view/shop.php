@@ -16,6 +16,8 @@ $_SESSION['page'] = $page;
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/shop.css">
+
+    <link rel="stylesheet" href="./style/includes.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <script defer src="./../src/controllers/shop.js"></script>
     <title>Shop</title>
@@ -30,8 +32,20 @@ $_SESSION['page'] = $page;
                 <button><a href="shop.php?page=<?php echo $page -1 ?>">Previous Page <<</a></button>
                 <button><a href="shop.php?page=<?php echo $page +1 ?>" id="btn_suivant">Next Page >></a></button>
             </div>
+            <div class="filter">
+                <form id="selectCategory">
+                <div id="categoryDiv">
+                    <h4>Per category</h4>
 
-            <div class="shop">
+                </div>
+                </form>
+                <form id="selectOrigin">
+                    <div id="originDiv">
+                        <h4>Per origin</h4>
+                    </div>
+                </form>
+            </div>
+            <div class="shop" id="shop">
                 <!-- Display products whith api fetch -->
             </div>
 
@@ -39,6 +53,6 @@ $_SESSION['page'] = $page;
     </main>
 
     <?php require_once('./includes/footer.php'); ?>
-    
+    <script src="./js/filter.js"></script>
 </body>
 </html>

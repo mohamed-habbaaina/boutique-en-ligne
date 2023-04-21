@@ -139,7 +139,7 @@ if (isset($_SESSION['user'])) {
 
 
     </main>
-
+    
     <?php require_once('./includes/footer.php'); ?>
     <script src="./js/comment.js"></script>
     <script src="./js/rate.js"></script>

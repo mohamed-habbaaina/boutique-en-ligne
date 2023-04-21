@@ -67,7 +67,6 @@ window.addEventListener('DOMContentLoaded', async () =>{
         const halfStarCount = Math.round(rating - fullStarCount); 
         const emptyStarCount = maxRating - fullStarCount - halfStarCount;
         let starRating = '';
-      
   
         for (let i = 0; i < fullStarCount; i++) {
           starRating += '<i class="fas fa-star"></i>';

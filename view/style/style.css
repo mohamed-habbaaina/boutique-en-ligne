@@ -154,6 +154,8 @@ padding-top: 5%;
     max-width: 200px;
     height: 100%;
     margin-bottom: 10px;
+    object-fit: cover;
+
   }
   .gridProduct p{
     font-size: 18px;

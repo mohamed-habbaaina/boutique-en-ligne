@@ -187,12 +187,30 @@ class Product
         $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
         echo json_encode($result);
     }
+    
+    public function selectAllOrigin(){
+        $select = "SELECT DISTINCT origin_pro FROM product";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute();
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($result);
+    }
 
     public function selectOneCategory($category){
         $select ="SELECT * FROM product WHERE category_pro = :category";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
             "category" => $category
+        ]);
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($result);
+    }
+
+    public function selectOneOrigin($origin){
+        $select ="SELECT * FROM product WHERE origin_pro = :origin";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute([
+            "origin" => $origin
         ]);
         $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
         echo json_encode($result);

@@ -41,8 +41,20 @@ Class ProductController{
         return $this->product->selectAllCategory();
     }
 
+    public function getOrigin(){
+        return $this->product->selectAllOrigin();
+
+    }
+
     public function displayCategory($category){
         return $this->product->selectOneCategory($category);
     }
+    
+    public function displayOrigin($origin){
+        return $this->product->selectOneOrigin($origin);
+    }
+
+    
+
 }
 ?>

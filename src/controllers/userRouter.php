@@ -50,6 +50,10 @@ if(isset($_GET["fetch"])){
     }
 }
 
+if(isset($_GET['sessionInfo'])){
+    $userController->getSession();
+}
+
 if(isset($_GET["delUser"])){
     $adminController->delUser($_GET['delUser']);
 }

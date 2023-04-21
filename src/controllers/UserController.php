@@ -141,4 +141,12 @@ class UserController extends FormControler
     {
         $this->user->getAllUserData();
     }
+
+    public function getSession()
+    {
+        if (isset($_SESSION)) {
+            echo json_encode($_SESSION);
+        }
+    }
+
 }

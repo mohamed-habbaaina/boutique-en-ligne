@@ -134,4 +134,12 @@ class AdminController
             }
         }
     }
+
+    public function delComment($id)
+    {
+        if (isset($_SESSION) && $_SESSION['user']['role'] === 'admin') {
+            echo "ok";
+            $this->product->delComment($id);
+        }
+    }
 }

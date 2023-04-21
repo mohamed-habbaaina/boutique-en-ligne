@@ -18,3 +18,7 @@ if (isset($_GET["fetch"])) {
 if (isset($_GET["delMessage"])) {
     $adminController->delMessage($_GET["delMessage"]);
 }
+
+if (isset($_GET["delComment"])) {
+    $adminController->delComment($_GET["delComment"]);
+}

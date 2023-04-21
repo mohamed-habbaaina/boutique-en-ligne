@@ -37,6 +37,12 @@ Class ProductController{
       return $this->product->selectMostLiked();
     }
 
-    
+    public function getCategory(){
+        return $this->product->selectAllCategory();
+    }
+
+    public function displayCategory($category){
+        return $this->product->selectOneCategory($category);
+    }
 }
 ?>

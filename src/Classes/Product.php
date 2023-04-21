@@ -180,5 +180,21 @@ class Product
         echo json_encode($result);
     }
 
+    public function selectAllCategory(){
+        $select = "SELECT DISTINCT category_pro FROM product";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute();
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($result);
+    }
 
+    public function selectOneCategory($category){
+        $select ="SELECT * FROM product WHERE category_pro = :category";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute([
+            "category" => $category
+        ]);
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        echo json_encode($result);
+    }
 }

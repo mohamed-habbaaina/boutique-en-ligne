@@ -20,4 +20,12 @@ if(isset($_GET["fetchRate"])){
 if(isset($_GET["mostLiked"])){
     $productController->getMostLiked();
 }
+
+if(isset($_GET["fetchCategory"])){
+    $productController->getCategory();
+}
+
+if(isset($_POST["displayCategory"])){
+    $productController->displayCategory($_POST["displayCategory"]);
+}
 ?>

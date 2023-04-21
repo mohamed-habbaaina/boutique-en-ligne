@@ -32,8 +32,20 @@ $_SESSION['page'] = $page;
                 <button><a href="shop.php?page=<?php echo $page +1 ?>" id="btnSuivant">Page suivante >></a></button>
                 <button><a href="shop.php?page=<?php echo $page -1 ?>">Page précédente <<</a></button>
             </div>
+            <div class="filter">
+                <form id="selectCategory">
+                <div id="categoryDiv">
+                    <h4>Per category</h4>
 
-            <div class="shop">
+                </div>
+                </form>
+                <form id="selectOrigin">
+                    <div id="originDiv">
+                        <h4>Per origin</h4>
+                    </div>
+                </form>
+            </div>
+            <div class="shop" id="shop">
                 <!-- Display products whith api fetch -->
             </div>
 
@@ -41,6 +53,6 @@ $_SESSION['page'] = $page;
     </main>
 
     <?php require_once('./includes/footer.php'); ?>
-    
+    <script src="./js/filter.js"></script>
 </body>
 </html>

@@ -23,7 +23,6 @@ window.addEventListener('DOMContentLoaded', async () =>{
     
         if(data.length > 0){
     
-    
             data.forEach(item => {
                 
                 const rating = item.avg_rating;
@@ -57,7 +56,7 @@ window.addEventListener('DOMContentLoaded', async () =>{
                     </div>
                 `;
         }
-    
+
         shop.insertAdjacentHTML('beforeend', html);
     
     })
@@ -74,7 +73,6 @@ window.addEventListener('DOMContentLoaded', async () =>{
           starRating += '<i class="fas fa-star"></i>';
         }
       
-      
         for (let i = 0; i < halfStarCount; i++) {
           starRating += '<i class="fas fa-star-half-alt"></i>';
         }
@@ -85,4 +83,4 @@ window.addEventListener('DOMContentLoaded', async () =>{
       
         return starRating;
       }
-    
+

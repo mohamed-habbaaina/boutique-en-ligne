@@ -62,21 +62,28 @@ class User
         $prepare->execute([
             ':email' => $email
         ]);
-        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
+        $resultUser = $prepare->fetch(\PDO::FETCH_ASSOC);
 
-        if (empty($result)) {
+        if (empty($resultUser)) {
             echo "Incorrect email or password.";
             die();
-        } elseif (!password_verify($password, $result["password"])) {
+        } elseif (!password_verify($password, $resultUser["password"])) {
             echo "Incorrect email or password.";
             die();
         } else {
             $_SESSION["user"] = [
-                "id" => $result["id_user"],
-                "firstname" => $result["firstname"],
-                "lastname" => $result["lastname"],
-                "email" => $result["email"],
+                "id" => $resultUser["id_user"],
+                "firstname" => $resultUser["firstname"],
+                "lastname" => $resultUser["lastname"],
+                "email" => $resultUser["email"],
             ];
+            $select = "SELECT role_wor FROM worker WHERE id_user = :id";
+            $prepare = DbConnection::getDb()->prepare($select);
+            $prepare->execute([':id' => $resultUser["id_user"]]);
+            $resultWorker = $prepare->fetch(\PDO::FETCH_ASSOC);
+            if (isset($resultWorker["role_wor"])) {
+                $_SESSION["user"]["role"] = $resultWorker["role_wor"];
+            }
             echo "Welcome";
         }
     }

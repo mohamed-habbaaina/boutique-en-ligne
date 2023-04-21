@@ -34,6 +34,31 @@ margin-right: auto;
     display: none;
 }
 
+#displayResult {
+    position: absolute;
+    padding-top: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+#displayResult ul {
+    width: 195px;
+    padding-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #fff;
+}
+
+#displayResult a:hover {
+    color: green;
+}
+
+#displayResult li {
+    margin-top: 8px;
+}
+
+#searchForm input {
+    width: 200px;
+}
 
 section {
     font-family: 'Inika', serif;

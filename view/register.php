@@ -6,7 +6,7 @@
         <h3>Register</h3>
         <p id="regMsg"></p>
         <h4 id="form_message"></h4>
-        <form method="post" id="regForm">
+        <form method="post" id="regForm" class="form">
             <div id="name_form">
                 <div class="input_container" id="firstname_div">
                     <input type="text" name="regFirstname" id="regFirstname" placeholder=" ">

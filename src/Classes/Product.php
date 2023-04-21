@@ -1,4 +1,5 @@
 <?php
+
 namespace src\Classes;
 
 require_once('DbConnection.php');
@@ -7,7 +8,6 @@ class Product
 {
     public function __construct()
     {
-
     }
 
     /**
@@ -25,7 +25,6 @@ class Product
         $dataProcut->bindParam(':id', $idProduct);
         $dataProcut->execute();
         return $dataProcut->fetch(\PDO::FETCH_ASSOC);
-
     }
 
     /**
@@ -57,7 +56,6 @@ class Product
         $lastId = DbConnection::getDb()->prepare($sqlLastId);
         $lastId->execute();
         return $lastId->fetch();
-
     }
 
     /* Creation of the image name that match the insert image id
@@ -85,20 +83,20 @@ class Product
         $reqInsertProduct->bindParam(':category_pro', $category);
         $reqInsertProduct->bindParam(':category_descript', $category_descript);
         $reqInsertProduct->execute();
-
     }
 
     /* Get Product like $request.
     */
-   public function getSearchProduct($request): ?array
-   {
-       $req = "SELECT * FROM `product` WHERE name_pro LIKE '%{$request}%' LIMIT 10";
-       $reqSearch = DbConnection::getDb()->prepare($req);
-       $reqSearch->execute();
-       return $reqSearch->fetchAll(\PDO::FETCH_ASSOC);
-   }
+    public function getSearchProduct($request): ?array
+    {
+        $req = "SELECT * FROM `product` WHERE name_pro LIKE '%{$request}%' LIMIT 10";
+        $reqSearch = DbConnection::getDb()->prepare($req);
+        $reqSearch->execute();
+        return $reqSearch->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
-   public function getAllProductData(){
+    public function getAllProductData()
+    {
 
     $select="SELECT * FROM product";
     $prepare = DbConnection::getDb()->prepare($select);
@@ -155,9 +153,9 @@ class Product
     echo json_encode($result);
    }
 
-   public function delProduct($id) {
-    $sqlUpdate = (
-        'UPDATE `product` SET `state_pro` = :state_pro 
+    public function delProduct($id)
+    {
+        $sqlUpdate = ('UPDATE `product` SET `state_pro` = :state_pro 
         WHERE `id_pro` = :id'
     );
     $prepare = DbConnection::getDb()->prepare($sqlUpdate);

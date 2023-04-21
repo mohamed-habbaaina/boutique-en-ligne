@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="style/contact.css"> -->
+    <link rel="stylesheet" href="style/contact.css">
     <link rel="stylesheet" href="style/includes.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
@@ -20,9 +20,9 @@ session_start();
 <body>
     <?php require_once "./includes/header.php" ?>
     <main>
-
+    
         <div id="displayResult"></div>
-        </div>
+    </div>
 
         <div id="formDisplay">
 
@@ -62,7 +62,6 @@ session_start();
     <?php require_once "./includes/footer.php" ?>
 
     <script src="./js/auth.js"></script>
-    <script src="./js/index.js"></script>
 </body>
 
 </html>

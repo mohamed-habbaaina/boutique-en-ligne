@@ -1,10 +1,10 @@
 function fetchComment() {
-    
+
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id_pro = urlParams.get('idProduct');
-   
-   
+
+
     console.log(id_pro)
     fetch(`../src/controllers/commentRouter.php?fetchComment=${id_pro}`)
 
@@ -12,46 +12,71 @@ function fetchComment() {
             return response.json()
         })
         .then((comments) => {
-          
+
             const commentSection = document.getElementById('comment-section');
             commentSection.innerHTML = '';
 
-            comments.forEach(comment => {
-                const postDate = new Date(comment.date);
-                const currentDate = new Date();
-    
-               
-                const diff = currentDate.getTime() - postDate.getTime();
-    
-                
-                if (diff >= 31536000000) {
-                    result = Math.floor(diff / 31536000000) + ' year(s) ago';
-                } else if (diff >= 2592000000) {
-                    result = Math.floor(diff / 2592000000) + ' month(s) ago';
-                } else if (diff >= 86400000) {
-                    result = Math.floor(diff / 86400000) + ' day(s) ago';
-                } else if (diff >= 3600000) {
-                    result = Math.floor(diff / 3600000) + ' hour(s) ago';
-                } else if (diff >= 60000) {
-                    result = Math.floor(diff / 60000) + ' minute(s) ago';
-                } else {
-                    result = 'just now';
-                }
-                
-                const commentDiv = document.createElement('div');
+            getRole()
+                .then(userInfo => {
 
-                commentDiv.innerHTML = `
-                <p>${result}</p>
-                <p>by ${comment.firstname}</p>
-                <p>${comment.text}</p>
-                <button>go</button>
-                <hr>
-              `;
+                    comments.forEach(comment => {
+                        const postDate = new Date(comment.date);
+                        const currentDate = new Date();
 
-             
-                commentSection.appendChild(commentDiv);
-            });
+
+                        const diff = currentDate.getTime() - postDate.getTime();
+
+
+                        if (diff >= 31536000000) {
+                            result = Math.floor(diff / 31536000000) + ' year(s) ago';
+                        } else if (diff >= 2592000000) {
+                            result = Math.floor(diff / 2592000000) + ' month(s) ago';
+                        } else if (diff >= 86400000) {
+                            result = Math.floor(diff / 86400000) + ' day(s) ago';
+                        } else if (diff >= 3600000) {
+                            result = Math.floor(diff / 3600000) + ' hour(s) ago';
+                        } else if (diff >= 60000) {
+                            result = Math.floor(diff / 60000) + ' minute(s) ago';
+                        } else {
+                            result = 'just now';
+                        }
+
+                        const commentDiv = document.createElement('div');
+                        // commentDiv.className = "comment_div";
+
+                        commentDiv.innerHTML = `
+                            <p>${result}</p>
+                            <p>by ${comment.firstname}</p>
+                            <p>${comment.text}</p>           
+                        `;
+                        console.log(comment);
+                        if (userInfo.user.role === 'admin') {
+                            commentDiv.innerHTML += `
+                                <button value="${comment.id}" class="remove_button">
+                                    remove
+                                </button>
+                                <hr>
+                            `
+                        }
+
+                        commentSection.appendChild(commentDiv);
+                    });
+                    document.querySelectorAll('.remove_button').forEach(button => {
+                        console.log(button);
+                        button.addEventListener('click', async (e) => {
+                            await fetch(`../src/controllers/adminRouter.php?delComment=${e.target.value}`);
+                            window.location.reload();
+                        })
+                    });
+                });
+
         })
+}
+
+async function getRole() {
+    r = await fetch(`../src/controllers/userRouter.php?sessionInfo=`);
+    userInfo = await r.json();
+    return userInfo;
 }
 
 fetchComment();
@@ -67,7 +92,7 @@ addCommentBtn.addEventListener("click", function (ev) {
     data.append("addComment", "add");
     fetch("../src/controllers/commentRouter.php", {
         method: "POST",
-        body: data,
+        body: data
     })
         .then((response) => {
             return response.text();

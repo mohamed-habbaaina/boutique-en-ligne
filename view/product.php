@@ -49,8 +49,12 @@ if (isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/product.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="./style/includes.css">
+    <link rel="stylesheet" href="./style/contact.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
     <script defer src="./../src/controllers/add_cart.js"></script>
+    <script defer src="./js/rate.js"></script>
+    <script defer src="./js/comment.js"></script>
     <title>Product</title>
 </head>
 
@@ -59,90 +63,95 @@ if (isset($_SESSION['user'])) {
 
     <main>
 
-        <div>
-            <div class="displayCart">
-                <!-- Display Js -->
+        <div class="displayCart">
+            <!-- Display Js -->
+
+        </div>
+
+        <section class="product_info">
+
+            <div class="product_contener">
+
+                <div class="image_container">
+                        <!-- add path image -->
+                        <img src="./../uploads/<?= $image; ?>" alt="<?= $name; ?>" class="product_image">
+                    
+                </div>
+
+                <div class="info_product_contener">
+                    <div id="displayCart"></div>
+                    <h3><?= $name; ?></h3>
+                    <p>Poids</p>
+                    <p><?= $origin; ?> : <?= $origin_descript; ?></p>
+                    <p><?= $category; ?> : <?= $category_descript; ?></p>
+                    <p>price : <?= $price / 100 ; ?> €</p>
+
+                    <div class="rateDisplay">
+                        <p>Rate :</p>
+                        <p id="rateValue"></p>
+                        <?php if (isset($_SESSION["user"])) : ?>
+                            <form method="post" id="postRateForm">
+                                <label for="rating">Sélectionnez votre note :</label>
+                                <select name="rating" id="rating">
+                                    <option>-- Rate --</option>
+                                    <option value="1">&#9733;</option>
+                                    <option value="2">&#9733; &#9733;</option>
+                                    <option value="3">&#9733; &#9733; &#9733;</option>
+                                    <option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+                                    <option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+                                </select>
+                            </form>
+
+                        <?php endif ?>
+                    </div>
+                    <?php if (isset($_SESSION['user'])) {; ?>
+                        <form action="./../src/controllers/add_cart.js" method="post" id="formCart">
+                            <input type="hidden" name="id_product" value="<?= $id_product; ?>">
+                            <input type="hidden" name="id_user" value="<?= $id_user; ?>">
+                            <input type="number" name="product_quantity" value="<?= 1; ?>">
+                            <input type="submit" name="add_cart" value="+ Panier" />
+                        </form>
+
+                        <form action="" method="post" id="formBuy">
+                            <input type="hidden" name="id_product_buy" value="<?= $id_product; ?>">
+                            <input type="hidden" name="id_user_buy" value="<?= $id_user; ?>">
+                            <input type="hidden" name="product_quantity_buy" value="1">
+                            <input type="hidden" name="add_cart_buy" value="Acher" />
+                        </form>
+
+                        <?php if (isset($_SESSION['user'])) {; ?>
+                            <button><a href="./cart.php">cart</a></button>
+                        <?php }; ?>
+                    <?php }; ?>
+                </div>
 
             </div>
+
             <div>
-                <h1><?= $name; ?></h1>
-                <!-- add path image -->
-                <img src="./../uploads/<?= $image; ?>" alt="<?= $name; ?>">
+                <h2 class="description">Description:</h2>
+                <p><?= $description; ?></p>
             </div>
+        </section>
+        <section>
 
-            <div>
-                <div id="displayCart"></div>
-                <h3><?= $name; ?></h3>
-                <p>Poids</p>
-                <p><?= $origin; ?> : <?= $origin_descript; ?></p>
-                <p><?= $category; ?> : <?= $category_descript; ?></p>
-                <p><?= $avg_rating ?>/5 *</p>
-                <p><?= $price; ?></p>
-
-                <?php if (isset($_SESSION['user'])) {; ?>
-                    <form action="./../src/controllers/add_cart.js" method="post" id="formCart">
-                        <input type="hidden" name="id_product" value="<?= $id_product; ?>">
-                        <input type="hidden" name="id_user" value="<?= $id_user; ?>">
-                        <input type="number" name="product_quantity" value="<?= 1; ?>">
-                        <input type="submit" name="add_cart" value="+ Panier" />
+            <div class="commentDisplay">
+                <?php if (isset($_SESSION["user"])) : ?>
+                    <form id="addCommentForm">
+                        <input type="text" id="commentText" name="commentText">
+                        <button id="addCommentBtn" value="<?= $id_product; ?>">Envoyer</button>
                     </form>
-
-                <form action="" method="post" id="formBuy">
-                    <input type="hidden" name="id_product_buy" value="<?= $id_product;?>">
-                    <input type="hidden" name="id_user_buy" value="<?= $id_user;?>">
-                    <input type="hidden" name="product_quantity_buy" value="1">
-                    <input type="hidden" name="add_cart_buy" value="Acher"/>
-                </form>
-
-                <?php }; ?>
-
+                <?php endif ?>
             </div>
-            
-            <?php if(isset($_SESSION['user'])){;?>
-            <button><a href="./cart.php">cart</a></button>
-            <?php };?>
+            <section id="comment-section">
 
-        </div>
-        <p>Rate :</p>
-        <div class="rateDisplay">
-            <p id="rateValue"></p>
-            <?php if (isset($_SESSION["user"])) : ?>
-            <form method="post" id="postRateForm">
-                <label for="rating">Sélectionnez votre note :</label>
-                <select name="rating" id="rating">
-                    <option>-- Rate --</option>
-                    <option value="1">&#9733;</option>
-                    <option value="2">&#9733; &#9733;</option>
-                    <option value="3">&#9733; &#9733; &#9733;</option>
-                    <option value="4">&#9733; &#9733; &#9733; &#9733;</option>
-                    <option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
-                </select>
-            </form>
-            <?php endif ?>
-        </div>
-        <div>
-            <h2>Description:</h2>
-            <p><?= $description; ?></p>
-        </div>
-
-        <div class="commentDisplay">
-        <?php if (isset($_SESSION["user"])) : ?>
-            <form id="addCommentForm">
-                <input type="text" id="commentText" name="commentText">
-                <button id="addCommentBtn" value="<?= $id_product; ?>">Envoyer</button>
-            </form>
-            <?php endif ?>
-        </div>
-        <section id="comment-section">
-
+            </section>
         </section>
 
 
     </main>
 
     <?php require_once('./includes/footer.php'); ?>
-    <script src="./js/comment.js"></script>
-    <script src="./js/rate.js"></script>
+
 </body>
 
 </html>

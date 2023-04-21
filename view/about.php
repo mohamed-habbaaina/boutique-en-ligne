@@ -1,3 +1,7 @@
+<?php
+session_start()
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -29,6 +33,8 @@
             </div>
         </section>
     </main>
+
+    <?php require_once("./includes/footer.php"); ?>
 
     </script>
 

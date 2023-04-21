@@ -55,9 +55,9 @@ function fetchComment() {
                                 <button value="${comment.id}" class="remove_button">
                                     remove
                                 </button>
-                                <hr>
                             `
                         }
+                        commentDiv.innerHTML += `<hr>`
 
                         commentSection.appendChild(commentDiv);
                     });

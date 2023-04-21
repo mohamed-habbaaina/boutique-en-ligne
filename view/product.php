@@ -149,7 +149,7 @@ if (isset($_SESSION['user'])) {
 
 
     </main>
-
+    
     <?php require_once('./includes/footer.php'); ?>
 
 </body>

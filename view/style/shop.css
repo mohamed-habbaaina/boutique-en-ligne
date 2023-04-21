@@ -1,4 +1,4 @@
-shop{
+/* shop{
     display: flex;
     flex-direction: row;
 }
@@ -13,7 +13,7 @@ productDisplay {
   }
   
   .productDisplay img {
-    max-width: 100%;
+    max-width: 50%;
     height: 200px;
     object-fit: cover;
     margin-bottom: 10px;
@@ -48,3 +48,19 @@ productDisplay {
   #starRating{
     color: gold;
   }
+
+   */
+
+   .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes avec une largeur égale */
+    grid-template-rows: repeat(3, 1fr); /* 3 lignes avec une hauteur égale */
+    grid-gap: 20px; /* espacement entre les éléments */
+  }
+  
+  .grid-container > div {
+    background-color: #fff; /* couleur de fond pour les éléments */
+    text-align: center; /* centrage du contenu */
+    padding: 20px; /* marge intérieure */
+  }
+  

@@ -116,3 +116,14 @@ nav{
     text-decoration: none;
   }
 
+  #search input{
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    
+    font-size: 18px;
+    outline: none;
+  }
+  #search {
+    width: 200px;
+  }

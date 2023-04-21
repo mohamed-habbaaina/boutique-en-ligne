@@ -26,6 +26,7 @@ if (isset($_GET["userId"])) {
     <link rel="stylesheet" href="style/contact.css">
     <link rel="stylesheet" href="style/includes.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/admin.css">
     <script src="./js/adminUserInfo.js" defer></script>
 </head>
 

@@ -140,7 +140,7 @@ async function fetchUser() {
     const userData = await r.json();
 
     // Création et affichage du tableau
-    headers = ['Id', 'Firsname', 'Lastname', 'Email'];
+    headers = ['Id', 'Firsname', 'Lastname', 'Email', 'Info', 'Delete'];
     keysToDisplay = ['id_user', 'firstname', 'lastname', 'email'];
     infoBtnValue = 'id_user';
     userTable = createTable(headers, userData, keysToDisplay, infoBtnValue);
@@ -165,7 +165,7 @@ async function fetchProducts() {
     const productData = await r.json();
 
     // Création et affichage du tableau
-    headers = ['id', 'name', 'category', 'origin', 'price'];
+    headers = ['Id', 'Name', 'Category', 'Origin', 'Price', 'Info', 'Delete'];
     keysToDisplay = ['id_pro', 'name_pro', 'category_pro', 'origin_pro', 'price_pro'];
     infoBtnValue = 'id_pro';
     productTable = createTable(headers, productData, keysToDisplay, infoBtnValue);

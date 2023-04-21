@@ -30,7 +30,6 @@ if(isset($_POST["login"])){
 }
 
 if(isset($_POST["updateNameForm"])){
-    
     $userController->changeProfil($_SESSION["user"]["id"], $_POST["profilFirstname"], $_POST["profilLastname"], $_POST["profilEmail"]);
 }
 

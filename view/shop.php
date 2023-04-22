@@ -29,7 +29,7 @@ $_SESSION['page'] = $page;
         <div class="container">
 
             <div class="page">
-                <button><a href="shop.php?page=<?php echo $page -1 ?>">Previous Page <<</a></button>
+                <button><a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a></button>
                 <button><a href="shop.php?page=<?php echo $page +1 ?>" id="btn_suivant">Next Page >></a></button>
             </div>
             <div class="filter">

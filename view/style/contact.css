@@ -61,6 +61,10 @@
     transition: all 0.2s ease-out;
 }
 
+.form label:hover {
+    cursor: text;
+}
+
 .form input:focus {
     outline: none;
 }

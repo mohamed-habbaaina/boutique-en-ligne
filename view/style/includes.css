@@ -139,10 +139,11 @@ nav{
   footer {
     margin-top: 15%;
     position: relative;
-    width: 93%;
+    width: 100%;
     background: #572A17;
     min-height: 100px;
-    padding: 20px 50px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;

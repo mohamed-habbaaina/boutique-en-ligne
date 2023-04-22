@@ -3,6 +3,11 @@
 #formDisplay{
     padding-top: 2%;
 }
+
+body {
+  margin: 0px;
+}
+
 #search input{
     display: flex;
 }

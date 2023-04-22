@@ -4,7 +4,6 @@ namespace src\Classes;
 
 require_once('../src/Classes/User.php');
 $user = new User();
-var_dump($user->getData($_SESSION['user']['id']));
 $current_profil = $user->getData($_SESSION['user']['id']);
 ?>
 
@@ -34,7 +33,7 @@ $current_profil = $user->getData($_SESSION['user']['id']);
 
         <div class="profilNameDisplay" id="profilNameDisplay">
             <p id="profilMsg"></p>
-            <form method="post" id="profilNameForm">
+            <form method="post" id="updateNameForm">
                 <div id="name_form">
                     <div class="input_container">
                         <input type="text" name="profilFirstname" id="profilFirstname" value="<?= $current_profil["firstname"] ?>" placeholder=" ">
@@ -57,7 +56,7 @@ $current_profil = $user->getData($_SESSION['user']['id']);
         </div>
 
         <div class="profilContactDisplay" id="profilContactDisplay">
-            <form method="post" id="profilContactForm">
+            <form method="post" id="updateContactForm">
                 <div class="input_container">
                     <input type="text" name="profilAddress" id="profilAddress" value="<?= isset($current_profil["address_cus"]) ? $current_profil["address_cus"] : null ?>" placeholder=" ">
                     <label for="profilAddress">Address</label>
@@ -76,7 +75,7 @@ $current_profil = $user->getData($_SESSION['user']['id']);
             </form>
         </div>
         <div class="profilPwdDisplay" id="profilPwdDisplay">
-            <form method="post" id="profilPwdForm">
+            <form method="post" id="updatePwdForm">
                 <div class="input_container">
                     <input type="password" name="profilPassword" id="profilPassword" placeholder=" ">
                     <label for="profilPassword">Old Password</label>

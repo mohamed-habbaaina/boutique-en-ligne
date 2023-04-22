@@ -260,35 +260,8 @@ padding: 5%;
 
 
 
-  @media only screen and (max-width: 768px) {
-    .aboutShop {
-      margin: 5%;
-    }
-    .displayAboutShop {
-      flex-direction: column;
-      margin-top: 5%;
-      margin-bottom: 5%;
-    }
-    .aboutshopTextLeft {
-        padding: 5%;
-        width: 100%;
-    }
-    .aboutshopTextRight {
-      padding: 5%;
-      width: 100%;
-    }
-    .imgRight img{
-        width: 100%;
-        height: auto;
-    }
-    .imgLeft img {
-      width: 100%;
-      height: auto;
-    }
-    .displayAboutShop p {
-      font-size: 24px;
-    }
-  }
+  
+
 /* aboutshop */
 .aboutShop{
     font-family: 'Inika';
@@ -399,7 +372,8 @@ padding: 5%;
     font-family: Arial, Helvetica, sans-serif;
   }
 
-
+  
+ 
 
   @media only screen and (max-width: 768px) {
     .aboutShop {
@@ -428,5 +402,24 @@ padding: 5%;
     }
     .displayAboutShop p {
       font-size: 24px;
+    }
+    .mostLiked {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .mostLiked h1 {
+      font-size: 24px;
+    }
+    
+    .grid-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .gridProduct {
+      width: 100%;
+      max-width: 400px;
     }
   }

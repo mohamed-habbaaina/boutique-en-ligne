@@ -52,9 +52,9 @@ if (isset($_SESSION['user'])) {
     <link rel="stylesheet" href="./style/includes.css">
     <link rel="stylesheet" href="./style/contact.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-    <script defer src="./../src/controllers/add_cart.js"></script>
-    <script defer src="./js/rate.js"></script>
-    <script defer src="./js/comment.js"></script>
+    <?php if(isset($_SESSION['user'])){ ?><script defer src="./../src/controllers/add_cart.js"></script>
+        <script defer src="./js/comment.js"></script><?php }; ?>
+        <script defer src="./js/rate.js"></script>
     <title>Product</title>
 </head>
 

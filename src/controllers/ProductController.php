@@ -54,7 +54,13 @@ Class ProductController{
         return $this->product->selectOneOrigin($origin);
     }
 
-    
+    public function displayCategories($categories){
+        if (!empty($categories)) {
+            $this->product->selectCategories(explode(",", $categories));   
+        } else {
+            $this->product->getAllProductsData();
+        }
+    }
 
 }
 ?>

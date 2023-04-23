@@ -346,7 +346,7 @@ class Product
         $select = "SELECT * FROM product";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute();
-        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
 
         echo json_encode($result);
     }

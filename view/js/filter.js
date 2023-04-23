@@ -17,7 +17,7 @@ function fetchCategory() {
         categoryDiv.appendChild(label);
 
 
-        input.addEventListener('change', (event) => {
+        input.addEventListener('change', () => {
           postCategory();
 
         });
@@ -27,16 +27,19 @@ function fetchCategory() {
 
 
 function postCategory() {
-  const checkbox = document.querySelector('#categoryDiv input[type="checkbox"]:checked');
-  let categories;
-  if (checkbox) {
-    categories = checkbox.getAttribute('name');
-  } else {
-    window.location.reload();
+  const checkboxes = document.querySelectorAll('#categoryDiv input[type="checkbox"]:checked');
+  let categories = [];
+  if (checkboxes.length > 0) {
+    console.log(checkboxes);
+    checkboxes.forEach(categorie => {
+      categories.push(categorie.getAttribute('name'));
+    })
+    console.log(categories);
   }
 
   let data = new FormData();
-  data.append("displayCategory", categories);
+  data.append("displayCategories", categories);
+  console.log(data);
   fetch('../src/controllers/rateRouter.php', {
     method: 'POST',
     body: data,
@@ -45,11 +48,11 @@ function postCategory() {
     .then((response) => {
       return response.json();
     })
-    .then((product) => {
-      console.log(product)
+    .then((products) => {
+      console.log(products)
       let shop = document.querySelector("#shop")
       let html = "";
-      product.forEach((item) => {
+      products.forEach((item) => {
 
         const rating = item.avg_rating;
         const starRating = getStarRating(rating);

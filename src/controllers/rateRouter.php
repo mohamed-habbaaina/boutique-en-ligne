@@ -33,6 +33,10 @@ if(isset($_POST["displayCategory"])){
     $productController->displayCategory($_POST["displayCategory"]);
 }
 
+if (isset($_POST["displayCategories"])) {
+    $productController->displayCategories($_POST["displayCategories"]);
+}
+
 if(isset($_POST["displayOrigin"])){
     $productController->displayOrigin($_POST["displayOrigin"]);
 }

@@ -321,4 +321,34 @@ class Product
         ]);
     }
 
+    public function selectCategories($categories) {
+        $select = (
+            "SELECT * 
+            FROM product 
+            WHERE category_pro = :category"
+        );
+        $prepare = DbConnection::getDb()->prepare($select);
+
+        $results = [];
+
+        foreach ($categories as $category) {
+            $prepare->execute([
+                "category" => $category
+            ]);
+            $results = array_merge($results, $prepare->fetchAll(\PDO::FETCH_ASSOC));
+        }
+        echo json_encode($results);
+    }
+
+    public function getAllProductsData()
+    {
+
+        $select = "SELECT * FROM product";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute();
+        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
+
+        echo json_encode($result);
+    }
+
 }

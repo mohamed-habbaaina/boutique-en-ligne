@@ -36,14 +36,10 @@ session_start();
 
         <div id="userDisplay">
             <p>USERS</p>
-
         </div>
+        
         <div id="productDisplay">
             <p>PRODUCTS</p>
-
-        </div>
-        <div id="commentDisplay">
-            <p>COMMENTS</p>
         </div>
 
         <div id="messageDisplay">

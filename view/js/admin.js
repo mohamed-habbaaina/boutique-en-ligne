@@ -2,8 +2,6 @@ const userDisplay = document.getElementById("userDisplay");
 const userDisplayBtn = document.getElementById("userDisplayBtn");
 const productDisplay = document.getElementById("productDisplay");
 const productDisplayBtn = document.getElementById("productDisplayBtn");
-const commentDisplay = document.getElementById("commentDisplay");
-const commentDisplayBtn = document.getElementById("commentDisplayBtn");
 const messageDisplay = document.getElementById("messageDisplay");
 const messageDisplayBtn = document.getElementById("messageDisplayBtn");
 const contentDisplay = document.getElementById("contentDisplay");
@@ -12,7 +10,6 @@ const contentDisplay = document.getElementById("contentDisplay");
 function hideAll() {
     productDisplay.style.display = "none";
     userDisplay.style.display = "none";
-    commentDisplay.style.display = "none";
     messageDisplay.style.display = "none";
 }
 
@@ -30,11 +27,6 @@ userDisplayBtn.addEventListener("click", function () {
     hideAll();
     userDisplay.style.display = "block";
     fetchUser();
-});
-
-commentDisplayBtn.addEventListener("click", function () {
-    hideAll();
-    commentDisplay.style.display = "block";
 });
 
 messageDisplayBtn.addEventListener("click", function () {

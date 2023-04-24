@@ -144,52 +144,5 @@ function createCheckbox(value, type) {
   return input;
 }
 
-function handleFilters() {
-  const categoryCheckbox = document.querySelector('#categoryDiv input[type="checkbox"]:checked');
-  const category = categoryCheckbox ? categoryCheckbox.getAttribute('name') : null;
-
-  const originCheckbox = document.querySelector('#originDiv input[type="checkbox"]:checked');
-  const origin = originCheckbox ? originCheckbox.getAttribute('name') : null;
-
-  let data = new FormData();
-  data.append("displayCategory", category);
-  data.append("displayOrigin", origin);
-
-  fetch('../src/controllers/rateRouter.php', {
-    method: 'POST',
-    body: data,
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((product) => {
-      let shop = document.querySelector("#shop")
-      let html = "";
-      product.forEach((item) => {
-        const rating = item.avg_rating;
-        const starRating = getStarRating(rating);
-
-        html += `
-          <div class="displayShop">
-            <div class ="productDisplay">
-              <img src="../uploads/${item.image_pro}" alt="${item.name_pro}">
-              <h4>${item.name_pro}</h4>
-              <p>${item.category_pro}</p>
-              <p>${item.category_descript}</p>
-              <p>${item.origin_pro}</p>
-              <p>${item.origin_descript}</p>
-              <p id="starRating">${starRating}</p>
-              <p>${item.price_pro}  $ </p>
-              <button><a href="./product.php?idProduct=${item.id_pro}">Voir le produit</a></button>
-            </div>
-          </div>
-        `;
-      });
-      shop.innerHTML = html;
-    });
-}
-
-
-
 fetchCategory();
 fetchOrigin();

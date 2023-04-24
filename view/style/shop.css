@@ -1,66 +1,78 @@
-/* shop{
-    display: flex;
-    flex-direction: row;
+/* ******************* container shop ****************** */
+/* ***************************************************** */
+
+  .shop {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    justify-content: center;
+    grid-gap: 40px;
+    width: 80%;
+    margin: auto;
+    padding: 20px 0;
 }
-productDisplay {
-    position: relative;
+/* ******************* container product *************** */
+/* ***************************************************** */
+
+.displayShop {
+  max-width: 360px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+  transition: all .3s;
+}
+.displayShop:hover{
+  transform: scale(1.08);
+}
+.productDisplay {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
     width: 100%;
-    height: 100%;
-  }
-  
-  .productDisplay img {
-    max-width: 50%;
-    height: 200px;
+    height: 250px;
+    overflow-y: auto;
+    padding: 5px;
+    margin: auto;
+
+}
+.productDisplay a h3 {
+    margin: 10px 0;
+    text-align: center;
+}
+.displayShop a{
+  /* width: 60%; */
+
+}
+
+.displayShop a img {
+    width: 100%;
+    height: 70%;
     object-fit: cover;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .productDisplay h3 {
-    margin-top: 0;
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-  
-  .productDisplay p {
-    margin: 0;
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-  
-  .productDisplay button {
-    margin-top: 10px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 1.2rem;
-    padding: 10px 20px;
-  }
-  #starRating{
-    color: gold;
-  }
+}
 
-   */
+.productDisplay p {
+    text-align: justify;
+}
 
-   .grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonnes avec une largeur égale */
-    grid-template-rows: repeat(3, 1fr); /* 3 lignes avec une hauteur égale */
-    grid-gap: 20px; /* espacement entre les éléments */
-  }
-  
-  .grid-container > div {
-    background-color: #fff; /* couleur de fond pour les éléments */
-    text-align: center; /* centrage du contenu */
-    padding: 20px; /* marge intérieure */
-  }
-  
+/* ******************* btn page ************************ */
+/* ***************************************************** */
+
+.page{
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 10px 20px;
+}
+.page button{
+  margin-inline: 5px;
+}
+/* ******************* filter ************************** */
+/* ***************************************************** */
+.filter{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 10px;
+}
+.filter #selectCategory{
+  margin-inline: 20px;
+}
+#categoryDiv label:hover, #originDiv label:hover{
+  color: #b05e3a;
+}

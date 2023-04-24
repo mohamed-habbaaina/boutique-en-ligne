@@ -32,7 +32,7 @@ class Product
      */
     public function getAllProduct(int $offset): array
     {
-        $sqlAllProduct = 'SELECT product.id_pro, name_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, AVG(value_rat) as avg_rating 
+        $sqlAllProduct = 'SELECT product.id_pro, name_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, AVG(value_rat) as avg_rating, state_pro
         FROM `product` 
         LEFT JOIN `rate` 
         ON product.id_pro = rate.id_pro 

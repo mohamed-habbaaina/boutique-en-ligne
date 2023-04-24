@@ -90,7 +90,9 @@ class User
 
     public function getData($id)
     {
-        $select = ("SELECT u.*, c.*, w.*
+        $select = ("SELECT u.*,
+            c.address_cus, c.phone_cus, zip_cus,
+            w.role_wor
             FROM user u
             LEFT JOIN customer c ON u.id_user = c.id_user
             LEFT JOIN worker w ON u.id_user = w.id_user
@@ -101,6 +103,7 @@ class User
             ':id' => $id
         ]);
         return $prepare->fetch(\PDO::FETCH_ASSOC);
+
     }
 
     public function updateProfil($profil)
@@ -121,6 +124,8 @@ class User
 
     public function updateFirstname($id, $firstname)
     {
+        var_dump($id);
+        var_dump($firstname);
         $sqlQuery = "UPDATE user 
             SET firstname = :firstname
             WHERE id_user = :id";

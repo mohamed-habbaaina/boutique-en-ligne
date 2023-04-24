@@ -39,7 +39,6 @@ nav{
 .right_part ul{
     list-style: none;
     
-
 }
 .right_part a{
     text-decoration: none;
@@ -66,7 +65,6 @@ nav{
     display:block;
     color: #572A17;
     text-decoration:none;
-    
     }
    
     #menu ul li ul {
@@ -207,7 +205,6 @@ nav{
     opacity: 1;
     bottom: 0;
     animation: animateWaves 4s linear infinite;
-    
   }
   
   .wave#wave2 {
@@ -248,7 +245,6 @@ nav{
       background-positon-x: 0px;
     }
   }
-
 
   @media only screen and (max-width: 768px) { /* adjust max-width to your preference */
 

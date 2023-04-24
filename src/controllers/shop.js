@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', async () =>{
                             <p>${item.category_descript}</p>
                             <p>${item.origin_pro}</p>
                             <p>${item.origin_descript}</p>
-                            <p id="starRating">${starRating}</p>
+                            <p class="starRating">${starRating}</p>
                             <p>${item.price_pro}  $ </p>
                         </div>
                     </div>

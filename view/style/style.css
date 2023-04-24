@@ -27,8 +27,10 @@ margin-right: auto;
 .background{
    display: flex;
    justify-content: center;
-
-
+}
+.indexTitle{
+  display: flex;
+  justify-content: center;
 }
 
 .background img{
@@ -99,63 +101,6 @@ h2 {
     font-size: 24px;
 }
 
-.product_image{
-    width: 300px;
-}
-
-.product_contener{
-    display: flex;
-    flex-direction: row;
-}
-
-.image_container{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    padding-right: 5% ;
-}
- .image_container img {
-    width: 80%;
- }
-
-.info_product_contener{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-}
-
-h2.description {
-    text-align: left;
-}
-
-.product_image{
-    width: 300px;
-}
-
-.product_contener{
-    display: flex;
-    flex-direction: row;
-}
-
-.image_container{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    padding-right: 5% ;
-}
- .image_container img {
-    width: 80%;
- }
-
-.info_product_contener{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-}
-
-h2.description {
-    text-align: left;
-}
 
 /* aboutshop */
 .aboutShop{
@@ -264,9 +209,6 @@ padding: 5%;
   }
 
 
-
-  
-
 /* aboutshop */
 .aboutShop{
     font-family: 'Inika';
@@ -323,7 +265,6 @@ padding: 5%;
 
 /* MOST LIKED DIV */
 .mostLiked{
-    
     font-family: 'Inika';
     margin: 10%;
 }
@@ -368,7 +309,7 @@ padding: 5%;
     display: block;
     margin-bottom: 10px;
   }
-  #starRating{
+  .starRating{
     color: gold;
   }
   #productPrice{

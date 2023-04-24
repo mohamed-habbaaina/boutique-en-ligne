@@ -172,7 +172,7 @@ class Product
         INNER JOIN product
         ON rate.id_pro = product.id_pro
         GROUP BY product.id_pro
-        ORDER BY AVG(rate.value_rat) DESC LIMIT 4";
+        ORDER BY AVG(rate.value_rat) DESC LIMIT 3";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute();
 

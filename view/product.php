@@ -120,7 +120,7 @@ if (isset($_SESSION['user'])) {
                         </form>
 
                         <?php if (isset($_SESSION['user'])) {; ?>
-                            <button><a href="./cart.php">cart</a></button>
+                            <button ><a href="./cart.php">cart</a></button>
                         <?php }; ?>
                     <?php }; ?>
                 </div>
@@ -135,6 +135,7 @@ if (isset($_SESSION['user'])) {
         <section>
 
             <div class="commentDisplay">
+                <h2 class="description">Comments</h2>
                 <?php if (isset($_SESSION["user"])) : ?>
                     <form id="addCommentForm">
                         <input type="text" id="commentText" name="commentText">

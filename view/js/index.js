@@ -29,7 +29,7 @@ function fetchRate() {
                     </div>
                     <div class=">productOrigin">${product.origin_pro}</div>
                     <div class=">productCategory">${product.category_pro}</div>
-                    <div class=">productWeight" id="starRating">${starRating}</div>
+                    <div class=">productWeight" class="starRating">${starRating}</div>
                     <div class="seeMore">
                         <a href="product.php?idProduct=${product.id_pro}">see more...</a>
                     </div>

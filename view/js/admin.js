@@ -70,13 +70,22 @@ function createTable(headers, content, contentKeys, BtnValue) {
         table.appendChild(row);
 
         // Création des boutons Delete
+        console.log(line['state_pro']);
         const delBtnCell = document.createElement('td');
-        const delBtn = document.createElement('button');
-        delBtn.classList.add('delBtn');
-        delBtn.textContent = "Delete";
-        delBtn.type = "submit";
-        delBtn.value = line[BtnValue];
-        delBtnCell.appendChild(delBtn);
+        if (!(line['state_pro'] === 'deleted')) {
+            const delBtn = document.createElement('button');
+            delBtn.classList.add('delBtn');
+            delBtn.textContent = "Delete";
+            delBtn.type = "submit";
+            delBtn.value = line[BtnValue];
+            delBtnCell.appendChild(delBtn);
+        } else {
+            delBtnCell.textContent = "Deleted";
+            row.childNodes.forEach(cell => {
+                cell.style.color = "red";
+            })
+            delBtnCell.style.color = "red"
+        }
         row.appendChild(delBtnCell);
         table.appendChild(row);
     }

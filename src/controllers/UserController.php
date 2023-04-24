@@ -74,6 +74,8 @@ class UserController extends FormControler
 
     public function changeFirstname($id, $firstname)
     {
+        var_dump($firstname);
+        var_dump($id);
         if ($this->isValidName($firstname)) {
             $this->user->updateFirstname($id, $firstname);
         }

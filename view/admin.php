@@ -39,6 +39,7 @@ session_start();
             <h1>USERS</h1>
 
         </div>
+
         <div id="productDisplay">
             <h1>PRODUCTS</h1>
 

@@ -4,7 +4,6 @@ namespace src\Classes;
 
 require_once('../src/Classes/User.php');
 $user = new User();
-var_dump($user->getData($_SESSION['user']['id']));
 $current_profil = $user->getData($_SESSION['user']['id']);
 ?>
 

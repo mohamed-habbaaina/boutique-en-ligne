@@ -33,8 +33,8 @@ if(isset($_POST["displayCategory"])){
     $productController->displayCategory($_POST["displayCategory"]);
 }
 
-if(isset($_POST["displayOrigin"])){
-    $productController->displayOrigin($_POST["displayOrigin"]);
+if (isset($_POST['filterCategory']) && isset($_POST['filterOrigin'])) {
+    $productController->displayFilter($_POST['filterCategory'], $_POST['filterOrigin']);
 }
 
 ?>

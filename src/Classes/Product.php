@@ -321,4 +321,27 @@ class Product
         ]);
     }
 
+    public function displayFilter($categories, $origins) {
+        $select = (
+            "SELECT * 
+            FROM product 
+            WHERE category_pro = :category
+            AND origin_pro = :origin"
+        );
+        $prepare = DbConnection::getDb()->prepare($select);
+
+        $results = [];
+
+        foreach ($categories as $category) {
+            foreach ($origins as $origin) {
+                $prepare->execute([
+                    "category" => $category,
+                    "origin" => $origin
+                ]);
+                $results = array_merge($results, $prepare->fetchAll(\PDO::FETCH_ASSOC));
+            }
+        }
+        echo json_encode($results);
+    }
+
 }

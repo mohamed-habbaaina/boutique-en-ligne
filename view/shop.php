@@ -29,8 +29,8 @@ $_SESSION['page'] = $page;
         <div class="container">
 
             <div class="page">
-                <button><a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a></button>
-                <button><a href="shop.php?page=<?php echo $page +1 ?>" id="btn_suivant">Next Page >></a></button>
+                <button class="btn btn_suivant"><a href="shop.php?page=<?php echo $page +1 ?>" >Next Page >></a></button>
+                <button class="btn"><a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a></button>
             </div>
             <div class="filter">
                 <form id="selectCategory">
@@ -50,6 +50,12 @@ $_SESSION['page'] = $page;
             </div>
 
         </div>
+
+        <div class="page">
+            <button class="btn btn_suivant"><a href="shop.php?page=<?php echo $page +1 ?>">Next Page >></a></button>
+            <button class="btn"><a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a></button>
+        </div>
+
     </main>
 
     <?php require_once('./includes/footer.php'); ?>

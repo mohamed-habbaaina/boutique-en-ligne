@@ -17,57 +17,11 @@ function fetchCategory() {
         categoryDiv.appendChild(label);
 
 
-        input.addEventListener('change', (event) => {
-          postCategory();
+        input.addEventListener('change', () => {
+          postFilter();
 
         });
       });
-    });
-}
-
-
-function postCategory() {
-  const checkbox = document.querySelector('#categoryDiv input[type="checkbox"]:checked');
-  let categories;
-  if (checkbox) {
-    categories = checkbox.getAttribute('name');
-  } else {
-    window.location.reload();
-  }
-
-  let data = new FormData();
-  data.append("displayCategory", categories);
-  fetch('../src/controllers/rateRouter.php', {
-    method: 'POST',
-    body: data,
-
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((product) => {
-      console.log(product)
-      let shop = document.querySelector("#shop")
-      let html = "";
-      product.forEach((item) => {
-
-        const rating = item.avg_rating;
-        const starRating = getStarRating(rating);
-
-        html += `
-        <div class="displayShop">
-        <a href="./product.php?idProduct=${item.id_pro}"><img src="../uploads/${item.image_pro}" alt="${item.name_pro}"></a>
-        <div class ="productDisplay">
-            <a href="./product.php?idProduct=${item.id_pro}"><h3>${item.name_pro}</h3></a>
-                <p>${item.category_pro}</p>
-                <p>${item.origin_pro}</p>
-                <p id="starRating">${starRating}</p>
-                <p>${item.price_pro}  $ </p>
-            </div>
-        </div>
-    `;
-      });
-      shop.innerHTML = html;
     });
 }
 
@@ -91,19 +45,46 @@ function fetchOrigin() {
 
 
         input.addEventListener('change', (event) => {
-          postOrigin();
+          postFilter();
 
         });
       });
     });
 }
 
-function postOrigin() {
-  const checkbox = document.querySelector('#originDiv input[type="checkbox"]:checked');
-  const origins = checkbox ? checkbox.getAttribute('name') : null;
+function postFilter() {
+  const checkboxesCategory = document.querySelectorAll('#categoryDiv input[type="checkbox"]');
+  const checkboxesOrigin = document.querySelectorAll('#originDiv input[type="checkbox"]');
+  
+  let allCategories = [];
+  let allOrigins = [];
+
+  let checkedCategories = [];
+  if (checkboxesCategory.length > 0) {
+    checkboxesCategory.forEach(category => {
+      if (category.checked) {
+        checkedCategories.push(category.getAttribute('name'));
+      }
+      allCategories.push(category.getAttribute('name'));
+    })
+  }
+
+  let checkedOrigins = [];
+  if (checkboxesOrigin.length > 0) {
+    checkboxesOrigin.forEach(origin => {
+      if (origin.checked) {
+        checkedOrigins.push(origin.getAttribute('name'));
+      }
+      allOrigins.push(origin.getAttribute('name'));
+    })
+  }
+
+  categoriesToDisplay = checkedCategories.length === 0 ? allCategories : checkedCategories;
+  originsToDisplay = checkedOrigins.length === 0 ? allOrigins : checkedOrigins;
 
   let data = new FormData();
-  data.append("displayOrigin", origins);
+  data.append("filterCategory", categoriesToDisplay);
+  data.append("filterOrigin", originsToDisplay);
   fetch('../src/controllers/rateRouter.php', {
     method: 'POST',
     body: data,
@@ -112,11 +93,10 @@ function postOrigin() {
     .then((response) => {
       return response.json();
     })
-    .then((product) => {
-      console.log(product)
+    .then((products) => {
       let shop = document.querySelector("#shop")
       let html = "";
-      product.forEach((item) => {
+      products.forEach((item) => {
 
         const rating = item.avg_rating;
         const starRating = getStarRating(rating);
@@ -160,50 +140,6 @@ function createCheckbox(value, type) {
 
   return input;
 }
-
-function handleFilters() {
-  const categoryCheckbox = document.querySelector('#categoryDiv input[type="checkbox"]:checked');
-  const category = categoryCheckbox ? categoryCheckbox.getAttribute('name') : null;
-
-  const originCheckbox = document.querySelector('#originDiv input[type="checkbox"]:checked');
-  const origin = originCheckbox ? originCheckbox.getAttribute('name') : null;
-
-  let data = new FormData();
-  data.append("displayCategory", category);
-  data.append("displayOrigin", origin);
-
-  fetch('../src/controllers/rateRouter.php', {
-    method: 'POST',
-    body: data,
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((product) => {
-      let shop = document.querySelector("#shop")
-      let html = "";
-      product.forEach((item) => {
-        const rating = item.avg_rating;
-        const starRating = getStarRating(rating);
-
-        html += `
-        <div class="displayShop">
-        <a href="./product.php?idProduct=${item.id_pro}"><img src="../uploads/${item.image_pro}" alt="${item.name_pro}"></a>
-        <div class ="productDisplay">
-            <a href="./product.php?idProduct=${item.id_pro}"><h3>${item.name_pro}</h3></a>
-                <p>${item.category_pro}</p>
-                <p>${item.origin_pro}</p>
-                <p id="starRating">${starRating}</p>
-                <p>${item.price_pro}  $ </p>
-            </div>
-        </div>
-        `;
-      });
-      shop.innerHTML = html;
-    });
-}
-
-
 
 fetchCategory();
 fetchOrigin();

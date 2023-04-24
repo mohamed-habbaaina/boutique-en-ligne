@@ -94,7 +94,7 @@ if (isset($_GET["userId"])) {
                 </tr>
             </table>
 
-            <?php var_dump($profile);
+            <?php
             echo !empty($orders) ? '<h3>Commandes utilisateur</h3>' : '';
 
             foreach ($orders as $order) {

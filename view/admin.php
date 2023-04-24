@@ -28,26 +28,24 @@ session_start();
         die();
     }
     ?>
-    
-        <button id="productDisplayBtn">Products</button>
-        <button id="userDisplayBtn">Users</button>
-        <button id="commentDisplayBtn">Comments</button>
-        <button id="messageDisplayBtn">Message</button>
-
+    <h1>Admin</h1>
+        <div class="buttonDiv">
+        <button id="productDisplayBtn" class="button-59">Products</button>
+        <button id="userDisplayBtn" class="button-59">Users</button>
+        <button id="messageDisplayBtn" class="button-59">Message</button>
+        </div>
         <div id="userDisplay">
-            <p>USERS</p>
+            <h1>USERS</h1>
 
         </div>
+
         <div id="productDisplay">
-            <p>PRODUCTS</p>
+            <h1>PRODUCTS</h1>
 
-        </div>
-        <div id="commentDisplay">
-            <p>COMMENTS</p>
         </div>
 
         <div id="messageDisplay">
-            <p>MESSAGES</p>
+            <h1>MESSAGES</h1>
         </div>
 
         <div id="contentDisplay"></div>

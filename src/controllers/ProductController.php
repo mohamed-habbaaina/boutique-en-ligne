@@ -49,12 +49,10 @@ Class ProductController{
     public function displayCategory($category){
         return $this->product->selectOneCategory($category);
     }
-    
-    public function displayOrigin($origin){
-        return $this->product->selectOneOrigin($origin);
-    }
 
-    
+     public function displayFilter($categories, $origins){
+            $this->product->displayFilter(explode(",", $categories), explode(",", $origins));     
+    }
 
 }
 ?>

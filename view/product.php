@@ -80,14 +80,15 @@ if (isset($_SESSION['user'])) {
 
                 <div class="info_product_contener">
                     <div id="displayCart"></div>
-                    <h3><?= $name; ?></h3>
-                    <p>Poids</p>
-                    <p><?= $origin; ?> : <?= $origin_descript; ?></p>
-                    <p><?= $category; ?> : <?= $category_descript; ?></p>
-                    <p>price : <?= $price / 100 ; ?> €</p>
+                    <h2><?= $name; ?></h2>
+                    <p><span class="titleP">Description </span>: <?= $description ?></p>
+                    <p><span class="titleP"><?= $origin ?></span> : <?= $origin_descript; ?></p>
+                    <p><span class="titleP"><?= $category ?></span> : <?= $category_descript; ?></p>
+                    <p id="rateValue"></p>
+                    <p><span class="titleP">Poids </span>: </p>
+                    <p class="titlePrice"><?= number_format($price / 100, 2) ?> €</p>
 
                     <div class="rateDisplay">
-                        <p>Rate :</p>
                         <p id="rateValue"></p>
                         <?php if (isset($_SESSION["user"])) : ?>
                             <form method="post" id="postRateForm">
@@ -120,7 +121,7 @@ if (isset($_SESSION['user'])) {
                         </form>
 
                         <?php if (isset($_SESSION['user'])) {; ?>
-                            <button><a href="./cart.php">cart</a></button>
+                            <button class="button-59"><a href="./cart.php">Add to cart</a></button>
                         <?php }; ?>
                     <?php }; ?>
                 </div>
@@ -129,12 +130,13 @@ if (isset($_SESSION['user'])) {
 
             <div>
                 <h2 class="description">Description:</h2>
-                <p><?= $description; ?></p>
+                <p><?= $description ?></p>
             </div>
         </section>
         <section>
 
             <div class="commentDisplay">
+                <h2 class="description">Comments</h2>
                 <?php if (isset($_SESSION["user"])) : ?>
                     <form id="addCommentForm">
                         <input type="text" id="commentText" name="commentText">

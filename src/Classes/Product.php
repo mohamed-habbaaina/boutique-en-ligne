@@ -32,7 +32,7 @@ class Product
      */
     public function getAllProduct(int $offset): array
     {
-        $sqlAllProduct = 'SELECT product.id_pro, name_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, AVG(value_rat) as avg_rating 
+        $sqlAllProduct = 'SELECT product.id_pro, name_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, AVG(value_rat) as avg_rating, state_pro
         FROM `product` 
         LEFT JOIN `rate` 
         ON product.id_pro = rate.id_pro 
@@ -172,7 +172,7 @@ class Product
         INNER JOIN product
         ON rate.id_pro = product.id_pro
         GROUP BY product.id_pro
-        ORDER BY AVG(rate.value_rat) DESC LIMIT 4";
+        ORDER BY AVG(rate.value_rat) DESC LIMIT 3";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute();
 
@@ -319,6 +319,29 @@ class Product
             ':origin_pro' => $newOrigin,
             ':id' => $id
         ]);
+    }
+
+    public function displayFilter($categories, $origins) {
+        $select = (
+            "SELECT * 
+            FROM product 
+            WHERE category_pro = :category
+            AND origin_pro = :origin"
+        );
+        $prepare = DbConnection::getDb()->prepare($select);
+
+        $results = [];
+
+        foreach ($categories as $category) {
+            foreach ($origins as $origin) {
+                $prepare->execute([
+                    "category" => $category,
+                    "origin" => $origin
+                ]);
+                $results = array_merge($results, $prepare->fetchAll(\PDO::FETCH_ASSOC));
+            }
+        }
+        echo json_encode($results);
     }
 
 }

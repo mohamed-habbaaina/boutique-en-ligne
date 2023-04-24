@@ -23,7 +23,7 @@ session_start()
         <section id="about_section">
             <h2>ABOUT US</h2>
             <div id="about_text">
-                <p>Welcome to our E-shop website!</p>
+                <p>Welcome to our E-shop website !</p>
 
                 <p>We are Alban MARTINANT DE PRENEUF, Guangquan YE and Mohamed HABBAAINA,
                     we have created this platform for our school project, using PHP, JavaScript without any frameworks.</p>

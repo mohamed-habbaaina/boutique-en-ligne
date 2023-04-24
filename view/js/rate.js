@@ -52,13 +52,10 @@ const rating = document.querySelector("#rating");
 const postRateForm = document.querySelector("#postRateForm")
 rating.addEventListener("change", () => {
     const selectedRating = rating.value;
-    console.log(selectedRating);
 
     let data = new FormData(postRateForm);
     data.append("id_pro" , id_pro);
     data.append("addRate", "ok");
-
-    console.log(data)
 
     fetch("../src/controllers/rateRouter.php", {
         method: "POST",
@@ -68,7 +65,6 @@ rating.addEventListener("change", () => {
         return response.text();
     })
     .then((content) => {
-        console.log(content);
         fetchRate();
 
     })

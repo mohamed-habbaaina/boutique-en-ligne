@@ -118,7 +118,7 @@ function FetchReg() {
     });
 }
 
-regDisplayBtn.addEventListener("click", function (ev) {
+regDisplayBtn?.addEventListener("click", function (ev) {
   ev.preventDefault();
   FetchReg();
 })
@@ -172,7 +172,7 @@ function FetchLog() {
     });
 }
 
-logDisplayBtn.addEventListener("click", function (ev) {
+logDisplayBtn?.addEventListener("click", function (ev) {
   ev.preventDefault();
   FetchLog();
 })

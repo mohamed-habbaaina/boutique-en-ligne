@@ -12,8 +12,6 @@ session_start();
     <link rel="stylesheet" href="style/includes.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-
-    <script defer src="./../src/controllers/searchProduct.js"></script>
     <title>Home</title>
 </head>
 
@@ -35,11 +33,12 @@ session_start();
         </div>
     </main>
     <div class="aboutShop">
-        <h1>About our shop</h1>
+        <h1 class ="indexTitle">About our shop</h1>
         <div class="displayAboutShop">
 
             <div class="aboutshopTextLeft">
                 <p>You’ll be greeted by stunning smells of our coffee beans, exquisite flavors and rich, smooth textures.</p>
+                <hr>
             </div>
             <div class="imgRight">
                 <img src="./img/coffeeFarm.jpeg">
@@ -51,11 +50,12 @@ session_start();
             </div>
             <div class="aboutshopTextRight">
                 <p>We’re commited to using only the freshest, highest quality for our shop, our beans are carefully selected from the finest coffee-growing regions around the world.</p>
+                <hr>
             </div>
         </div>
     </div>
     <div class="mostLiked">
-        <h1>YOUR FAVORITE BEANS</h1>
+        <h1 class ="indexTitle">YOUR FAVORITE BEANS</h1>
         <div class="grid-container">
 
             <div class="gridProduct">

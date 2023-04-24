@@ -29,6 +29,8 @@ window.addEventListener('DOMContentLoaded', async () =>{
                 
                 const rating = item.avg_rating;
                 const starRating = getStarRating(rating); 
+                let price = item.price_pro /100 ;
+                price = price.toFixed(2);
                 
                 html += `
                     <div class="displayShop">
@@ -37,8 +39,9 @@ window.addEventListener('DOMContentLoaded', async () =>{
                         <a href="./product.php?idProduct=${item.id_pro}"><h3>${item.name_pro}</h3></a>
                             <p>${item.category_pro}</p>
                             <p>${item.origin_pro}</p>
-                            <p id="starRating">${starRating}</p>
-                            <p>${item.price_pro}  $ </p>
+                            <p>${item.origin_descript}</p>
+                            <p class="starRating">${starRating}</p>
+                            <p>${price}  $ </p>
                         </div>
                     </div>
                 `;

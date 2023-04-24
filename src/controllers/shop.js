@@ -3,7 +3,7 @@
 window.addEventListener('DOMContentLoaded', async () =>{
 
     let shop = document.querySelector('.shop');
-    const btnSuivant = document.querySelector('#btn_suivant');
+    const btnSuivant = document.querySelectorAll('.btn_suivant');
     
     let response = await fetch('./../src/model/shop.php', {
         method: 'POST',
@@ -17,7 +17,9 @@ window.addEventListener('DOMContentLoaded', async () =>{
     let data = await response.json();
     
         // display button Page suivante return: if products < 8 => button display: none
-          btnSuivant.style.display = data.length < 8 ? 'none' : 'block';
+          btnSuivant[0].style.display = data.length < 8 ? 'none' : 'block';
+          btnSuivant[1].style.display = data.length < 8 ? 'none' : 'block';
+
     
         let html = '';
     
@@ -32,11 +34,10 @@ window.addEventListener('DOMContentLoaded', async () =>{
                 
                 html += `
                     <div class="displayShop">
-                        <div class ="productDisplay">
-                        <a href="./product.php?idProduct=${item.id_pro}"><img src="../uploads/${item.image_pro}" alt="${item.name_pro}"></a>
+                    <a href="./product.php?idProduct=${item.id_pro}"><img src="../uploads/${item.image_pro}" alt="${item.name_pro}"></a>
+                    <div class ="productDisplay">
                         <a href="./product.php?idProduct=${item.id_pro}"><h3>${item.name_pro}</h3></a>
                             <p>${item.category_pro}</p>
-                            <p>${item.category_descript}</p>
                             <p>${item.origin_pro}</p>
                             <p>${item.origin_descript}</p>
                             <p class="starRating">${starRating}</p>

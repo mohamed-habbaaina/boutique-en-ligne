@@ -39,7 +39,6 @@ window.addEventListener('DOMContentLoaded', async () =>{
                         <a href="./product.php?idProduct=${item.id_pro}"><h3>${item.name_pro}</h3></a>
                             <p>${item.category_pro}</p>
                             <p>${item.origin_pro}</p>
-                            <p>${item.origin_descript}</p>
                             <p class="starRating">${starRating}</p>
                             <p>${price}  $ </p>
                         </div>

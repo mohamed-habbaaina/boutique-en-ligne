@@ -32,7 +32,6 @@ session_start();
         <div class="buttonDiv">
         <button id="productDisplayBtn" class="button-59">Products</button>
         <button id="userDisplayBtn" class="button-59">Users</button>
-        <button id="commentDisplayBtn" class="button-59">Comments</button>
         <button id="messageDisplayBtn" class="button-59">Message</button>
         </div>
         <div id="userDisplay">
@@ -43,9 +42,6 @@ session_start();
         <div id="productDisplay">
             <h1>PRODUCTS</h1>
 
-        </div>
-        <div id="commentDisplay">
-            <h1>COMMENTS</h1>
         </div>
 
         <div id="messageDisplay">

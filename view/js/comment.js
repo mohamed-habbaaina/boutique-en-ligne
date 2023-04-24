@@ -4,8 +4,6 @@ function fetchComment() {
     const urlParams = new URLSearchParams(queryString);
     const id_pro = urlParams.get('idProduct');
 
-
-    console.log(id_pro)
     fetch(`../src/controllers/commentRouter.php?fetchComment=${id_pro}`)
 
         .then((response) => {
@@ -49,7 +47,6 @@ function fetchComment() {
                             <p>by ${comment.firstname}</p>
                             <p>${comment.text}</p>           
                         `;
-                        console.log(comment);
                         if (userInfo.user.role === 'admin') {
                             commentDiv.innerHTML += `
                                 <button value="${comment.id}" class="remove_button">
@@ -62,7 +59,6 @@ function fetchComment() {
                         commentSection.appendChild(commentDiv);
                     });
                     document.querySelectorAll('.remove_button').forEach(button => {
-                        console.log(button);
                         button.addEventListener('click', async (e) => {
                             await fetch(`../src/controllers/adminRouter.php?delComment=${e.target.value}`);
                             window.location.reload();
@@ -86,7 +82,6 @@ let addCommentBtn = document.querySelector("#addCommentBtn");
 
 addCommentBtn.addEventListener("click", function (ev) {
     ev.preventDefault();
-    console.log(addCommentForm);
     let data = new FormData(addCommentForm);
     data.append("addCommentBtn", addCommentBtn.value);
     data.append("addComment", "add");
@@ -98,7 +93,6 @@ addCommentBtn.addEventListener("click", function (ev) {
             return response.text();
         })
         .then((content) => {
-            console.log(content);
             commentText.value = "";
             fetchComment();
 

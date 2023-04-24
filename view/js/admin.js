@@ -70,7 +70,6 @@ function createTable(headers, content, contentKeys, BtnValue) {
         table.appendChild(row);
 
         // Création des boutons Delete
-        console.log(line['state_pro']);
         const delBtnCell = document.createElement('td');
         if (!(line['state_pro'] === 'deleted')) {
             const delBtn = document.createElement('button');

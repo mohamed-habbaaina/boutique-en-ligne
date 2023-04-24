@@ -6,14 +6,16 @@ function fetchRate() {
             return response.json()
         })
         .then((rates) => {
-
-           
+            
             const container = document.querySelector('.grid-container');
             container.innerHTML = ''; // clear previous contents of container
             rates.forEach((product) => {
               const div = document.createElement('div');
               const rating = product.rate_avg;
               const starRating = getStarRating(rating); 
+              let price = product.price_pro /100 ;
+              price = price.toFixed(2);
+              
               
               div.classList.add('gridProduct');
               div.innerHTML = `
@@ -25,11 +27,11 @@ function fetchRate() {
                 </div>
                 <div class="productInfo">
                     <div class=">productPrice">
-                        <p id="productPrice">${product.price_pro} €</p>
+                        <p id="productPrice">${price} €</p>
                     </div>
                     <div class=">productOrigin">${product.origin_pro}</div>
                     <div class=">productCategory">${product.category_pro}</div>
-                    <div class=">productWeight" class="starRating">${starRating}</div>
+                    <div class="starRating">${starRating}</div>
                     <div class="seeMore">
                         <a href="product.php?idProduct=${product.id_pro}">see more...</a>
                     </div>

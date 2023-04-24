@@ -1,4 +1,6 @@
 <footer class="footer">
+ 
+  
     <div class="waves">
       <div class="wave" id="wave1"></div>
       <div class="wave" id="wave2"></div>

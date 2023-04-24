@@ -321,34 +321,27 @@ class Product
         ]);
     }
 
-    public function selectCategories($categories) {
+    public function displayFilter($categories, $origins) {
         $select = (
             "SELECT * 
             FROM product 
-            WHERE category_pro = :category"
+            WHERE category_pro = :category
+            AND origin_pro = :origin"
         );
         $prepare = DbConnection::getDb()->prepare($select);
 
         $results = [];
 
         foreach ($categories as $category) {
-            $prepare->execute([
-                "category" => $category
-            ]);
-            $results = array_merge($results, $prepare->fetchAll(\PDO::FETCH_ASSOC));
+            foreach ($origins as $origin) {
+                $prepare->execute([
+                    "category" => $category,
+                    "origin" => $origin
+                ]);
+                $results = array_merge($results, $prepare->fetchAll(\PDO::FETCH_ASSOC));
+            }
         }
         echo json_encode($results);
-    }
-
-    public function getAllProductsData()
-    {
-
-        $select = "SELECT * FROM product";
-        $prepare = DbConnection::getDb()->prepare($select);
-        $prepare->execute();
-        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
-
-        echo json_encode($result);
     }
 
 }

@@ -18,62 +18,10 @@ function fetchCategory() {
 
 
         input.addEventListener('change', () => {
-          postCategory();
+          postFilter();
 
         });
       });
-    });
-}
-
-
-function postCategory() {
-  const checkboxes = document.querySelectorAll('#categoryDiv input[type="checkbox"]:checked');
-  let categories = [];
-  if (checkboxes.length > 0) {
-    console.log(checkboxes);
-    checkboxes.forEach(categorie => {
-      categories.push(categorie.getAttribute('name'));
-    })
-    console.log(categories);
-  }
-
-  let data = new FormData();
-  data.append("displayCategories", categories);
-  console.log(data);
-  fetch('../src/controllers/rateRouter.php', {
-    method: 'POST',
-    body: data,
-
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((products) => {
-      console.log(products)
-      let shop = document.querySelector("#shop")
-      let html = "";
-      products.forEach((item) => {
-
-        const rating = item.avg_rating;
-        const starRating = getStarRating(rating);
-
-        html += `
-                    <div class="displayShop">
-                        <div class ="productDisplay">
-                            <img src="../uploads/${item.image_pro}" alt="${item.name_pro}">
-                            <h4>${item.name_pro}</h4>
-                            <p>${item.category_pro}</p>
-                            <p>${item.category_descript}</p>
-                            <p>${item.origin_pro}</p>
-                            <p>${item.origin_descript}</p>
-                            <p id="starRating">${starRating}</p>
-                            <p>${item.price_pro}  $ </p>
-                            <button><a href="./product.php?idProduct=${item.id_pro}">Voir le produit</a></button>
-                        </div>
-                    </div>
-                `;
-      });
-      shop.innerHTML = html;
     });
 }
 
@@ -97,19 +45,46 @@ function fetchOrigin() {
 
 
         input.addEventListener('change', (event) => {
-          postOrigin();
+          postFilter();
 
         });
       });
     });
 }
 
-function postOrigin() {
-  const checkbox = document.querySelector('#originDiv input[type="checkbox"]:checked');
-  const origins = checkbox ? checkbox.getAttribute('name') : null;
+function postFilter() {
+  const checkboxesCategory = document.querySelectorAll('#categoryDiv input[type="checkbox"]');
+  const checkboxesOrigin = document.querySelectorAll('#originDiv input[type="checkbox"]');
+  
+  let allCategories = [];
+  let allOrigins = [];
+
+  let checkedCategories = [];
+  if (checkboxesCategory.length > 0) {
+    checkboxesCategory.forEach(category => {
+      if (category.checked) {
+        checkedCategories.push(category.getAttribute('name'));
+      }
+      allCategories.push(category.getAttribute('name'));
+    })
+  }
+
+  let checkedOrigins = [];
+  if (checkboxesOrigin.length > 0) {
+    checkboxesOrigin.forEach(origin => {
+      if (origin.checked) {
+        checkedOrigins.push(origin.getAttribute('name'));
+      }
+      allOrigins.push(origin.getAttribute('name'));
+    })
+  }
+
+  categoriesToDisplay = checkedCategories.length === 0 ? allCategories : checkedCategories;
+  originsToDisplay = checkedOrigins.length === 0 ? allOrigins : checkedOrigins;
 
   let data = new FormData();
-  data.append("displayOrigin", origins);
+  data.append("filterCategory", categoriesToDisplay);
+  data.append("filterOrigin", originsToDisplay);
   fetch('../src/controllers/rateRouter.php', {
     method: 'POST',
     body: data,
@@ -118,11 +93,10 @@ function postOrigin() {
     .then((response) => {
       return response.json();
     })
-    .then((product) => {
-      console.log(product)
+    .then((products) => {
       let shop = document.querySelector("#shop")
       let html = "";
-      product.forEach((item) => {
+      products.forEach((item) => {
 
         const rating = item.avg_rating;
         const starRating = getStarRating(rating);

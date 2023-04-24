@@ -49,17 +49,9 @@ Class ProductController{
     public function displayCategory($category){
         return $this->product->selectOneCategory($category);
     }
-    
-    public function displayOrigin($origin){
-        return $this->product->selectOneOrigin($origin);
-    }
 
-    public function displayCategories($categories){
-        if (!empty($categories)) {
-            $this->product->selectCategories(explode(",", $categories));   
-        } else {
-            $this->product->getAllProductsData();
-        }
+     public function displayFilter($categories, $origins){
+            $this->product->displayFilter(explode(",", $categories), explode(",", $origins));     
     }
 
 }

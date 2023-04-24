@@ -31,13 +31,12 @@ session_start();
     
         <button id="productDisplayBtn">Products</button>
         <button id="userDisplayBtn">Users</button>
-        <button id="commentDisplayBtn">Comments</button>
         <button id="messageDisplayBtn">Message</button>
 
         <div id="userDisplay">
             <p>USERS</p>
         </div>
-        
+
         <div id="productDisplay">
             <p>PRODUCTS</p>
         </div>

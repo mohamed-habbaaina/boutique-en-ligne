@@ -3,7 +3,7 @@
 window.addEventListener('DOMContentLoaded', async () =>{
 
     let shop = document.querySelector('.shop');
-    const btnSuivant = document.querySelector('#btn_suivant');
+    const btnSuivant = document.querySelectorAll('.btn_suivant');
     
     let response = await fetch('./../src/model/shop.php', {
         method: 'POST',
@@ -17,7 +17,9 @@ window.addEventListener('DOMContentLoaded', async () =>{
     let data = await response.json();
     
         // display button Page suivante return: if products < 8 => button display: none
-          btnSuivant.style.display = data.length < 8 ? 'none' : 'block';
+          btnSuivant[0].style.display = data.length < 8 ? 'none' : 'block';
+          btnSuivant[1].style.display = data.length < 8 ? 'none' : 'block';
+
     
         let html = '';
     

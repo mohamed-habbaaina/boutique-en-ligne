@@ -122,19 +122,16 @@ function postOrigin() {
         const starRating = getStarRating(rating);
 
         html += `
-                    <div class="displayShop">
-                        <div class ="productDisplay">
-                            <img src="../uploads/${item.image_pro}" alt="${item.name_pro}">
-                            <h4>${item.name_pro}</h4>
-                            <p>${item.category_pro}</p>
-                            <p>${item.category_descript}</p>
-                            <p>${item.origin_pro}</p>
-                            <p>${item.origin_descript}</p>
-                            <p id="starRating">${starRating}</p>
-                            <p>${item.price_pro}  $ </p>
-                            <button><a href="./product.php?idProduct=${item.id_pro}">Voir le produit</a></button>
-                        </div>
-                    </div>
+        <div class="displayShop">
+        <a href="./product.php?idProduct=${item.id_pro}"><img src="../uploads/${item.image_pro}" alt="${item.name_pro}"></a>
+        <div class ="productDisplay">
+            <a href="./product.php?idProduct=${item.id_pro}"><h3>${item.name_pro}</h3></a>
+                <p>${item.category_pro}</p>
+                <p>${item.origin_pro}</p>
+                <p id="starRating">${starRating}</p>
+                <p>${item.price_pro}  $ </p>
+            </div>
+        </div>
                 `;
       });
       shop.innerHTML = html;
@@ -190,19 +187,16 @@ function handleFilters() {
         const starRating = getStarRating(rating);
 
         html += `
-          <div class="displayShop">
-            <div class ="productDisplay">
-              <img src="../uploads/${item.image_pro}" alt="${item.name_pro}">
-              <h4>${item.name_pro}</h4>
-              <p>${item.category_pro}</p>
-              <p>${item.category_descript}</p>
-              <p>${item.origin_pro}</p>
-              <p>${item.origin_descript}</p>
-              <p id="starRating">${starRating}</p>
-              <p>${item.price_pro}  $ </p>
-              <button><a href="./product.php?idProduct=${item.id_pro}">Voir le produit</a></button>
+        <div class="displayShop">
+        <a href="./product.php?idProduct=${item.id_pro}"><img src="../uploads/${item.image_pro}" alt="${item.name_pro}"></a>
+        <div class ="productDisplay">
+            <a href="./product.php?idProduct=${item.id_pro}"><h3>${item.name_pro}</h3></a>
+                <p>${item.category_pro}</p>
+                <p>${item.origin_pro}</p>
+                <p id="starRating">${starRating}</p>
+                <p>${item.price_pro}  $ </p>
             </div>
-          </div>
+        </div>
         `;
       });
       shop.innerHTML = html;

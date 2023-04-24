@@ -53,12 +53,22 @@ h2.description {
     width: 50%;
     display: flex;
     flex-direction: column;
-}
 
+}
+.info_product_contener p{
+    color: black;
+}
 h2.description {
     text-align: left;
 }
-
+.titleP{
+    color: #572A17;
+    font-size: 22px;
+}
+.titlePrice{
+    color: #572A17;
+    font-size: 22px;
+}
 /* ---------BUTTON--------- */
 
 

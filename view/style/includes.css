@@ -246,13 +246,13 @@ nav{
     }
   }
 
-  @media only screen and (max-width: 768px) { /* adjust max-width to your preference */
+  @media only screen and (max-width: 768px) {  
 
     nav{
         display: none;
     }
     .navbar {
-      display: block; /* show menu for smaller screens */
+      display: block; 
     }
     .container {
         max-width: 1050px;

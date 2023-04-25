@@ -27,6 +27,7 @@ window.addEventListener('DOMContentLoaded', async () =>{
     
             data.forEach(item => {
                 
+                console.log(data);
                 const rating = item.avg_rating;
                 const starRating = getStarRating(rating); 
                 let price = item.price_pro /100 ;
@@ -41,6 +42,7 @@ window.addEventListener('DOMContentLoaded', async () =>{
                             <p>${item.origin_pro}</p>
                             <p class="starRating">${starRating}</p>
                             <p>${price}  $ </p>
+                            <p>${item.category_descript}</p>
                         </div>
                     </div>
                 `;

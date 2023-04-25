@@ -28,7 +28,7 @@
     align-items: center;
     width: 100%;
     height: 250px;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     padding: 5px;
     margin: auto;
 
@@ -37,19 +37,17 @@
     margin: 10px 0;
     text-align: center;
 }
-.displayShop a{
-  /* width: 60%; */
-
-}
 
 .displayShop a img {
-    width: 100%;
-    height: 70%;
+    width: 80%;
+    height: 50%;
     object-fit: cover;
+    margin: 10% 0 0 10%;
 }
 
 .productDisplay p {
     text-align: justify;
+    padding: 5px;
 }
 
 /* ******************* btn page ************************ */

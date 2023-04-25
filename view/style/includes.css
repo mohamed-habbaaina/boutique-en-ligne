@@ -128,6 +128,9 @@ nav{
   .navbar {
     display: none; /* hide menu by default */
   }
+  .logo_partburger{
+    display: none;
+  }
   
   
   
@@ -248,11 +251,22 @@ nav{
 
   @media only screen and (max-width: 768px) {  
 
-    nav{
+    .left_part{
         display: none;
     }
     .navbar {
-      display: block; 
+      display: flex; 
+      flex-direction: row;
+      background-color: #532B23;
+    }
+    .logo_partburger{
+      display: flex;
+      justify-content: flex-end;
+      background-color: antiquewhite;
+      margin-right: 4%;
+    }
+    .logo_partburger img{
+      width: 30%;
     }
     .container {
         max-width: 1050px;
@@ -274,6 +288,7 @@ nav{
       
       .navbar .menu-items {
         display: flex;
+        background-color: white;
       }
       
       .navbar .nav-container li {

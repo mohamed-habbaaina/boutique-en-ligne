@@ -60,17 +60,23 @@ if (isset($_SESSION["user"])) {
             <span class="line line3"></span>
         </div>
         <div class="menu-items">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">about</a></li>
-            <li><a href="#">blogs</a></li>
-            <li><a href="#">portfolio</a></li>
-            <li><a href="#">contact</a></li>
+            <li><a href="../view/index.php">Home</a></li>
+            <li><a href="../view/about.php">About</a></li>
+            <li><a href="../view/shop.php">Shop</a></li>
+            <li><a href="../view/cart.php">Cart</a></li>
+           
+            <li><a href="">contact</a></li>
         </div>
     </div>
+    <div class="logo_partburger">
+        <img src="./img/logo1.png">
+    </div>
+
+    
 </div>
 
 <script defer src="./../src/controllers/searchProduct.js" defer></script>
 
 <?php if (!isset($_SESSION['user'])) : ?>
-    <script src="./js/auth.js" defer></script>
+    <script src="./js/auth.js"></script>
 <?php endif ?>

@@ -27,7 +27,7 @@ function fetchRate() {
                 </div>
                 <div class="productInfo">
                     <div class=">productPrice">
-                        <p id="productPrice">${price} €</p>
+                        <p class="productPrice">${price} €</p>
                     </div>
                     <div class=">productOrigin">${product.origin_pro}</div>
                     <div class=">productCategory">${product.category_pro}</div>

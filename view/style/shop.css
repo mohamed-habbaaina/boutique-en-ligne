@@ -1,4 +1,4 @@
-/* shop{
+shop{
     display: flex;
     flex-direction: row;
 }
@@ -45,11 +45,9 @@ productDisplay {
     font-size: 1.2rem;
     padding: 10px 20px;
   }
-  #starRating{
-    color: gold;
-  }
+ 
 
-   */
+  
 
    .grid-container {
     display: grid;

@@ -78,5 +78,5 @@ if (isset($_SESSION["user"])) {
 <script defer src="./../src/controllers/searchProduct.js" defer></script>
 
 <?php if (!isset($_SESSION['user'])) : ?>
-    <script src="./js/auth.js"></script>
+    <!-- <script src="./js/auth.js"></script> -->
 <?php endif ?>

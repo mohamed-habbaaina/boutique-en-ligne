@@ -1,51 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Inika&display=swap');
 nav{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 22px;
     margin: 0;
     font-family: 'Inika', serif;
 }
-.left_part{
-    width: 33%;
-    display: flex;
-    justify-content: center;
-    gap: 15%;
+.top_part{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
-.left_part a{
+.bottom_part{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.bottom_part a{
     text-decoration: none;
     color: black;
     
 }
+
 .logo_part{
-    width: 33%;
+    width: 100%;
     display: flex;
     justify-content: center;
+    
+    
     
 }
 .logo_part img{
-    width: 30%;
+    width: 13%;
+    
 }
 
-.right_part{
-    width: 33%;
-    display: flex;
-    justify-content: center;
-    gap: 15%;
-    
-}
-.right_part ul{
-    list-style: none;
-    
-}
-.right_part a{
-    text-decoration: none;
-    color: black;
-}
 
 /* Menu connexion */
+#menu{
+  position: absolute;
+  top: 6%;
+  right: 10%;
+  
+
+}
 #menu ul {
     margin:0;
     padding:0;
@@ -63,10 +63,11 @@ nav{
     }
    #menu li a {
     display:block;
-    color: #572A17;
     text-decoration:none;
     }
-   
+    ion-icon {
+      font-size: 32px;
+    }
     #menu ul li ul {
         display:none;
         }
@@ -118,12 +119,15 @@ nav{
     border: none;
     border-bottom: 1px solid black;
     padding: 5px;
-    
     font-size: 18px;
     outline: none;
   }
   #search {
     width: 200px;
+  }
+
+  #search ul li{
+    list-style: none;
   }
   .navbar {
     display: none; /* hide menu by default */
@@ -251,20 +255,18 @@ nav{
 
   @media only screen and (max-width: 768px) {  
 
-    .left_part{
+    .bottom_part{
         display: none;
     }
+    .logo_part{
+      display: none;
+    }
+   
     .navbar {
       display: flex; 
       flex-direction: row;
-      background-color: #532B23;
     }
-    .logo_partburger{
-      display: flex;
-      justify-content: flex-end;
-      background-color: antiquewhite;
-      margin-right: 4%;
-    }
+  
     .logo_partburger img{
       width: 30%;
     }
@@ -275,10 +277,19 @@ nav{
       }
       
       .navbar {
-        width: 100%;
-        box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+        width: 50%;
       }
-      
+      #menu{
+        top: 3%;
+
+      }
+       #menu li:hover ul li {
+        float:right;
+      }
+       #menu li ul {
+        position:absolute;
+        right: 5%;
+      }
       .nav-container {
         display: flex;
         justify-content: space-between;
@@ -408,9 +419,24 @@ nav{
         display: none;
       }
       footer{
-        width: 78%;
+        width: 100%;
       }
-      .wave{
-        width: 100vw;
+      .waves{
+        display: none;
+      }
+      .menu__link{
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+      }
+      footer p{
+        display: flex;
+        justify-content: center;
+        padding: 5%;
+      }
+      .menu{
+        display: flex;
+        justify-content: center;
+        padding-inline-start: 0;
       }
 }

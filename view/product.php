@@ -86,7 +86,7 @@ if (isset($_SESSION['user'])) {
                     <p><span class="titleP"><?= $category ?></span> : <?= $category_descript; ?></p>
                     <p id="rateValue"></p>
                     <p><span class="titleP">Poids </span>: </p>
-                    <p class="titlePrice"><?= number_format($price / 100, 2) ?> €</p>
+                    <p class="productPrice"><?= number_format($price / 100, 2) ?> €</p>
 
                     <div class="rateDisplay">
                         <p id="rateValue"></p>

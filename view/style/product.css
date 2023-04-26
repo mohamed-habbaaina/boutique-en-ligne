@@ -15,9 +15,11 @@
     display: flex;
     justify-content: center;
     padding-right: 5% ;
+    align-items: center;
 }
  .image_container img {
-    width: 80%;
+    width: 100%;
+    height: 80%;
  }
 
 .info_product_contener{
@@ -65,10 +67,7 @@ h2.description {
     color: #572A17;
     font-size: 22px;
 }
-.titlePrice{
-    color: #572A17;
-    font-size: 22px;
-}
+
 /* ---------BUTTON--------- */
 
 

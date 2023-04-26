@@ -54,27 +54,17 @@
   font-weight: bold;
 }
 
-/* ******************* btn page ************************ */
-/* ***************************************************** */
 
-.page{
-  display: flex;
-  flex-direction: row-reverse;
-  margin: 10px 20px;
-}
-.page button{
-  margin-inline: 5px;
-}
-/* ******************* filter ************************** */
-/* ***************************************************** */
-.filter{
-  display: flex;
-  flex-direction: row-reverse;
-  margin-right: 10px;
-}
-.filter #selectCategory{
-  margin-inline: 20px;
-}
-#categoryDiv label:hover, #originDiv label:hover{
-  color: #b05e3a;
-}
+   .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes avec une largeur égale */
+    grid-template-rows: repeat(3, 1fr); /* 3 lignes avec une hauteur égale */
+    grid-gap: 20px; /* espacement entre les éléments */
+  }
+  
+  .grid-container > div {
+    background-color: #fff; /* couleur de fond pour les éléments */
+    text-align: center; /* centrage du contenu */
+    padding: 20px; /* marge intérieure */
+  }
+  

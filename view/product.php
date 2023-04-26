@@ -12,11 +12,6 @@ else :
 endif;
 
 $dataProduct =  $product->getProduct($idProduct);
-// var_dump($dataProduct);
-// echo '<br>';
-// echo '<br>';
-// echo '<br>';
-// var_dump($_SESSION);
 
 // get data product where id & customer rating
 $name = $dataProduct['name_pro'];
@@ -36,8 +31,6 @@ if (isset($_SESSION['user'])) {
 
     $id_user = $_SESSION['user']['id'];
 }
-
-// var_dump("name : $name, description : $description, price : $price, origin : $origin, category : $category, avg_rating : $avg_rating")
 
 ?>
 <!DOCTYPE html>
@@ -92,9 +85,9 @@ if (isset($_SESSION['user'])) {
                         <p id="rateValue"></p>
                         <?php if (isset($_SESSION["user"])) : ?>
                             <form method="post" id="postRateForm">
-                                <label for="rating">Sélectionnez votre note :</label>
+                                <label for="rating">Rate :</label>
                                 <select name="rating" id="rating">
-                                    <option>-- Rate --</option>
+                                    <option>-- Select Your Rating --</option>
                                     <option value="1">&#9733;</option>
                                     <option value="2">&#9733; &#9733;</option>
                                     <option value="3">&#9733; &#9733; &#9733;</option>
@@ -110,7 +103,7 @@ if (isset($_SESSION['user'])) {
                             <input type="hidden" name="id_product" value="<?= $id_product; ?>">
                             <input type="hidden" name="id_user" value="<?= $id_user; ?>">
                             <input type="number" name="product_quantity" value="<?= 1; ?>">
-                            <input type="submit" name="add_cart" value="+ Panier" />
+                            <input class="button-59" type="submit" name="add_cart" value="Add to cart" />
                         </form>
 
                         <form action="" method="post" id="formBuy">
@@ -120,9 +113,7 @@ if (isset($_SESSION['user'])) {
                             <input type="hidden" name="add_cart_buy" value="Acher" />
                         </form>
 
-                        <?php if (isset($_SESSION['user'])) {; ?>
-                            <button class="button-59"><a href="./cart.php">Add to cart</a></button>
-                        <?php }; ?>
+                            <button class="button-59 btn-getCart"><a href="./cart.php">Your Cart</a></button>
                     <?php }; ?>
                 </div>
 

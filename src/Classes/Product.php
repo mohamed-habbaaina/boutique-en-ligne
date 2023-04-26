@@ -324,33 +324,60 @@ class Product
         ]);
     }
 
-    public function displayFilter($categories, $origins)
+    public function displayFilter($categories, $origins, $offset = 0)
     {
-        $select = ("SELECT product.id_pro, name_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, AVG(value_rat) as avg_rating, state_pro
+        $select = ("SELECT product.id_pro, name_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, COALESCE(AVG(value_rat), 0) as avg_rating, state_pro
             FROM product
             LEFT JOIN rate
             ON product.id_pro = rate.id_pro
-            WHERE category_pro = :category
-            AND origin_pro = :origin"
+            WHERE ("
         );
-        $prepare = DbConnection::getDb()->prepare($select);
-
-        $results = [];
-
-        foreach ($categories as $category) {
-            foreach ($origins as $origin) {
-                $prepare->execute([
-                    "category" => $category,
-                    "origin" => $origin
-                ]);
-                $results = array_merge($results, $prepare->fetchAll(\PDO::FETCH_ASSOC));
-                $results = array_filter($results, function($element) {
-                    if ($element['id_pro'] !== null) {
-                        return $element;
-                    }
-                });
+        $execute = [];
+        for ($i = 0; $i < count($categories); $i++) {
+            $select .= "category_pro = :category" . $i;
+            if ($i < count($categories) - 1) {
+                $select .= " OR ";
             }
+            $execute["category". $i] = $categories[$i];
         }
+        $select .= ") AND (";
+        for ($i = 0; $i < count($origins); $i++) {
+            $select .= "origin_pro = :origin" . $i;
+            if ($i < count($origins) - 1) {
+                $select .= " OR ";
+            }
+            $execute["origin". $i] = $origins[$i];
+        }
+        $select .= ") GROUP BY product.id_pro LIMIT 8 OFFSET " . $offset;
+        // echo $select;
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute($execute);
+        $results = $prepare->fetchAll(\PDO::FETCH_ASSOC);
         echo json_encode($results);
+
+        // $prepare->execute([
+        //             "category" => $category,
+        //             "origin" => $origin
+        //         ]);
+
+
+        // $results = [];
+
+        // foreach ($categories as $category) {
+        //     foreach ($origins as $origin) {
+        //         $prepare->execute([
+        //             "category" => $category,
+        //             "origin" => $origin
+        //         ]);
+        //         $results = array_merge($results, $prepare->fetchAll(\PDO::FETCH_ASSOC));
+        //         $results = array_filter($results, function($element) {
+        //             if ($element['id_pro'] !== null) {
+        //                 return $element;
+        //             }
+        //         });
+        //     }
+        // }
+        // array_slice($fruits, 0, 3);
+        // echo json_encode($results);
     }
 }

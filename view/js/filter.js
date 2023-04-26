@@ -46,7 +46,6 @@ function fetchOrigin() {
 
         input.addEventListener('change', (event) => {
           postFilter();
-
         });
       });
     });
@@ -94,10 +93,11 @@ function postFilter() {
       return response.json();
     })
     .then((products) => {
+      console.log(products);
       let shop = document.querySelector("#shop")
       let html = "";
       products.forEach((item) => {
-        console.log(item);
+        
         const rating = item.avg_rating;
         const starRating = getStarRating(rating);
 
@@ -143,3 +143,4 @@ function createCheckbox(value, type) {
 
 fetchCategory();
 fetchOrigin();
+postFilter();

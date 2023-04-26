@@ -15,7 +15,7 @@ if (isset($_SESSION["user"])) {
             <div id="menu">
                 <ul>
                     <li>
-                        <a href="#"><ion-icon name="person-outline"></ion-icon></a>
+                        <a href="#"><ion-icon name="person-circle-outline"></ion-icon></a>
                         <ul>
                             <?php if (isset($_SESSION["user"])) : ?>
                                 <?php if (!isset($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'admin') : ?>

@@ -41,11 +41,11 @@ if (isset($_SESSION["user"])) {
     <div class="bottom_part">
         <a href="index.php">Home</a>
         <a href="shop.php">Shop</a>
-        <a href="about.php">About</a>
-        <a href="contact.php">Contact</a>
         <?php if (isset($_SESSION["user"])) : ?>
             <a href="cart.php">Cart</a>
         <?php endif ?>
+        <a href="about.php">About</a>
+        <a href="contact.php">Contact</a>
         <div id="search">
 
             <form action="./../src/controllers/searchProduct.js" method="get" id="searchForm">
@@ -71,7 +71,7 @@ if (isset($_SESSION["user"])) {
             <li><a href="../view/about.php">About</a></li>
             <li><a href="../view/shop.php">Shop</a></li>
             <li><a href="../view/cart.php">Cart</a></li>
-            <li><a href="">contact</a></li>
+            <li><a href="../view/contact.php">Contact</a></li>
         </div>
     </div>
 </div>
@@ -79,6 +79,3 @@ if (isset($_SESSION["user"])) {
 <script defer src="./../src/controllers/searchProduct.js" defer></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-<?php if (!isset($_SESSION['user'])) : ?>
-    <!-- <script src="./js/auth.js"></script> -->
-<?php endif ?>

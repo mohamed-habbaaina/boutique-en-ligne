@@ -35,7 +35,7 @@ session_start()
     </main>
 
     <?php require_once("./includes/footer.php"); ?>
-
+    <script src="./js/auth.js"></script>
     </script>
 
 </body>

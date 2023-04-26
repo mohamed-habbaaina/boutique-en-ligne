@@ -110,7 +110,7 @@ if (isset($_SESSION['user'])) {
                             <input type="hidden" name="id_product" value="<?= $id_product; ?>">
                             <input type="hidden" name="id_user" value="<?= $id_user; ?>">
                             <input type="number" name="product_quantity" value="<?= 1; ?>">
-                            <input type="submit" name="add_cart" value="+ Panier" />
+                            <input type="submit" class="button-59" name="add_cart" value="+ Panier" />
                         </form>
 
                         <form action="" method="post" id="formBuy">
@@ -126,11 +126,6 @@ if (isset($_SESSION['user'])) {
                     <?php }; ?>
                 </div>
 
-            </div>
-
-            <div>
-                <h2 class="description">Description:</h2>
-                <p><?= $description ?></p>
             </div>
         </section>
         <section>
@@ -153,7 +148,7 @@ if (isset($_SESSION['user'])) {
     </main>
     
     <?php require_once('./includes/footer.php'); ?>
-
+    <script src="./js/auth.js"></script>
 </body>
 
 </html>

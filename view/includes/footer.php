@@ -12,7 +12,7 @@
       <li class="menu__item"><a class="menu__link" href="./index.php">Home</a></li>
       <li class="menu__item"><a class="menu__link" href="./about.php">About</a></li>
       <li class="menu__item"><a class="menu__link" href="./contact.php">Contact</a></li>
-      <li class="menu__item"><a class="menu__link" href="../contact.php">Github</a></li>
+      <li class="menu__item"><a class="menu__link" href="https://github.com/mohamed-habbaaina/boutique-en-ligne">Github</a></li>
     </ul>
     <p>&copy;2023 Alban Martinant de Preneuf, Mohammed Habbaaina and Guangquan Ye | All Rights Reserved</p>
   </footer>

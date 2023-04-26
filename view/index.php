@@ -23,17 +23,15 @@ session_start();
         </div>
 
         <div id="formDisplay">
-
-            <div class="title">
-                <h1>START YOUR DAY WITH OUR COFFEE</h1>
-            </div>
             <div class="background">
                 <img src="../view/img/homepage.jpg" alt="">
+            </div>
+            <div class="title">
+                <h1>START YOUR DAY WITH OUR COFFEE</h1>
             </div>
         </div>
     </main>
     <div class="aboutShop">
-        <h1 class ="indexTitle">About our shop</h1>
         <div class="displayAboutShop">
 
             <div class="aboutshopTextLeft">

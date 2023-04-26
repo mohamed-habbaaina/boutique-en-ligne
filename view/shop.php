@@ -60,5 +60,6 @@ $_SESSION['page'] = $page;
 
     <?php require_once('./includes/footer.php'); ?>
     <script src="./js/filter.js"></script>
+    <script src="./js/auth.js"></script>
 </body>
 </html>

@@ -53,18 +53,18 @@ if(!$payment->checkSecureCart($id_cart, $id_user))
             $messag[] = '<li>Veillez renseigné votre Carte bancaire !</li>';
         }
 
-        // stored user delivery data
-        if(!$displayAdress){
-            
-            $payment->insertAddress($id_user, $address, $zip, $phone);
-        }
         
-
         if(!empty($messag))
         {
             echo json_encode($messag);
         } else
         {
+            // stored user delivery data
+            if($displayAdress == false){
+                
+                $payment->insertAddress($id_user, $address, $zip, $phone);
+            }
+            
             // payment
             $payment->payment($id_user, $id_cart, $total);
             

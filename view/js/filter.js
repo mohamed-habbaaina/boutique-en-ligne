@@ -1,3 +1,5 @@
+let currentPage = 1;
+
 function fetchCategory() {
   fetch(`../src/controllers/rateRouter.php?fetchCategory="ok"`)
 
@@ -51,7 +53,7 @@ function fetchOrigin() {
     });
 }
 
-function postFilter(page = 1) {
+function postFilter() {
   const checkboxesCategory = document.querySelectorAll('#categoryDiv input[type="checkbox"]');
   const checkboxesOrigin = document.querySelectorAll('#originDiv input[type="checkbox"]');
 
@@ -84,7 +86,7 @@ function postFilter(page = 1) {
   let data = new FormData();
   data.append("filterCategory", categoriesToDisplay);
   data.append("filterOrigin", originsToDisplay);
-  data.append("page", page)
+  data.append("page", currentPage)
   fetch('../src/controllers/rateRouter.php', {
     method: 'POST',
     body: data,
@@ -121,29 +123,51 @@ function postFilter(page = 1) {
 }
 
 function changeButton() {
-  if (typeof sessionStorage.getItem('shopPage') !== 'undefined') {
-    sessionStorage.setItem('shopPage', 1)
-  };
-  if (typeof(nextBtn) === 'undefined') {
-    nextBtn = document.querySelectorAll('.next_button');
-    nextBtn.forEach(button => {
+  if (typeof(nextBtns) === 'undefined') {
+    nextBtns = document.querySelectorAll('.next_button');
+    nextBtns.forEach(button => {
       button.addEventListener("click", e => {
         e.preventDefault();
-        sessionStorage.setItem('shopPage', Number(sessionStorage.getItem('shopPage')) + 1);
-        console.log(Number(sessionStorage.getItem('shopPage')));
-        // postFilter(Number(sessionStorage.getItem('shopPage')));
+        currentPage += 1;
+        console.log(currentPage);
+        if (currentPage === 1) {
+          button.style.display = "none";
+        } else {
+          console.log("eeeeelse")
+          button.style.display = "inlineBlock";
+        }
+        postFilter(currentPage);
       })
     })
+  } else {
+    nextBtns = document.querySelectorAll('.prev_button')
+    nextBtns.forEach(button => {
+      if (currentPage === 1) {
+        button.style.display = "none";
+      } else {
+        button.style.display = "inline-block";
+      }
+    })
   }
-  if (typeof(prevBtn) === 'undefined') {
-    prevBtn = document.querySelectorAll('.prev_button')
-    prevBtn.forEach(button => {
+  if (typeof(prevBtns) === 'undefined') {
+    prevBtns = document.querySelectorAll('.prev_button');
+    prevBtns.forEach(button => {
       button.addEventListener("click", e => {
         e.preventDefault();
-        sessionStorage.setItem('shopPage', Number(sessionStorage.getItem('shopPage')) - 1);
-        console.log(Number(sessionStorage.getItem('shopPage')));
-        // postFilter(Number(sessionStorage.getItem('shopPage')));
+        currentPage -= 1;
+        console.log(currentPage);
+        console.log(button);
+        postFilter(currentPage);
       })
+    })
+  } else {
+    prevBtns = document.querySelectorAll('.prev_button')
+    prevBtns.forEach(button => {
+      if (currentPage === 1) {
+        button.style.display = "none";
+      } else {
+        button.style.display = "inline-block";
+      }
     })
   }
 }

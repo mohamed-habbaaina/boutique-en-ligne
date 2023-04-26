@@ -51,10 +51,10 @@ function fetchOrigin() {
     });
 }
 
-function postFilter() {
+function postFilter(page = 1) {
   const checkboxesCategory = document.querySelectorAll('#categoryDiv input[type="checkbox"]');
   const checkboxesOrigin = document.querySelectorAll('#originDiv input[type="checkbox"]');
-  
+
   let allCategories = [];
   let allOrigins = [];
 
@@ -84,6 +84,7 @@ function postFilter() {
   let data = new FormData();
   data.append("filterCategory", categoriesToDisplay);
   data.append("filterOrigin", originsToDisplay);
+  data.append("page", page)
   fetch('../src/controllers/rateRouter.php', {
     method: 'POST',
     body: data,
@@ -97,7 +98,7 @@ function postFilter() {
       let shop = document.querySelector("#shop")
       let html = "";
       products.forEach((item) => {
-        
+
         const rating = item.avg_rating;
         const starRating = getStarRating(rating);
 
@@ -116,6 +117,35 @@ function postFilter() {
       });
       shop.innerHTML = html;
     });
+  changeButton();
+}
+
+function changeButton() {
+  if (typeof sessionStorage.getItem('shopPage') !== 'undefined') {
+    sessionStorage.setItem('shopPage', 1)
+  };
+  if (typeof(nextBtn) === 'undefined') {
+    nextBtn = document.querySelectorAll('.next_button');
+    nextBtn.forEach(button => {
+      button.addEventListener("click", e => {
+        e.preventDefault();
+        sessionStorage.setItem('shopPage', Number(sessionStorage.getItem('shopPage')) + 1);
+        console.log(Number(sessionStorage.getItem('shopPage')));
+        // postFilter(Number(sessionStorage.getItem('shopPage')));
+      })
+    })
+  }
+  if (typeof(prevBtn) === 'undefined') {
+    prevBtn = document.querySelectorAll('.prev_button')
+    prevBtn.forEach(button => {
+      button.addEventListener("click", e => {
+        e.preventDefault();
+        sessionStorage.setItem('shopPage', Number(sessionStorage.getItem('shopPage')) - 1);
+        console.log(Number(sessionStorage.getItem('shopPage')));
+        // postFilter(Number(sessionStorage.getItem('shopPage')));
+      })
+    })
+  }
 }
 
 function createCheckbox(value, type) {
@@ -143,4 +173,3 @@ function createCheckbox(value, type) {
 
 fetchCategory();
 fetchOrigin();
-postFilter();

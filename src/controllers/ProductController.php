@@ -54,8 +54,9 @@ class ProductController
         return $this->product->selectOneCategory($category);
     }
 
-    public function displayFilter($categories, $origins)
+    public function displayFilter($categories, $origins, $page)
     {
-        $this->product->displayFilter(explode(",", $categories), explode(",", $origins));
+        $offset = ($page - 1) * 8;
+        $this->product->displayFilter(explode(",", $categories), explode(",", $origins), $offset);
     }
 }

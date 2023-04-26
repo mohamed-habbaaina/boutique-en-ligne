@@ -332,7 +332,7 @@ class Product
             ON product.id_pro = rate.id_pro
             WHERE ("
         );
-        $execute = [];
+        $execute = ["offset" => $offset];
         for ($i = 0; $i < count($categories); $i++) {
             $select .= "category_pro = :category" . $i;
             if ($i < count($categories) - 1) {
@@ -348,36 +348,11 @@ class Product
             }
             $execute["origin". $i] = $origins[$i];
         }
-        $select .= ") GROUP BY product.id_pro LIMIT 8 OFFSET " . $offset;
-        // echo $select;
+        $select .= ") GROUP BY product.id_pro DESC LIMIT 8 OFFSET :offset";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute($execute);
         $results = $prepare->fetchAll(\PDO::FETCH_ASSOC);
         echo json_encode($results);
 
-        // $prepare->execute([
-        //             "category" => $category,
-        //             "origin" => $origin
-        //         ]);
-
-
-        // $results = [];
-
-        // foreach ($categories as $category) {
-        //     foreach ($origins as $origin) {
-        //         $prepare->execute([
-        //             "category" => $category,
-        //             "origin" => $origin
-        //         ]);
-        //         $results = array_merge($results, $prepare->fetchAll(\PDO::FETCH_ASSOC));
-        //         $results = array_filter($results, function($element) {
-        //             if ($element['id_pro'] !== null) {
-        //                 return $element;
-        //             }
-        //         });
-        //     }
-        // }
-        // array_slice($fruits, 0, 3);
-        // echo json_encode($results);
     }
 }

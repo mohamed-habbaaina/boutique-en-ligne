@@ -3,7 +3,7 @@
 window.addEventListener('DOMContentLoaded', async () =>{
 
     let shop = document.querySelector('.shop');
-    const btnSuivant = document.querySelectorAll('.btn_suivant');
+    const btnSuivant = document.querySelectorAll('.next_button');
     
     let response = await fetch('./../src/model/shop.php', {
         method: 'POST',

@@ -2,9 +2,9 @@
 session_start();
 // Create or increment the navigation page number
 // get the page number and store it in a global session variable
-// $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-// $page = ($page < 1) ? 1 : $page;
-// $_SESSION['page'] = $page;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = ($page < 1) ? 1 : $page;
+$_SESSION['page'] = $page;
 
 ?>
 <!DOCTYPE html>
@@ -30,13 +30,11 @@ session_start();
         <div class="container">
 
             <div class="page">
-                <button class="btn btn_suivant">
-                    <!-- <a href="shop.php?page=<?php echo $page +1 ?>"--> >Next Page >><!--</a> -->
+                <button class="btn next_button">
+                    <a href="shop.php?page=<?php echo $page +1 ?>" >Next Page >></a>
                 </button>
                 <button class="btn prev_button">
-                    <!-- <a href="shop.php?page=<?php echo $page -1 ?>"> -->
-                    << Previous Page
-               <!-- </a> -->
+                    <a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a>
                 </button>
             </div>
             <div class="filter">
@@ -59,7 +57,7 @@ session_start();
         </div>
 
         <div class="page">
-            <button class="btn btn_suivant"><a href="shop.php?page=<?php echo $page +1 ?>">Next Page >></a></button>
+            <button class="btn next_button"><a href="shop.php?page=<?php echo $page +1 ?>">Next Page >></a></button>
             <button class="btn prev_button"><a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a></button>
         </div>
 

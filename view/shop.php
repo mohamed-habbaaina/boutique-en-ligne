@@ -9,6 +9,7 @@ $_SESSION['page'] = $page;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,11 +19,12 @@ $_SESSION['page'] = $page;
     <link rel="stylesheet" href="./style/includes.css">
     <link rel="stylesheet" href="./style/contact.css">
     <link rel="stylesheet" href="./style/shop.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
     <script defer src="./../src/controllers/shop.js"></script>
     <script defer src="./js/filter.js"></script>
     <title>Shop</title>
 </head>
+
 <body>
     <?php require_once('./includes/header.php'); ?>
 
@@ -30,20 +32,24 @@ $_SESSION['page'] = $page;
         <div class="container">
 
             <div class="page">
-                <button class="btn next_button button-59">
-                    <a href="shop.php?page=<?php echo $page +1 ?>" >Next Page >></a>
-                </button>
-                <button class="btn prev_button button-59">
-                    <a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a>
-                </button>
+                <a href="shop.php?page=<?php echo $page + 1 ?>">
+                    <button class="btn next_button button-59">
+                        Next Page >>
+                    </button>
+                </a>
+                <a href="shop.php?page=<?php echo $page - 1 ?>">
+                    <button class="btn prev_button button-59">
+                        << Previous Page 
+                    </button>
+                </a>
 
             </div>
             <div class="filter">
                 <form id="selectCategory">
-                <div id="categoryDiv">
-                    <h4>Per category</h4>
+                    <div id="categoryDiv">
+                        <h4>Per category</h4>
 
-                </div>
+                    </div>
                 </form>
                 <form id="selectOrigin">
                     <div id="originDiv">
@@ -58,8 +64,9 @@ $_SESSION['page'] = $page;
         </div>
 
         <div class="page">
-            <button class="btn next_button button-59"><a href="shop.php?page=<?php echo $page +1 ?>">Next Page >></a></button>
-            <button class="btn prev_button button-59"><a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a></button>
+            <button class="btn next_button button-59"><a href="shop.php?page=<?php echo $page + 1 ?>">Next Page >></a></button>
+            <button class="btn prev_button button-59"><a href="shop.php?page=<?php echo $page - 1 ?>">
+                    << Previous Page</a></button>
 
         </div>
 
@@ -69,4 +76,5 @@ $_SESSION['page'] = $page;
     <script src="./js/filter.js"></script>
     <script src="./js/auth.js"></script>
 </body>
+
 </html>

@@ -16,7 +16,9 @@ class Payment extends Cart {
         $dataAdress = DbConnection::getDb()->prepare($reqAdress);
         $dataAdress->bindParam(':id_user', $id_user);
         $dataAdress->execute();
-        return $dataAdress->fetch(\PDO::FETCH_ASSOC) ?? false;
+        $data =  $dataAdress->fetch(\PDO::FETCH_ASSOC);
+        // var_dump($data);
+        return $data ?? false;
     }
 
     /**

@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inika&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inika&family=Lobster&display=swap');
+
 *,
 ::before,
 ::after {
@@ -25,6 +26,7 @@ li {
 	list-style: none;
 
 }
+
 #formDisplay{
     padding-top: 2%;
 }
@@ -56,7 +58,7 @@ margin-right: auto;
 
 .background img{
     width: 80%;
-    height: 600px;
+    height: 900px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -121,114 +123,6 @@ h2 {
     font-size: 24px;
 }
 
-
-/* aboutshop */
-.aboutShop{
-    font-family: 'Inika';
-    margin-top: 5%;
-    margin-bottom: 5%;
-   
-    margin: 10%;
-
-}
-.displayAboutShop{
-    display: flex;
-    flex-direction: row;
-    margin-top: 10%;
-    margin-bottom: 10%;
-}
-.displayAboutShop p{
-    font-size: 28px;
-}
-.aboutshopTextLeft{
-width: 50%;
-
-padding: 5%;
-color: #000000;
-
-}
-
-.imgRight{
-display: flex;
-justify-content: flex-end;
-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.imgRight img{
-    width: 580px;
-    height: 400px;
-}
-
-.aboutshopTextRight{
-width: 50%;
-color: #000000;
-padding: 5%;
-
-}
-
-.imgLeft{
-    display: flex;
-    justify-content: flex-start;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.imgLeft img{
-    width: 580px;
-    height: 400px;
-}
-
-/* MOST LIKED DIV */
-.mostLiked{
-    padding: 3%;
-    font-family: 'Inika';
-}
-.grid-container {
-    margin-top: 5%;
-    display: grid;
-    grid-template-columns: repeat(4, 300px);
-    gap: 60px;
-    justify-content: center;
-  }
-  
-  .gridProduct {
-    grid-auto-flow: column;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    padding: 20px;
-    text-align: center;
-  }
-  .productImg{
-    height: 50%;
-  }
-  .productInfo{
-    height: 50%;
-  }
-  .gridProduct h1 {
-    margin-top: 0;
-  }
-
-  .gridProduct img {
-    width: 100%;
-    max-width: 200px;
-    height: 100%;
-    margin-bottom: 10px;
-    object-fit: cover;
-
-  }
-  .gridProduct p{
-    font-size: 18px;
-  }
-  .gridProduct a {
-    display: block;
-    margin-bottom: 10px;
-  }
-  #starRating{
-    color: gold;
-  }
-  #productPrice{
-    font-size: 20px;
-    font-style: bold;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-
 /* aboutshop */
 .aboutShop{
     font-family: 'Inika';
@@ -248,13 +142,7 @@ padding: 5%;
     color: #572A17;
     font-style: italic;
 }
-.aboutshopTextLeft{
-width: 50%;
 
-padding: 5%;
-color: #000000;
-
-}
 
 .imgRight{
 display: flex;
@@ -335,13 +223,13 @@ padding: 5%;
   #productPrice{
     font-size: 20px;
     font-style: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lobster', cursive;
   }
 
 /* ******************* button  ************************* */
 /* ***************************************************** */
 
- .btn{
+ /* .btn{
   width: 150px;
 	height: 50px;
 	cursor: pointer;
@@ -357,7 +245,7 @@ padding: 5%;
  .btn:hover {
   border: 2px solid #ff9c71;
   animation: hueRotation 2s linear infinite;
-}
+} */
 
 @keyframes hueRotation {
 to {filter: hue-rotate(360deg);}
@@ -371,18 +259,32 @@ outline: none;
     .aboutShop {
       margin: 5%;
     }
+    .title{
+      font-size: 24px;
+      width: 90%;
+      
+    }
     .displayAboutShop {
       flex-direction: column;
       margin-top: 5%;
       margin-bottom: 5%;
     }
+    .background{
+      display: flex;
+      justify-content: center;
+
+    }
+    .background img{
+      width: 100%;
+      height: 280px;
+    }
     .aboutshopTextLeft {
-        padding: 5%;
         width: 100%;
+        padding: 0;
     }
     .aboutshopTextRight {
-      padding: 5%;
       width: 100%;
+      padding: 0;
     }
     .imgRight img{
         width: 100%;

@@ -159,15 +159,16 @@ class Product
     {
         $sqlUpdate = ('UPDATE `product` SET `state_pro` = :state_pro 
         WHERE `id_pro` = :id'
-    );
-    $prepare = DbConnection::getDb()->prepare($sqlUpdate);
-    $prepare->execute([
-        ':state_pro' => "deleted",
-        ':id' => $id
-    ]);
+        );
+        $prepare = DbConnection::getDb()->prepare($sqlUpdate);
+        $prepare->execute([
+            ':state_pro' => "deleted",
+            ':id' => $id
+        ]);
     }
-    public function selectMostLiked(){
-        $select ="SELECT AVG(rate.value_rat) as rate_avg, product.*
+    public function selectMostLiked()
+    {
+        $select = "SELECT AVG(rate.value_rat) as rate_avg, product.*
         FROM rate
         INNER JOIN product
         ON rate.id_pro = product.id_pro
@@ -180,15 +181,17 @@ class Product
         echo json_encode($result);
     }
 
-    public function selectAllCategory(){
+    public function selectAllCategory()
+    {
         $select = "SELECT DISTINCT category_pro FROM product";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute();
         $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
         echo json_encode($result);
     }
-    
-    public function selectAllOrigin(){
+
+    public function selectAllOrigin()
+    {
         $select = "SELECT DISTINCT origin_pro FROM product";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute();
@@ -196,8 +199,9 @@ class Product
         echo json_encode($result);
     }
 
-    public function selectOneCategory($category){
-        $select ="SELECT * FROM product WHERE category_pro = :category";
+    public function selectOneCategory($category)
+    {
+        $select = "SELECT * FROM product WHERE category_pro = :category";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
             "category" => $category
@@ -206,8 +210,9 @@ class Product
         echo json_encode($result);
     }
 
-    public function selectOneOrigin($origin){
-        $select ="SELECT * FROM product WHERE origin_pro = :origin";
+    public function selectOneOrigin($origin)
+    {
+        $select = "SELECT * FROM product WHERE origin_pro = :origin";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute([
             "origin" => $origin
@@ -252,12 +257,10 @@ class Product
 
     public function delComment($id)
     {
-        $sqlQuery = (
-            'DELETE FROM comment WHERE id_com = :id'
+        $sqlQuery = ('DELETE FROM comment WHERE id_com = :id'
         );
         $prepare = DbConnection::getDb()->prepare($sqlQuery);
         $prepare->execute(['id' => $id]);
-
     }
 
     public function updateName($id, $newName)
@@ -321,27 +324,35 @@ class Product
         ]);
     }
 
-    public function displayFilter($categories, $origins) {
-        $select = (
-            "SELECT * 
-            FROM product 
-            WHERE category_pro = :category
-            AND origin_pro = :origin"
+    public function displayFilter($categories, $origins, $offset = 0)
+    {
+        $select = ("SELECT product.id_pro, name_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, COALESCE(AVG(value_rat), 0) as avg_rating, state_pro
+            FROM product
+            LEFT JOIN rate
+            ON product.id_pro = rate.id_pro
+            WHERE ("
         );
-        $prepare = DbConnection::getDb()->prepare($select);
-
-        $results = [];
-
-        foreach ($categories as $category) {
-            foreach ($origins as $origin) {
-                $prepare->execute([
-                    "category" => $category,
-                    "origin" => $origin
-                ]);
-                $results = array_merge($results, $prepare->fetchAll(\PDO::FETCH_ASSOC));
+        $execute = ["offset" => $offset];
+        for ($i = 0; $i < count($categories); $i++) {
+            $select .= "category_pro = :category" . $i;
+            if ($i < count($categories) - 1) {
+                $select .= " OR ";
             }
+            $execute["category". $i] = $categories[$i];
         }
+        $select .= ") AND (";
+        for ($i = 0; $i < count($origins); $i++) {
+            $select .= "origin_pro = :origin" . $i;
+            if ($i < count($origins) - 1) {
+                $select .= " OR ";
+            }
+            $execute["origin". $i] = $origins[$i];
+        }
+        $select .= ") GROUP BY product.id_pro DESC LIMIT 8 OFFSET :offset";
+        $prepare = DbConnection::getDb()->prepare($select);
+        $prepare->execute($execute);
+        $results = $prepare->fetchAll(\PDO::FETCH_ASSOC);
         echo json_encode($results);
-    }
 
+    }
 }

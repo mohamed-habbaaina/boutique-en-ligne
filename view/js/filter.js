@@ -1,3 +1,5 @@
+let currentPage = 1;
+
 function fetchCategory() {
   fetch(`../src/controllers/rateRouter.php?fetchCategory="ok"`)
 
@@ -46,7 +48,6 @@ function fetchOrigin() {
 
         input.addEventListener('change', (event) => {
           postFilter();
-
         });
       });
     });
@@ -55,7 +56,7 @@ function fetchOrigin() {
 function postFilter() {
   const checkboxesCategory = document.querySelectorAll('#categoryDiv input[type="checkbox"]');
   const checkboxesOrigin = document.querySelectorAll('#originDiv input[type="checkbox"]');
-  
+
   let allCategories = [];
   let allOrigins = [];
 
@@ -85,6 +86,7 @@ function postFilter() {
   let data = new FormData();
   data.append("filterCategory", categoriesToDisplay);
   data.append("filterOrigin", originsToDisplay);
+  data.append("page", currentPage)
   fetch('../src/controllers/rateRouter.php', {
     method: 'POST',
     body: data,
@@ -94,6 +96,7 @@ function postFilter() {
       return response.json();
     })
     .then((products) => {
+      console.log(products);
       let shop = document.querySelector("#shop")
       let html = "";
       products.forEach((item) => {
@@ -108,14 +111,65 @@ function postFilter() {
             <a href="./product.php?idProduct=${item.id_pro}"><h3>${item.name_pro}</h3></a>
                 <p>${item.category_pro}</p>
                 <p>${item.origin_pro}</p>
-                <p id="starRating">${starRating}</p>
-                <p>${item.price_pro}  $ </p>
+                <p class="starRating">${starRating}</p>
+                <p>${(item.price_pro / 100).toFixed(2)}  $ </p>
             </div>
         </div>
                 `;
       });
       shop.innerHTML = html;
     });
+  changeButton();
+}
+
+function changeButton() {
+  if (typeof(nextBtns) === 'undefined') {
+    nextBtns = document.querySelectorAll('.next_button');
+    nextBtns.forEach(button => {
+      button.addEventListener("click", e => {
+        e.preventDefault();
+        currentPage += 1;
+        console.log(currentPage);
+        if (currentPage === 1) {
+          button.style.display = "none";
+        } else {
+          console.log("eeeeelse")
+          button.style.display = "inlineBlock";
+        }
+        postFilter(currentPage);
+      })
+    })
+  } else {
+    nextBtns = document.querySelectorAll('.prev_button')
+    nextBtns.forEach(button => {
+      if (currentPage === 1) {
+        button.style.display = "none";
+      } else {
+        button.style.display = "inline-block";
+      }
+    })
+  }
+  if (typeof(prevBtns) === 'undefined') {
+    prevBtns = document.querySelectorAll('.prev_button');
+    prevBtns.forEach(button => {
+      button.addEventListener("click", e => {
+        e.preventDefault();
+        currentPage -= 1;
+        console.log(currentPage);
+        console.log(button);
+        postFilter(currentPage);
+      })
+    })
+  } else {
+    prevBtns = document.querySelectorAll('.prev_button')
+    prevBtns.forEach(button => {
+      if (currentPage === 1) {
+        button.style.display = "none";
+      } else {
+        button.style.display = "inline-block";
+      }
+    })
+  }
 }
 
 function createCheckbox(value, type) {

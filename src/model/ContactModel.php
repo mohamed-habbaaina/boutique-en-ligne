@@ -49,7 +49,7 @@ class ContactModel
 
     public function getAllMessages()
     {
-        $sql_query = ("SELECT id_mes, firstname_mes, lastname_mes, date_mes
+        $sql_query = ("SELECT id_mes, firstname_mes, lastname_mes, date_mes, email_mes, tel_mes, content_mes
             FROM `message`"
         );
         $prepare = DbConnection::getDb()->prepare($sql_query);

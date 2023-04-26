@@ -55,7 +55,7 @@ class AdminController
         echo json_encode($products);
     }
 
-    public function getMessagesList()
+    public function getMessages()
     {
         return $this->contact->getAllMessages();
     }

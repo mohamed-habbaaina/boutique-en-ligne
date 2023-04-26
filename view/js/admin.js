@@ -190,18 +190,18 @@ async function fetchMessages() {
     const messagesData = await r.json();
 
     // Création et affichage du tableau
-    headers = ['Id', 'Firtname', 'Lastname', 'Date'];
-    keysToDisplay = ['id_mes', 'firstname_mes', 'lastname_mes', 'date_mes'];
+    headers = ['Id', 'Firtname', 'Lastname','Email', 'Tel', 'Date', 'Message'];
+    keysToDisplay = ['id_mes', 'firstname_mes', 'lastname_mes', 'email_mes', 'tel_mes', 'date_mes', 'content_mes'];
     infoBtnValue = 'id_mes';
     productTable = createTable(headers, messagesData, keysToDisplay, infoBtnValue);
     contentDisplay.removeChild(contentDisplay.lastChild);
     contentDisplay.appendChild(productTable);
 
-    // Ajout d'écouteur d'évènement sur les bonton info
+    // Supprimer les boutons info
     getInfoBtns = document.querySelectorAll('.infoBtn');
-    getInfoBtns.forEach(infoBtn => infoBtn.addEventListener('click', (e) => {
-        window.location = "./adminMessagesInfo.php?messageId=" + e.currentTarget.value;
-    }));
+    getInfoBtns.forEach(infoBtn => {
+        infoBtn.parentNode.remove();
+    })
 
     listenDelBtn("../src/controllers/adminRouter.php?delMessage=", fetchMessages);
 }   

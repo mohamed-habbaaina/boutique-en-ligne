@@ -38,11 +38,11 @@ window.addEventListener('DOMContentLoaded', async () =>{
                     <a href="./product.php?idProduct=${item.id_pro}"><img src="../uploads/${item.image_pro}" alt="${item.name_pro}"></a>
                     <div class ="productDisplay">
                         <a href="./product.php?idProduct=${item.id_pro}"><h3>${item.name_pro}</h3></a>
+                        <p>${item.category_descript}</p>
                             <p>${item.category_pro}</p>
                             <p>${item.origin_pro}</p>
                             <p class="starRating">${starRating}</p>
-                            <p>${price}  $ </p>
-                            <p>${item.category_descript}</p>
+                            <p class="priceShop">${price}  $ </p>
                         </div>
                     </div>
                 `;

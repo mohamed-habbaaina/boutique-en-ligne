@@ -41,6 +41,8 @@ if (isset($_SESSION["user"])) {
     <div class="bottom_part">
         <a href="index.php">Home</a>
         <a href="shop.php">Shop</a>
+        <a href="about.php">About</a>
+        <a href="contact.php">Contact</a>
         <?php if (isset($_SESSION["user"])) : ?>
             <a href="cart.php">Cart</a>
         <?php endif ?>

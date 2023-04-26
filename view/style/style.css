@@ -130,9 +130,14 @@ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 .aboutshopTextRight{
 width: 50%;
 color: #000000;
-padding: 5%;
-
+margin: 5%;
 }
+
+.aboutshopTextLeft{
+  width: 50%;
+  color: #000000;
+  margin: 5%;
+  }
 
 .imgLeft{
     display: flex;
@@ -245,6 +250,7 @@ outline: none;
     .background{
       display: flex;
       justify-content: center;
+      margin: 5%;
 
     }
     .background img{
@@ -253,15 +259,23 @@ outline: none;
     }
     .aboutshopTextLeft {
         width: 100%;
-        padding: 0;
+        padding: none;
+        margin: 2%;
     }
     .aboutshopTextRight {
       width: 100%;
-      padding: 0;
+      padding: none;
+      margin: 2%;
+    }
+    .imgRight{
+      margin: 5%;
     }
     .imgRight img{
         width: 100%;
         height: auto;
+    }
+    .imgLeft{
+      margin: 5%;
     }
     .imgLeft img {
       width: 100%;

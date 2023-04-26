@@ -167,6 +167,7 @@
       }
     #contact_section{
         width: 100%;
+        margin-top: 15%;
     }
     #contact_form_img{
         display: none;
@@ -177,5 +178,8 @@
     
     #about_section{
         width: 100%;
+    }
+    #about_text{
+        padding: 5%;
     }
 }

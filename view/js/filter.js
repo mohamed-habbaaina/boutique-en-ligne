@@ -20,6 +20,7 @@ function fetchCategory() {
 
 
         input.addEventListener('change', () => {
+          currentPage = 1;
           postFilter();
 
         });
@@ -47,6 +48,7 @@ function fetchOrigin() {
 
 
         input.addEventListener('change', (event) => {
+          currentPage = 1;
           postFilter();
         });
       });

@@ -32,7 +32,7 @@ class Product
      */
     public function getAllProduct(int $offset): array
     {
-        $sqlAllProduct = 'SELECT product.id_pro, name_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, AVG(value_rat) as avg_rating, state_pro
+        $sqlAllProduct = 'SELECT product.id_pro, name_pro, description_pro, price_pro, image_pro, origin_pro, origin_descript, category_pro, category_descript, AVG(value_rat) as avg_rating, state_pro
         FROM `product` 
         LEFT JOIN `rate` 
         ON product.id_pro = rate.id_pro 
@@ -101,7 +101,7 @@ class Product
         $select = "SELECT * FROM product";
         $prepare = DbConnection::getDb()->prepare($select);
         $prepare->execute();
-        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
+        $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
 
         echo json_encode($result);
     }

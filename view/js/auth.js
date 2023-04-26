@@ -1,6 +1,6 @@
 let regDisplayBtn = document.querySelector("#regDisplayBtn");
 let logDisplayBtn = document.querySelector("#logDisplayBtn");
-const main = document.querySelector('main');
+const main = document.querySelector("main");
 
 function FetchReg() {
   fetch("register.php")

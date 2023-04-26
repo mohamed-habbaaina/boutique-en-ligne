@@ -3,7 +3,7 @@
 window.addEventListener('DOMContentLoaded', async () =>{
 
     let shop = document.querySelector('.shop');
-    const btnSuivant = document.querySelectorAll('.btn_suivant');
+    const btnSuivant = document.querySelectorAll('.next_button');
     
     let response = await fetch('./../src/model/shop.php', {
         method: 'POST',
@@ -27,6 +27,7 @@ window.addEventListener('DOMContentLoaded', async () =>{
     
             data.forEach(item => {
                 
+                console.log(data);
                 const rating = item.avg_rating;
                 const starRating = getStarRating(rating); 
                 let price = item.price_pro /100 ;
@@ -43,7 +44,7 @@ window.addEventListener('DOMContentLoaded', async () =>{
                             <p>${item.origin_pro}</p>
                             
                             <p class="starRating">${starRating}</p>
-                            <p class="productPrice">${price}  $ </p>
+                            <p class="priceShop">${price}  $ </p>
                         </div>
                     </div>
                 `;
@@ -71,17 +72,19 @@ window.addEventListener('DOMContentLoaded', async () =>{
         const halfStarCount = Math.round(rating - fullStarCount); 
         const emptyStarCount = maxRating - fullStarCount - halfStarCount;
         let starRating = '';
-  
-        for (let i = 0; i < fullStarCount; i++) {
-          starRating += '<i class="fas fa-star"></i>';
-        }
-      
-        for (let i = 0; i < halfStarCount; i++) {
-          starRating += '<i class="fas fa-star-half-alt"></i>';
-        }
-      
-        for (let i = 0; i < emptyStarCount; i++) {
-          starRating += '<i class="far fa-star"></i>';
+        
+        if (fullStarCount >= 1) {
+            for (let i = 0; i < fullStarCount; i++) {
+                starRating += '<i class="fas fa-star"></i>';
+            }
+            
+            for (let i = 0; i < halfStarCount; i++) {
+                starRating += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            for (let i = 0; i < emptyStarCount; i++) {
+                starRating += '<i class="far fa-star"></i>';
+            }
         }
       
         return starRating;

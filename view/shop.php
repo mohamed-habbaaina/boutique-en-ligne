@@ -15,11 +15,12 @@ $_SESSION['page'] = $page;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/shop.css">
-
     <link rel="stylesheet" href="./style/includes.css">
+    <link rel="stylesheet" href="./style/contact.css">
+    <link rel="stylesheet" href="./style/shop.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <script defer src="./../src/controllers/shop.js"></script>
+    <script defer src="./js/filter.js"></script>
     <title>Shop</title>
 </head>
 <body>
@@ -29,8 +30,13 @@ $_SESSION['page'] = $page;
         <div class="container">
 
             <div class="page">
-                <button class="btn btn_suivant"><a href="shop.php?page=<?php echo $page +1 ?>" >Next Page >></a></button>
-                <button class="btn"><a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a></button>
+                <button class="btn next_button button-59">
+                    <a href="shop.php?page=<?php echo $page +1 ?>" >Next Page >></a>
+                </button>
+                <button class="btn prev_button button-59">
+                    <a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a>
+                </button>
+
             </div>
             <div class="filter">
                 <form id="selectCategory">
@@ -52,8 +58,9 @@ $_SESSION['page'] = $page;
         </div>
 
         <div class="page">
-            <button class="btn btn_suivant"><a href="shop.php?page=<?php echo $page +1 ?>">Next Page >></a></button>
-            <button class="btn"><a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a></button>
+            <button class="btn next_button button-59"><a href="shop.php?page=<?php echo $page +1 ?>">Next Page >></a></button>
+            <button class="btn prev_button button-59"><a href="shop.php?page=<?php echo $page -1 ?>"> << Previous Page</a></button>
+
         </div>
 
     </main>

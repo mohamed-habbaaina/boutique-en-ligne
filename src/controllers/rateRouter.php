@@ -29,12 +29,8 @@ if(isset($_GET["fetchOrigin"])){
     $productController->getOrigin();
 }
 
-if(isset($_POST["displayCategory"])){
-    $productController->displayCategory($_POST["displayCategory"]);
-}
-
 if (isset($_POST['filterCategory']) && isset($_POST['filterOrigin'])) {
-    $productController->displayFilter($_POST['filterCategory'], $_POST['filterOrigin']);
+    $productController->displayFilter($_POST['filterCategory'], $_POST['filterOrigin'], $_POST['page']);
 }
 
 ?>

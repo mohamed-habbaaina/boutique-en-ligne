@@ -22,7 +22,7 @@ if(!$payment->isConnected())
 // Check if id_user corresponding to id_cart.
 if(!$payment->checkSecureCart($id_cart, $id_user))
 {
-    header("location: ../../view/index.php");
+    header("location: ../view/index.php");
     die('Acces refused to the database !!!');
 } else
 {
@@ -32,13 +32,14 @@ if(!$payment->checkSecureCart($id_cart, $id_user))
         $firstname = $_SESSION['user']['firstname'];
         $lastname = $_SESSION['user']['lastname'];
 
+        // ! add method to get total if isset id_cart and stocked in SESSION.
         $total = $_POST['total'];
 
         // variable for condisional address display
         $displayAdress = false;
         
         // get adresse.
-        if($payment->getAddressUser($id_user))
+        if($payment->getAddressUser($id_user) !== false)
         {
             $address = $payment->getAddressUser($id_user);
             
@@ -68,20 +69,25 @@ if(!$payment->checkSecureCart($id_cart, $id_user))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/includes.css">
+    <link rel="stylesheet" href="./style/contact.css">
+    <link rel="stylesheet" href="./style/payment.css">
     <script defer src="./../src/controllers/payment.js"></script>
-    <title>Document</title>
+    <title>Payment</title>
 </head>
 <body>
 <?php require_once('./includes/header.php'); ?>
 <main>
 
     <div>
-        <h1>Paiement :</h1>
+        <h1>Payment :</h1>
     </div>
     <div>
 
         <div>
-            <p>Total à Payé : <?= $total; ?></p>
+            <h4>Total Paid : <span><?= $total; ?> $</span></h4>
         </div>
 
         <ul class="displayMessagePayment"></ul>
@@ -105,20 +111,20 @@ if(!$payment->checkSecureCart($id_cart, $id_user))
                 <?php } else
                 {
                 ?>
-                    <input type="number" name="phone" placeholder="Entre Votre Téléphne !">
-                    <input type="text" name="address" placeholder="Entre Votre Adresse !">
-                    <input type="number" name="zip" placeholder="Entre Votre Code Postal !">
+                    <input type="number" name="phone" placeholder=" Your Phone ...">
+                    <input type="text" name="address" placeholder="Your Address ...">
+                    <input type="number" name="zip" placeholder="Your Postal Code ...">
                 <?php };?>
             </div>
 
             <input type="hidden" name="displayAdress" value="<?= $displayAdress; ?>">
             <input type="hidden" name="total" value="<?= $total; ?>">
-            <input type="submit" value="Acheter Maintenat">
+            <input class="button-59 btn-payment" type="submit" value="Buy Now !">
 
         </form>
     </div>
     <div>
-        <button><a href="./cart.php">Cart</a></button>
+        <button class="button-59"><a href="./cart.php">Cart</a></button>
     </div>
 </main>
 <?php require_once('./includes/footer.php'); ?>

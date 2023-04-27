@@ -1,0 +1,58 @@
+/* ************* main ************* */
+/* ******************************** */
+main{
+    width: 80%;
+    margin: auto;
+    min-height: 24%;
+}
+main h1{
+    margin: 20px 0;
+}
+.displayCart{
+    display: flex;
+    flex-direction: column-reverse;
+}
+/* *********** btn payment ******** */
+/* ******************************** */
+
+.paymentCart{
+    margin: auto;
+}
+/* ************* cart ************* */
+/* ******************************** */
+
+.cart{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    transition: all .3s;
+}
+.cart img{
+    width: 100px;
+    height: 150px;
+}
+.cart input{
+    padding: 12px;
+}
+.btn-delete:hover{
+    background-color: red;
+}
+.price-cart{
+    font-size: 20px;
+    font-weight: bold;
+}
+.totalCart{
+    text-align: center;
+    margin: 15px 0;
+}
+/* **** btn quantity & delete ***** */
+/* ******************************** */
+
+.btn-quantity{
+    margin-left: 7px;
+}
+.btn-delete{
+    margin-top: 25px;
+}

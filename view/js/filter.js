@@ -20,6 +20,7 @@ function fetchCategory() {
 
 
         input.addEventListener('change', () => {
+          currentPage = 1;
           postFilter();
 
         });
@@ -47,6 +48,7 @@ function fetchOrigin() {
 
 
         input.addEventListener('change', (event) => {
+          currentPage = 1;
           postFilter();
         });
       });
@@ -96,7 +98,6 @@ function postFilter() {
       return response.json();
     })
     .then((products) => {
-      console.log(products);
       let shop = document.querySelector("#shop")
       let html = "";
       products.forEach((item) => {
@@ -118,56 +119,43 @@ function postFilter() {
                 `;
       });
       shop.innerHTML = html;
+      isEnd = (products.length < 8);
+      changeButton(isEnd);
     });
-  changeButton();
 }
 
-function changeButton() {
-  if (typeof(nextBtns) === 'undefined') {
+function changeButton(isEnd) {
+  if (typeof (nextBtns) === 'undefined') {
     nextBtns = document.querySelectorAll('.next_button');
     nextBtns.forEach(button => {
       button.addEventListener("click", e => {
         e.preventDefault();
         currentPage += 1;
-        console.log(currentPage);
         if (currentPage === 1) {
           button.style.display = "none";
         } else {
-          console.log("eeeeelse")
           button.style.display = "inlineBlock";
         }
         postFilter(currentPage);
       })
     })
   } else {
-    nextBtns = document.querySelectorAll('.prev_button')
     nextBtns.forEach(button => {
-      if (currentPage === 1) {
-        button.style.display = "none";
-      } else {
-        button.style.display = "inline-block";
-      }
+      button.style.display = isEnd ? 'none' : 'block';
     })
   }
-  if (typeof(prevBtns) === 'undefined') {
+  if (typeof (prevBtns) === 'undefined') {
     prevBtns = document.querySelectorAll('.prev_button');
     prevBtns.forEach(button => {
       button.addEventListener("click", e => {
         e.preventDefault();
         currentPage -= 1;
-        console.log(currentPage);
-        console.log(button);
         postFilter(currentPage);
       })
     })
   } else {
-    prevBtns = document.querySelectorAll('.prev_button')
     prevBtns.forEach(button => {
-      if (currentPage === 1) {
-        button.style.display = "none";
-      } else {
-        button.style.display = "inline-block";
-      }
+      button.style.display = currentPage === 1 ? 'none' : 'block';
     })
   }
 }

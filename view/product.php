@@ -130,10 +130,9 @@ if (isset($_SESSION['user'])) {
                         <button id="addCommentBtn" value="<?= $id_product; ?>">Envoyer</button>
                     </form>
                 <?php endif ?>
+                <section id="comment-section"></section>
             </div>
-            <section id="comment-section">
-
-            </section>
+           
         </section>
 
 

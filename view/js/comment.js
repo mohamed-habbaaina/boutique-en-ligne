@@ -42,9 +42,11 @@ function fetchComment() {
                         const commentDiv = document.createElement('div');
                         // commentDiv.className = "comment_div";
 
+                        
                         commentDiv.innerHTML = `
-                            <p>${result}</p>
-                            <p>by ${comment.firstname}</p>
+                            <br>
+                            <p>${result} by ${comment.firstname}</p>
+                            <br>
                             <p>${comment.text}</p>           
                         `;
                         if (userInfo.user.role === 'admin') {
@@ -54,7 +56,9 @@ function fetchComment() {
                                 </button>
                             `
                         }
+                        
                         commentDiv.innerHTML += `<hr>`
+                        
 
                         commentSection.appendChild(commentDiv);
                     });

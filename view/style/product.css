@@ -60,6 +60,7 @@ h2.description {
     width: 50%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
 }
 .info_product_contener p{
@@ -112,6 +113,10 @@ h2.description {
   transition: all .3s;
   touch-action: manipulation;
   border-radius: 3px;
+  }
+
+  .commentDisplay{
+    line-height: 1.5;
   }
 /* ---------BUTTON--------- */
 

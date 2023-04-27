@@ -19,8 +19,10 @@ if(!$cart->isConnected())
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/includes.css">
+    <link rel="stylesheet" href="./style/contact.css">
+    <link rel="stylesheet" href="./style/cart.css">
     <script defer src="./../src/controllers/get_cart.js"></script>
-    <!-- <script defer src="./../src/controllers/updateCart.js"></script> -->
     <title>Cart</title>
 </head>
 <body>
@@ -28,13 +30,11 @@ if(!$cart->isConnected())
 
     <main>
         <h1>Votre Panier</h1>
-        <div>
             <div class="displayCart">
             </div>
             
             <div class="paymentCart">
             </div>
-        </div>
     </main>
     
     <?php require_once('./includes/footer.php'); ?>

@@ -154,4 +154,23 @@ class Cart extends Product {
         $deletProduct->bindParam(':id_product', $id_product);
         $deletProduct->execute();
     }
+
+    /**
+     * Get total cart 'en cours'.
+     */
+    public function getTotalCart(int $id_cart): array | bool
+    {
+        $reqTotal = "SELECT `cart_product`.`id_pro`, `cart_product`.`quantity`, `product`.`price_pro` 
+        FROM `cart_product` INNER JOIN `cart` 
+        ON `cart_product`.`id_cart` = `cart`.`id_cart` 
+        INNER JOIN `product` 
+        ON `cart_product`.`id_pro` = `product`.`id_pro` 
+        WHERE `cart`.`state_car` = 'en cours' 
+        AND `cart`.`id_cart` = :id_cart";
+
+        $datatotalCart = DbConnection::getDb()->prepare($reqTotal);
+        $datatotalCart->bindParam(':id_cart', $id_cart);
+        $datatotalCart->execute();
+        return $datatotalCart->fetchAll(\PDO::FETCH_ASSOC) ?? false;
+    }
 }

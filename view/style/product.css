@@ -35,6 +35,11 @@ h2.description {
 .product_image{
     width: 300px;
 }
+.productPrice{
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+}
 
 .product_contener{
     display: flex;
@@ -67,7 +72,47 @@ h2.description {
     color: #572A17;
     font-size: 22px;
 }
-
+.addCartDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .addCartDiv form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+    
+  }
+  .numberCart{
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid black;
+  box-sizing: border-box;
+  color: #572A17;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #572A17;
+  font-family: Inika,sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  touch-action: manipulation;
+  border-radius: 3px;
+  }
 /* ---------BUTTON--------- */
 
 
@@ -112,11 +157,89 @@ h2.description {
 
 /* ************* form *********************** */
 /* ****************************************** */
-#formCart{
 
-}
-#formCart input{
-    padding: 12.5px;
-    margin: 7px 0;
-    text-align: center;
+
+
+/* ----------MEDIA QUERY----------- */
+@media only screen and (max-width: 768px) {
+   .product_contener{
+    display: block;
+    justify-content: center;
+    
+   }
+   .product_info{
+    margin-top: 5%;
+   }
+
+   .image_container{
+    width: 100%;
+    padding-right: 0;
+   }
+   .info_product_contener{
+    width: 100%;
+    line-height: 1.5;
+   }
+   #formCart input {
+    width: 100%;
+   }
+   #postRateForm select {
+    width: 100%;
+   }
+
+   .info_product_contener {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .titleP {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .productPrice {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .rateDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .addCartDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .addCartDiv form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  
+  .numberCart input[type="number"] {
+    width: 50px;
+    margin-right: 10px;
+  }
 }

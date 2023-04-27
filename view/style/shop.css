@@ -3,7 +3,7 @@
 
 .shop {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  grid-template-columns: repeat(4, 300px);
   justify-content: center;
   grid-gap: 30px;
   width: 85%;
@@ -83,4 +83,28 @@ margin-inline: 20px;
 }
 #categoryDiv label:hover, #originDiv label:hover{
 color: #b05e3a;
+}
+
+@media only screen and (max-width: 1224px) {
+  .shop {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+  }
+  
+}
+
+
+@media only screen and (max-width: 768px) {
+  .shop {
+    display: grid;
+    grid-template-columns: repeat(1, 300px);
+  }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1024px) {
+  .shop {
+    display: grid;
+    grid-template-columns: repeat(2, 300px);
+  }
+  
 }

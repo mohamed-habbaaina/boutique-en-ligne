@@ -33,7 +33,7 @@
 }
 
 .textarea_container {
-    height: 10em;
+    height: 11em;
 }
 
 #name_form .input_container {
@@ -170,6 +170,11 @@
     #contact_section{
         width: 100%;
         margin-top: 15%;
+        margin-left: 0;
+        margin-right: 0;
+        display: flex;
+        justify-content: center;
+        
     }
     #contact_form_img{
         display: none;
@@ -180,6 +185,7 @@
     
     #about_section{
         width: 100%;
+        margin-left: auto;
     }
     #about_text{
         padding: 5%;

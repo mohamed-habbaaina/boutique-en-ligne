@@ -45,9 +45,9 @@ if (isset($_SESSION['user'])) {
     <link rel="stylesheet" href="./style/includes.css">
     <link rel="stylesheet" href="./style/contact.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-    <?php if(isset($_SESSION['user'])){ ?><script defer src="./../src/controllers/add_cart.js"></script>
+    <?php if (isset($_SESSION['user'])) { ?><script defer src="./../src/controllers/add_cart.js"></script>
         <script defer src="./js/comment.js"></script><?php }; ?>
-        <script defer src="./js/rate.js"></script>
+    <script defer src="./js/rate.js"></script>
     <title>Product</title>
 </head>
 
@@ -66,9 +66,9 @@ if (isset($_SESSION['user'])) {
             <div class="product_contener">
 
                 <div class="image_container">
-                        <!-- add path image -->
-                        <img src="./../uploads/<?= $image; ?>" alt="<?= $name; ?>" class="product_image">
-                    
+                    <!-- add path image -->
+                    <img src="./../uploads/<?= $image; ?>" alt="<?= $name; ?>" class="product_image">
+
                 </div>
 
                 <div class="info_product_contener">
@@ -85,7 +85,7 @@ if (isset($_SESSION['user'])) {
                         <p id="rateValue"></p>
                         <?php if (isset($_SESSION["user"])) : ?>
                             <form method="post" id="postRateForm">
-                                <label for="rating">Rate :</label>
+                                <!-- <label for="rating">Rate :</label> -->
                                 <select name="rating" id="rating">
                                     <option>-- Select Your Rating --</option>
                                     <option value="1">&#9733;</option>
@@ -98,25 +98,26 @@ if (isset($_SESSION['user'])) {
 
                         <?php endif ?>
                     </div>
-                    <?php if (isset($_SESSION['user'])) {; ?>
-                        <form action="./../src/controllers/add_cart.js" method="post" id="formCart">
-                            <input type="hidden" name="id_product" value="<?= $id_product; ?>">
-                            <input type="hidden" name="id_user" value="<?= $id_user; ?>">
-                            <input type="number" name="product_quantity" value="<?= 1; ?>">
-                            <input class="button-59" type="submit" name="add_cart" value="Add to cart" />
-                        </form>
+                    <div class="addCartDiv">
+                        <?php if (isset($_SESSION['user'])) {; ?>
+                            <form action="./../src/controllers/add_cart.js" method="post" id="formCart">
+                                <input type="hidden" name="id_product" value="<?= $id_product; ?>">
+                                <input type="hidden" name="id_user" value="<?= $id_user; ?>">
+                                
+                                <input type="number" name="product_quantity" class="numberCart" value="<?= 1; ?>">
+                                <input class="button-59" type="submit" name="add_cart" value="Add to cart" />
+                            </form>
 
-                        <form action="" method="post" id="formBuy">
-                            <input type="hidden" name="id_product_buy" value="<?= $id_product; ?>">
-                            <input type="hidden" name="id_user_buy" value="<?= $id_user; ?>">
-                            <input type="hidden" name="product_quantity_buy" value="1">
-                            <input type="hidden" name="add_cart_buy" value="Acher" />
-                        </form>
-
-                            <button class="button-59 btn-getCart"><a href="./cart.php">Your Cart</a></button>
-                    <?php }; ?>
+                            <form action="" method="post" id="formBuy">
+                                <input type="hidden" name="id_product_buy" value="<?= $id_product; ?>">
+                                <input type="hidden" name="id_user_buy" value="<?= $id_user; ?>">
+                                <input type="hidden" name="product_quantity_buy" value="1">
+                                <input type="hidden" name="add_cart_buy" value="Acher" />
+                            </form>
+                    </div>
+                    <button class="button-59 btn-getCart"><a href="./cart.php">Your Cart</a></button>
+                <?php }; ?>
                 </div>
-
             </div>
         </section>
         <section>
@@ -137,7 +138,7 @@ if (isset($_SESSION['user'])) {
 
 
     </main>
-    
+
     <?php require_once('./includes/footer.php'); ?>
     <script src="./js/auth.js"></script>
 </body>

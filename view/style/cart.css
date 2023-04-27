@@ -3,6 +3,7 @@
 main{
     width: 80%;
     margin: auto;
+    min-height: 24%;
 }
 main h1{
     margin: 20px 0;

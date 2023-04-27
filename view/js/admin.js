@@ -133,6 +133,7 @@ function loading() {
 
 async function fetchUser() {
 
+    // Loading supprime tous les enfants de la div principale et affiche un message de chargement
     loading();
 
     // Récupération des infos

@@ -49,7 +49,7 @@ function fetchComment() {
                             <br>
                             <p>${comment.text}</p>           
                         `;
-                        if (userInfo.user.role === 'admin') {
+                        if (userInfo?.user?.role === 'admin') {
                             commentDiv.innerHTML += `
                                 <button value="${comment.id}" class="remove_button">
                                     remove
@@ -68,7 +68,7 @@ function fetchComment() {
                             window.location.reload();
                         })
                     });
-                });
+                })
 
         })
 }
@@ -84,7 +84,7 @@ fetchComment();
 let addCommentForm = document.querySelector("#addCommentForm");
 let addCommentBtn = document.querySelector("#addCommentBtn");
 
-addCommentBtn.addEventListener("click", function (ev) {
+addCommentBtn?.addEventListener("click", function (ev) {
     ev.preventDefault();
     let data = new FormData(addCommentForm);
     data.append("addCommentBtn", addCommentBtn.value);

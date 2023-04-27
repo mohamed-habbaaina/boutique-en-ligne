@@ -50,7 +50,7 @@ fetchRate();
 
 const rating = document.querySelector("#rating");
 const postRateForm = document.querySelector("#postRateForm")
-rating.addEventListener("change", () => {
+rating?.addEventListener("change", () => {
     const selectedRating = rating.value;
 
     let data = new FormData(postRateForm);

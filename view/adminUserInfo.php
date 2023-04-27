@@ -10,8 +10,7 @@ if (isset($_GET["userId"])) {
     $profile = $adminController->getUserInfo($userId);
     $orders = $adminController->getUserOrders($userId);
 
-    $firstname = $profile['firstname'];
-    $lastname = $profile['lastname'];
+
 }
 ?>
 <!DOCTYPE html>

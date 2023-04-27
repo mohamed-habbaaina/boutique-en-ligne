@@ -45,8 +45,10 @@ if (isset($_SESSION['user'])) {
     <link rel="stylesheet" href="./style/includes.css">
     <link rel="stylesheet" href="./style/contact.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-    <?php if (isset($_SESSION['user'])) { ?><script defer src="./../src/controllers/add_cart.js"></script>
-        <script defer src="./js/comment.js"></script><?php }; ?>
+    <?php if (isset($_SESSION['user'])) { ?>
+        <script defer src="./../src/controllers/add_cart.js"></script>
+    <?php }; ?>
+    <script defer src="./js/comment.js"></script>
     <script defer src="./js/rate.js"></script>
     <title>Product</title>
 </head>
@@ -103,7 +105,7 @@ if (isset($_SESSION['user'])) {
                             <form action="./../src/controllers/add_cart.js" method="post" id="formCart">
                                 <input type="hidden" name="id_product" value="<?= $id_product; ?>">
                                 <input type="hidden" name="id_user" value="<?= $id_user; ?>">
-                                
+
                                 <input type="number" name="product_quantity" class="numberCart" value="<?= 1; ?>">
                                 <input class="button-59" type="submit" name="add_cart" value="Add to cart" />
                             </form>
@@ -132,7 +134,7 @@ if (isset($_SESSION['user'])) {
                 <?php endif ?>
                 <section id="comment-section"></section>
             </div>
-           
+
         </section>
 
 

@@ -63,24 +63,20 @@ function postFilter() {
   let allOrigins = [];
 
   let checkedCategories = [];
-  if (checkboxesCategory.length > 0) {
-    checkboxesCategory.forEach(category => {
-      if (category.checked) {
-        checkedCategories.push(category.getAttribute('name'));
-      }
-      allCategories.push(category.getAttribute('name'));
-    })
-  }
+  checkboxesCategory.forEach(category => {
+    if (category.checked) {
+      checkedCategories.push(category.getAttribute('name'));
+    }
+    allCategories.push(category.getAttribute('name'));
+  })
 
   let checkedOrigins = [];
-  if (checkboxesOrigin.length > 0) {
-    checkboxesOrigin.forEach(origin => {
-      if (origin.checked) {
-        checkedOrigins.push(origin.getAttribute('name'));
-      }
-      allOrigins.push(origin.getAttribute('name'));
-    })
-  }
+  checkboxesOrigin.forEach(origin => {
+    if (origin.checked) {
+      checkedOrigins.push(origin.getAttribute('name'));
+    }
+    allOrigins.push(origin.getAttribute('name'));
+  })
 
   categoriesToDisplay = checkedCategories.length === 0 ? allCategories : checkedCategories;
   originsToDisplay = checkedOrigins.length === 0 ? allOrigins : checkedOrigins;

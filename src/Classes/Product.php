@@ -87,14 +87,14 @@ class Product
 
     /* Get Product like $request.
     */
-    public function getSearchProduct($request): ?array
-    {
-        $req = "SELECT * FROM `product` WHERE name_pro LIKE '%{$request}%' LIMIT 10";
-        $reqSearch = DbConnection::getDb()->prepare($req);
-        $reqSearch->execute();
-        return $reqSearch->fetchAll(\PDO::FETCH_ASSOC);
-    }
-
+    public function getSearchProduct(string $request): ?array
+{
+    $req = 'SELECT * FROM `product` WHERE name_pro LIKE :req LIMIT 10';
+    $reqSearch = DbConnection::getDb()->prepare($req);
+    $reqSearch->bindValue(':req', "%$request%", \PDO::PARAM_STR);
+    $reqSearch->execute();
+    return $reqSearch->fetchAll(\PDO::FETCH_ASSOC);
+}
     public function getAllProductData()
     {
 

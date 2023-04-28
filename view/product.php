@@ -128,8 +128,8 @@ if (isset($_SESSION['user'])) {
                 <h2 class="description">Comments</h2>
                 <?php if (isset($_SESSION["user"])) : ?>
                     <form id="addCommentForm">
-                        <input type="text" id="commentText" name="commentText">
-                        <button id="addCommentBtn" value="<?= $id_product; ?>">Envoyer</button>
+                        <input class="input_container" type="text" id="commentText" name="commentText">
+                        <button id="addCommentBtn" class="button-59" value="<?= $id_product; ?>">Envoyer</button>
                     </form>
                 <?php endif ?>
                 <section id="comment-section"></section>

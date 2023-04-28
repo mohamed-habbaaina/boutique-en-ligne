@@ -22,6 +22,8 @@ if (isset($_SESSION["user"])) {
                                     <li><a href="profil.php">Profil</a></li>
                                 <?php else : ?>
                                     <li><a href="admin.php">Admin</a></li>
+                                    <li><a href="add_product.php">Add Product</a></li>
+
                                 <?php endif ?>
                                 <form method="post">
                                     <li><button name="deco" id="decoBtn">Deconnexion</button></li>

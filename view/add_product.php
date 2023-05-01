@@ -1,8 +1,15 @@
 <?php
 session_start();
-// var_dump($_FILES['image']);
-// echo '<br>ok<br>';
-// var_dump($_POST);
+if (isset($_SESSION["user"]))
+{
+    if (!isset($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'admin')
+    {
+        header('Location: ./index.php');
+        die('Acces refused to the database !!!');
+    }
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">

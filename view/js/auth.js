@@ -2,6 +2,7 @@ let regDisplayBtn = document.querySelector("#regDisplayBtn");
 let logDisplayBtn = document.querySelector("#logDisplayBtn");
 const main = document.querySelector("main");
 
+// 
 function FetchReg() {
   fetch("register.php")
     .then((response) => {
@@ -110,6 +111,7 @@ function FetchReg() {
             })
             .then((content) => {
               if(content == "Registed"){
+                alert('Register');
                 FetchLog();
               }
             });
@@ -165,6 +167,7 @@ function FetchLog() {
             if(content !== "Welcome"){
               logMsg.innerHTML = content;
             } else{
+              alert('Connected');
               window.location = "index.php";
             }
           });

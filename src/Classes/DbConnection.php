@@ -5,7 +5,7 @@ class DbConnection
     private static $servername = 'localhost';
     private static $username_b = 'root';
     private static $password_b = '';
-    private static $database = 'eshop';
+    private static $database = 'eshop2';
     private static ?\PDO $_db = null;
 
     public static function getDb()

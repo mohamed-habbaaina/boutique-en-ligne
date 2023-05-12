@@ -1,0 +1,250 @@
+#rateValue{
+    color: gold;
+}
+.product_image{
+    width: 300px;
+}
+
+.product_contener{
+    display: flex;
+    flex-direction: row;
+}
+
+.image_container{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    padding-right: 5% ;
+    align-items: center;
+}
+ .image_container img {
+    width: 90%;
+    height: 95%;
+ }
+
+.info_product_contener{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+h2.description {
+    text-align: left;
+}
+
+.product_image{
+    width: 300px;
+}
+.productPrice{
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+}
+
+.product_contener{
+    display: flex;
+    flex-direction: row;
+}
+
+.image_container{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    padding-right: 5% ;
+}
+ .image_container img {
+    width: 100%;
+ }
+
+.info_product_contener{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.info_product_contener p{
+    color: black;
+}
+h2.description {
+    text-align: left;
+}
+.titleP{
+    color: #572A17;
+    font-size: 22px;
+}
+.addCartDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .addCartDiv form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+    
+  }
+  .numberCart{
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid black;
+  box-sizing: border-box;
+  color: #572A17;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #572A17;
+  font-family: Inika,sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  touch-action: manipulation;
+  border-radius: 3px;
+  }
+
+  .commentDisplay{
+    line-height: 1.5;
+  }
+/* ---------BUTTON--------- */
+
+
+/* CSS */
+.button-42 {
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #FF7E31, #E62C03);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 100%;
+  z-index: 9;
+  border: 0;
+  transition: box-shadow .2s;
+}
+
+.button-42:hover {
+  box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
+}
+
+#postRateForm select{
+    padding: 13px;
+    margin: 7px 0;
+
+}
+
+/* ************* form *********************** */
+/* ****************************************** */
+
+
+
+/* ----------MEDIA QUERY----------- */
+@media only screen and (max-width: 768px) {
+   .product_contener{
+    display: block;
+    justify-content: center;
+    
+   }
+   .product_info{
+    margin-top: 5%;
+   }
+
+   .image_container{
+    width: 100%;
+    padding-right: 0;
+   }
+   .info_product_contener{
+    width: 100%;
+    line-height: 1.5;
+   }
+   #formCart input {
+    width: 100%;
+   }
+   #postRateForm select {
+    width: 100%;
+   }
+
+   .info_product_contener {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .titleP {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .productPrice {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .rateDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .addCartDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .addCartDiv form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  
+  .numberCart input[type="number"] {
+    width: 50px;
+    margin-right: 10px;
+  }
+}

@@ -1,13 +1,13 @@
 <?php
 
-require_once __DIR__ . 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $router = new AltoRouter();
 
 $router->setBasePath('/boutique-en-ligne');
 
 $router->map('GET', '/', function() {
-    echo "ok";
+    require_once('src/view/home.php');
 });
 
 // match current request url

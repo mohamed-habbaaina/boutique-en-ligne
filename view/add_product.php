@@ -1,13 +1,19 @@
 <?php
 session_start();
-if (isset($_SESSION["user"]))
-{
-    if (!isset($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'admin')
-    {
-        header('Location: ./index.php');
-        die('Acces refused to the database !!!');
-    }
+session_start();
+require_once('../src/Classes/Cart.php');
 
+$user = new \src\Classes\Cart;
+if(!$user->isConnected())
+{
+    header('Location: index.php');
+    die('Acces refused to the database !!!');
+}
+
+if (!isset($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'admin')
+{
+    header('Location: ./index.php');
+    die('Acces refused to the database !!!');
 }
 
 ?>

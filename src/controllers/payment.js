@@ -22,9 +22,10 @@ formPayment.addEventListener('submit', async (e) => {
         console.log(response);
         if(response === true)
         {
-            displayMessagePayment.innerHTML = 'confirm confir confirm !!!';
+            displayMessagePayment.innerHTML = 'Payment accepted !';
+            displayMessagePayment.style.color = 'green';
 
-            setTimeout(() => window.location = './shop.php' , 1500);
+            setTimeout(() => window.location = './shop.php' , 2000);
         } else
         {
             displayMessagePayment.innerHTML = response

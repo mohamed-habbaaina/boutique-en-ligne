@@ -1,6 +1,5 @@
 <?php
 session_start();
-session_start();
 require_once('../src/Classes/Cart.php');
 
 $user = new \src\Classes\Cart;

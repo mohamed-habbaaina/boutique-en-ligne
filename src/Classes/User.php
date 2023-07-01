@@ -274,4 +274,10 @@ class User
         $prepare = DbConnection::getDb()->prepare($sqlQuery);
         $prepare->execute([':id' => $id]);
     }
+    public function deconnect(): void
+    {
+        $_SESSION = array(); 
+        session_unset();
+        session_destroy();
+    }
 }

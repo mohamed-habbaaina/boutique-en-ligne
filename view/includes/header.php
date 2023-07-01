@@ -1,12 +1,3 @@
-<?php
-if (isset($_SESSION["user"])) {
-    if (isset($_POST["deco"])) {
-        session_destroy();
-        header("Location: index.php");
-        exit;
-    }
-}
-?>
 <nav>
     <div class="top_part">
         <div class="logo_part">
@@ -22,10 +13,10 @@ if (isset($_SESSION["user"])) {
                                     <li><a href="profil.php">Profil</a></li>
                                 <?php else : ?>
                                     <li><a href="admin.php">Admin</a></li>
+                                    <li><a href="add_product.php">Add Product</a></li>
+
                                 <?php endif ?>
-                                <form method="post">
-                                    <li><button name="deco" id="decoBtn">Deconnexion</button></li>
-                                </form>
+                                    <li> <a href="./deconnect.php"><button id="decoBtn">Deconnexion</button></a></li>
                             <?php else : ?>
                                 <li><button id="logDisplayBtn">Login</button></li>
                                 <li><button id="regDisplayBtn">Register</button></li>

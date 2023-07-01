@@ -1,9 +1,35 @@
 <?php
 session_start();
+require_once('../src/Classes/Cart.php');
+
+$user = new \src\Classes\Cart;
+if(!$user->isConnected())
+{
+    header('Location: index.php');
+    die('Acces refused to the database !!!');
+}
+
+if (!isset($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'admin')
+{
+    header('Location: ./index.php');
+    die('Acces refused to the database !!!');
+}
+
+
+// if (isset($_SESSION["user"]))
+// {
+//     if (!isset($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'admin')
+//     {
+//         header('Location: ./index.php');
+//         die('Acces refused to the database !!!');
+//     }
+
+// }
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -22,12 +48,6 @@ session_start();
 
     <main>
 
-    <?php
-    if (!isset($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'admin') {
-        echo "Access denied, you have to be admin";
-        die();
-    }
-    ?>
     <h1>Admin</h1>
         <div class="buttonDiv">
         <button id="productDisplayBtn" class="button-59">Products</button>

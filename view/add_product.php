@@ -1,8 +1,20 @@
 <?php
 session_start();
-// var_dump($_FILES['image']);
-// echo '<br>ok<br>';
-// var_dump($_POST);
+require_once('../src/Classes/Cart.php');
+
+$user = new \src\Classes\Cart;
+if(!$user->isConnected())
+{
+    header('Location: index.php');
+    die('Acces refused to the database !!!');
+}
+
+if (!isset($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'admin')
+{
+    header('Location: ./index.php');
+    die('Acces refused to the database !!!');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">

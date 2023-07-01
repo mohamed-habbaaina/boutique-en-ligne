@@ -2,6 +2,7 @@ let regDisplayBtn = document.querySelector("#regDisplayBtn");
 let logDisplayBtn = document.querySelector("#logDisplayBtn");
 const main = document.querySelector("main");
 
+// Register user
 function FetchReg() {
   fetch("register.php")
     .then((response) => {
@@ -14,7 +15,7 @@ function FetchReg() {
       let regPassword = document.querySelector("#regPassword");
       let regPasswordConfirm = document.querySelector("#regPasswordConfirm");
       
-      // 
+      // inputs register validation
 
       function isValidName(name) {
         const nameRegex = /^[A-Za-z\é\è\ê\-\ ]{2,}$/;
@@ -88,7 +89,7 @@ function FetchReg() {
           password_div.style.border = 'solid 2px red';
         }
       });
-      // 
+      // Register user
       regBtn.addEventListener("click", function (ev) {
         ev.preventDefault();
 
@@ -110,6 +111,7 @@ function FetchReg() {
             })
             .then((content) => {
               if(content == "Registed"){
+                alert('Register');
                 FetchLog();
               }
             });
@@ -134,7 +136,8 @@ function FetchLog() {
       let logBtn = document.querySelector("#logBtn");
       let logForm = document.querySelector("#logForm");
       let logMsg = document.querySelector("#logMsg");
-// 
+
+// inputs connected validation 
   function isValidEmail(email) {
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return email.match(emailRegex);
@@ -148,7 +151,7 @@ function FetchLog() {
       email_div.style.border = 'solid 2px red';
     }
   })
-// 
+// connected user
       logBtn.addEventListener("click", function (ev) {
         ev.preventDefault();
         let data = new FormData(logForm);
@@ -165,6 +168,7 @@ function FetchLog() {
             if(content !== "Welcome"){
               logMsg.innerHTML = content;
             } else{
+              alert('Connected');
               window.location = "index.php";
             }
           });

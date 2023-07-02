@@ -11,6 +11,8 @@ main h1{
 .displayCart{
     display: flex;
     flex-direction: column-reverse;
+    font-weight: bold;
+    color: rgb(157, 74, 14);
 }
 /* *********** btn payment ******** */
 /* ******************************** */

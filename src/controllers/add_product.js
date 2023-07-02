@@ -32,17 +32,17 @@ image.addEventListener('change', e => {
 
             } else
             {
-                small.innerHTML = 'Veuillez télécharger une image !';
+                small.innerHTML = 'Please upload an image !';
                 small.style.color = 'red';   
             }
         } else{
-            small.innerHTML = 'Veuillez télécharger une image !';
+            small.innerHTML = 'Please upload an image !';
             small.style.color = 'red';
         }
 
     } else
     {
-        small.innerHTML = 'Taille maximum autorisée 2 M !';
+        small.innerHTML = 'The maximum allowed size is 2 MB !';
         small.style.color = 'red';
     }
 })

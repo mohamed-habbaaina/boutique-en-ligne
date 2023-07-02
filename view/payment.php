@@ -98,7 +98,7 @@ if(!$payment->checkSecureCart($id_cart, $id_user))
                 <input type="text" name="lastname" value="<?= $lastname; ?>">
             </div>
             <div>
-                <input type="text" name="bank_card" placeholder="Entrer Votre Carte Bancaire ...">
+                <input type="text" name="bank_card" placeholder="Credit Card ...">
             </div>
             <div>
                 <?php

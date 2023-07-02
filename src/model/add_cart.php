@@ -50,14 +50,14 @@ if($_POST['id_user'] && $_POST['id_user'] == $id_user)
         // Update quantity in cart_product.
         $cart->updatProductCart($newQantity, $id_cart, $id_product);
 
-        $message[] = "Vous avez maintenant $newQantity produit dans le panier !";
+        $message[] = "You have $newQantity products in the cart !";
 
     } else
     {
         // Create cart_product.
         $cart->insertProductCart($id_cart, $id_product, $product_quantity);
 
-        $message[] = "Vous avez ajouter $product_quantity produit dans le panier !";
+        $message[] = "You have added $product_quantity products to the cart !";
     }
 
     echo json_encode($message);

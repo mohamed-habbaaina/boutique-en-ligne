@@ -46,11 +46,11 @@ if(!$payment->checkSecureCart($id_cart, $id_user))
         // Check if user has filled in the delivery information 
         if(empty($_POST['address']) || empty($_POST['zip']))
         {
-            $messag[] = '<li>Veillez renseigné votre adresse de livraison !</li>';
+            $messag[] = '<li>Please provide your shipping address !</li>';
         }
         if(empty($_POST['bank_card']))
         {
-            $messag[] = '<li>Veillez renseigné votre Carte bancaire !</li>';
+            $messag[] = '<li>Please provide your credit card information !</li>';
         }
 
         

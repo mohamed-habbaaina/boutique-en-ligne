@@ -14,6 +14,7 @@ function FetchReg() {
       let regForm = document.querySelector("#regForm");
       let regPassword = document.querySelector("#regPassword");
       let regPasswordConfirm = document.querySelector("#regPasswordConfirm");
+      let regMsg = document.querySelector('#regMsg');
       
       // inputs register validation
 
@@ -113,6 +114,8 @@ function FetchReg() {
               if(content == "Registed"){
                 alert('Register');
                 FetchLog();
+              } else{
+                regMsg.innerHTML = content;
               }
             });
         }

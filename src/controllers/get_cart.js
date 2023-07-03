@@ -52,7 +52,7 @@ let response = await fetch('./../src/model/getCart.php')
             <form action="./payment.php" method="post">
                 <input type="hidden" name="id_cart" value="${id_cart}">
                 <input type="hidden" name="total" value="${total.toFixed(2)}">
-                <input class="button-59" type="submit" name="payment_cart" value="Past Order"/>
+                <input class="button-59" type="submit" name="payment_cart" value="Order"/>
             </form>
         </div>
         `
@@ -61,6 +61,6 @@ let response = await fetch('./../src/model/getCart.php')
     }
     else
     {
-        displayCart.innerHTML = 'Votre Panier est vide !';
+        displayCart.innerHTML = 'Your Cart is empty !';
     }
 })

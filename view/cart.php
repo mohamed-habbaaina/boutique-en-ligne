@@ -29,7 +29,7 @@ if(!$cart->isConnected())
     <?php require_once('./includes/header.php'); ?>
 
     <main>
-        <h1>Votre Panier</h1>
+        <h1>Cart</h1>
             <div class="displayCart">
             </div>
             

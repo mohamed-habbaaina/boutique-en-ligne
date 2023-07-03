@@ -160,6 +160,14 @@ h2.description {
 
 }
 
+.displayCart{
+  display: flex;
+  flex-direction: column-reverse;
+  font-weight: bold;
+  text-align: center;
+  color: rgb(157, 74, 14);
+}
+
 /* ************* form *********************** */
 /* ****************************************** */
 

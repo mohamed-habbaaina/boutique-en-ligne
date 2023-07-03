@@ -45,6 +45,15 @@ table {
     cursor: pointer;
     font-family: 'Inika', sans-serif;
   }
+  .productName{
+    border: solid 1px;
+    padding: 5px;
+    margin: 5px 0;
+    width: 250px;
+    color: white;
+    font-weight: bold;
+    background-color: #5a5858;
+  }
   
   @media (max-width: 768px) {
     th, td {
